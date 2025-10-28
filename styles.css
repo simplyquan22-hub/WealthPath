@@ -10,8 +10,8 @@ body {
   font-size: 16px;
   line-height: 1.8;
   letter-spacing: 0.5px;
-  background: radial-gradient(circle at 10% 20%, #0a0a0f, #020202 80%);
   color: #f4f4f4;
+  background: radial-gradient(circle at 10% 20%, #0a0a0f, #020202 80%);
   overflow-x: hidden;
 }
 
@@ -41,6 +41,16 @@ body {
   z-index: 2;
   max-width: 700px;
   padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
 }
 
 /* Shimmer Effect */
@@ -101,7 +111,7 @@ body {
   padding: 50px 40px;
   margin: 60px auto;
   max-width: 900px;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -111,12 +121,28 @@ body {
   box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
 }
 
+.glass-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.glass-card p, .glass-card ul {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.glass-card ul li {
+  margin-bottom: 12px;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
   padding: 40px 20px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
   color: #aaa;
-  font-size: 0.9rem;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -184,3 +210,16 @@ blockquote footer {
   transform: scale(1);
 }
 
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .glass-card {
+    padding: 30px 20px;
+    margin: 40px auto;
+  }
+}
