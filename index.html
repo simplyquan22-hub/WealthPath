@@ -9,29 +9,29 @@
 <body>
 
   <!-- HERO SECTION -->
-  <section class="hero">
+  <section class="hero reveal">
     <div class="hero-bg"></div>
-    <div class="hero-content reveal">
+    <div class="hero-content">
       <h1 class="shimmer">Your Journey Starts Today</h1>
       <p>Welcome to WealthPath! Whether you’re starting with $50 or $1,000, we’re here to guide you every step of the way to financial freedom. Click the View PDF Course button to get started.</p>
       <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" class="cta-btn" target="_blank">View the PDF Course</a>
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT -->
   <section class="about reveal glass-card">
     <h2>About WealthPath</h2>
     <p>WealthPath is designed to empower individuals to start their investing journey through IRA accounts, reprogram their mindset, and build wealth—one step at a time. Whether you’re just starting out or looking to deepen your investing knowledge, our step-by-step lessons provide clear guidance and actionable strategies, helping you gain the confidence to take your first steps toward long-term financial growth.</p>
   </section>
 
-  <!-- MISSION SECTION -->
+  <!-- MISSION -->
   <section class="mission reveal glass-card">
     <h2>Our Mission</h2>
     <p>WealthPath was created to empower people to learn about investing with clarity, confidence, and purpose. We believe financial education shouldn't feel intimidating — it should feel personal, inspiring, and practical.</p>
     <p><strong>Our mission is simple:</strong> To guide you step-by-step in building lasting wealth through wisdom, discipline, and action.</p>
   </section>
 
-  <!-- VISION SECTION -->
+  <!-- VISION -->
   <section class="vision reveal glass-card">
     <h2>Our Vision</h2>
     <p>We see a future where financial freedom is accessible to everyone — not just the few. WealthPath blends education and inspiration to help you grow your wealth, not by chasing trends, but by mastering timeless principles that truly work.</p>
@@ -41,14 +41,8 @@
   <section class="difference reveal glass-card">
     <h2>What Makes Us Different</h2>
     <ul class="difference-list">
-      <li>
-        <span class="emoji">👨‍🏫</span>
-        <strong>Education that feels personal:</strong> Learn with lessons designed for your level and goals.
-      </li>
-      <li>
-        <span class="emoji">🧠</span>
-        <strong>Mindset First:</strong> Every lesson is grounded in discipline, patience, and clarity.
-      </li>
+      <li><span class="emoji">👨‍🏫</span><strong> Education that feels personal:</strong> Learn with lessons designed for your level and goals.</li>
+      <li><span class="emoji">🧠</span><strong> Mindset First:</strong> Every lesson is grounded in discipline, patience, and clarity.</li>
     </ul>
   </section>
 
@@ -75,7 +69,22 @@
     <p>© 2026 WealthPath — "A Journey Uniquely Yours" | <a href="mailto:Raequancol12@gmail.com">Contact Us</a></p>
   </footer>
 
-  <canvas id="particleCanvas"></canvas>
-  <script src="script.js"></script>
+  <!-- SCROLL REVEAL SCRIPT -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      for (const element of reveals) {
+        const windowHeight = window.innerHeight;
+        const revealTop = element.getBoundingClientRect().top;
+        const revealPoint = 100;
+        if (revealTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      }
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+
 </body>
 </html>
