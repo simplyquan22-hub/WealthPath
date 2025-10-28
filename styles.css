@@ -1,4 +1,6 @@
-/* GENERAL RESET */
+/* =========================
+   GENERAL RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -11,11 +13,13 @@ body {
   line-height: 1.8;
   letter-spacing: 0.5px;
   color: #f4f4f4;
-  background: radial-gradient(circle at 10% 20%, #0b0f1a, #02040a 85%);
+  background: radial-gradient(circle at 10% 20%, #0b0f1a, #02040a 80%);
   overflow-x: hidden;
 }
 
-/* HERO SECTION */
+/* =========================
+   HERO SECTION
+========================= */
 .hero {
   position: relative;
   height: 100vh;
@@ -24,21 +28,42 @@ body {
   align-items: center;
   text-align: center;
   overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #0b0f1a, #02040a 85%);
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.2), transparent 60%),
-              radial-gradient(circle at 70% 60%, rgba(63, 140, 255, 0.1), transparent 70%);
+  background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.25), transparent 65%),
+              radial-gradient(circle at 70% 60%, rgba(63, 140, 255, 0.12), transparent 75%);
   animation: glowMove 15s ease-in-out infinite alternate;
   filter: blur(100px);
   z-index: 1;
 }
 
+/* ✨ Soft Animated Gold Glow Behind Title */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%);
+  filter: blur(80px);
+  transform: translate(-50%, -50%);
+  animation: heroGlow 8s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes heroGlow {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+}
+
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 700px;
   padding: 0 20px;
 }
@@ -46,11 +71,13 @@ body {
 .hero-content h1 {
   font-size: 2.8rem;
   margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 25px;
+  color: #eaeaea;
 }
 
 /* Shimmer Effect */
@@ -68,13 +95,14 @@ body {
   100% { background-position: 200% 50%; }
 }
 
-/* Glow Animation */
 @keyframes glowMove {
   0% { background-position: 30% 50%, 70% 60%; }
   100% { background-position: 50% 40%, 60% 70%; }
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 .cta-btn {
   display: inline-block;
   margin-top: 25px;
@@ -83,16 +111,16 @@ body {
   color: #0a0a0f;
   font-weight: bold;
   text-transform: uppercase;
-  border-radius: 10px;
+  border-radius: 8px;
   text-decoration: none;
   letter-spacing: 1px;
   transition: all 0.4s ease;
-  box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+  box-shadow: 0 5px 15px rgba(212,175,55,0.4);
 }
 
 .cta-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(212,175,55,0.6);
+  box-shadow: 0 10px 25px rgba(212,175,55,0.6);
   background: linear-gradient(90deg, #e6c75a, #c79a19);
   animation: pulse 1s infinite alternate;
 }
@@ -102,54 +130,75 @@ body {
   100% { transform: scale(1.1); }
 }
 
-/* GLASS CARD SECTIONS */
+/* =========================
+   GLASS CARD SECTIONS
+========================= */
 .glass-card {
-  background: rgba(15, 18, 28, 0.7);
-  backdrop-filter: blur(20px);
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 50px 40px;
   margin: 60px auto;
   max-width: 900px;
   text-align: left;
-  box-shadow: 0 0 25px rgba(212,175,55,0.12);
-  transition: all 0.4s ease;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.08),
+              0 0 60px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 40px rgba(212,175,55,0.35);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15),
+              0 0 80px rgba(0, 0, 0, 0.7);
 }
 
 .glass-card h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #f1e9c9;
+  color: #f4f4f4;
 }
 
 .glass-card p, .glass-card ul {
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 15px;
-  color: #eaeaea;
+  color: #ddd;
 }
 
 .glass-card ul li {
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
 }
 
-/* PROFESSIONAL BLOCKQUOTE */
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  color: #aaa;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+/* =========================
+   BLOCKQUOTE
+========================= */
 blockquote {
   border-left: 4px solid #d4af37;
-  padding: 20px 25px;
+  padding: 20px 20px 20px 25px;
   margin: 20px 0;
   font-style: italic;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   color: #f4f4f4;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(212,175,55,0.15);
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(212,175,55,0.15);
   transition: transform 0.3s ease;
 }
 
@@ -165,9 +214,11 @@ blockquote footer {
   color: #d4af37;
 }
 
-/* ANIMATED CHECK MARKS IN LISTS */
+/* =========================
+   CHECKMARK ICON ANIMATION
+========================= */
 .difference ul li svg {
-  margin-right: 10px;
+  margin-right: 8px;
   transform: scale(0);
   transition: transform 0.5s ease;
 }
@@ -176,22 +227,9 @@ blockquote footer {
   transform: scale(1);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  color: #aaa;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-footer a {
-  color: #d4af37;
-  text-decoration: none;
-}
-
-/* REVEAL ANIMATION */
+/* =========================
+   REVEAL ANIMATION
+========================= */
 .reveal {
   opacity: 0;
   transform: translateY(60px);
@@ -203,7 +241,9 @@ footer a {
   transform: translateY(0);
 }
 
-/* FLOATING PARTICLES BACKGROUND */
+/* =========================
+   PARTICLES BACKGROUND
+========================= */
 #particleCanvas {
   position: fixed;
   top: 0;
@@ -214,7 +254,9 @@ footer a {
   z-index: 0;
 }
 
-/* RESPONSIVE DESIGN */
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 2rem;
