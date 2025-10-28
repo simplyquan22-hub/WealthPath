@@ -1,4 +1,4 @@
-/* GLOBAL RESET */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -7,17 +7,16 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0c1424 0%, #0a1020 100%);
+  background: radial-gradient(circle at top, #101b33 0%, #0b1325 100%);
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   position: relative;
   text-align: center;
-  color: #fff;
   padding: 8rem 2rem 6rem;
   overflow: hidden;
 }
@@ -25,15 +24,15 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #0b1222 0%, #141b2f 100%);
+  background: linear-gradient(135deg, #0b1222 0%, #121b30 100%);
   z-index: -1;
 }
 
 .hero h1 {
   font-size: 2.8rem;
-  margin-bottom: 1rem;
   color: #d4af37;
   text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  margin-bottom: 1rem;
 }
 
 .hero p {
@@ -59,24 +58,23 @@ body {
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
 }
 
-/* GLASS CARD BASE */
+/* GLASS CARD */
 .glass-card {
-  background: rgba(15, 22, 40, 0.7);
+  background: rgba(15, 22, 40, 0.75);
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
   backdrop-filter: blur(12px);
   padding: 2.5rem;
   margin: 3rem auto;
   max-width: 900px;
-  color: #f5f5f5;
   transition: all 0.4s ease;
 }
 
 .glass-card:hover {
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 45px rgba(212, 175, 55, 0.25);
 }
 
-/* SECTION TITLES */
+/* TITLES */
 h2 {
   color: #d4af37;
   text-align: center;
@@ -84,14 +82,14 @@ h2 {
   font-size: 1.8rem;
 }
 
-/* PARAGRAPHS */
+/* TEXT */
 p {
   font-size: 1.05rem;
-  line-height: 1.7;
   color: #e8e8e8;
+  line-height: 1.7;
 }
 
-/* WHAT MAKES US DIFFERENT */
+/* DIFFERENCE LIST */
 .difference-list {
   list-style: none;
   padding: 0;
@@ -104,16 +102,15 @@ p {
   align-items: flex-start;
   gap: 0.6rem;
   font-size: 1.05rem;
-  line-height: 1.7;
 }
 
 .difference-list .emoji {
   font-size: 1.3rem;
 }
 
-/* OUR FOUNDER */
+/* FOUNDER QUOTE */
 .founder blockquote {
-  margin: 1.5rem 0 0;
+  margin-top: 1.5rem;
   padding: 1rem 1.5rem;
   font-style: italic;
   border-left: 3px solid #d4af37;
@@ -127,7 +124,6 @@ p {
   text-align: right;
   font-style: normal;
   color: #d4af37;
-  font-weight: 500;
 }
 
 /* FOOTER */
@@ -143,16 +139,24 @@ footer a {
   text-decoration: none;
 }
 
-footer a:hover {
-  text-decoration: underline;
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
 }
 
-/* RESPONSIVE DESIGN */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.2rem;
   }
-  
+
   .glass-card {
     padding: 2rem;
     margin: 2rem 1rem;
