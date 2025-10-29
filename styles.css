@@ -24,13 +24,6 @@ body{
 
 /* Container */
 .container{max-width:var(--container);margin:0 auto;padding:0 20px}
-
-/* Header */
-.site-header{
-  position:sticky;top:0;z-index:40;
-  backdrop-filter: blur(6px);
-  background: linear-gradient(180deg, rgba(11,14,18,0.65), rgba(11,14,18,0.35));
-  border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
 .brand{display:flex;align-items:center;gap:10px}
