@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
     window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // trigger on load
+    revealOnScroll();
   }
 
   /* ====== DIFFERENCE LIST STAGGER ====== */
