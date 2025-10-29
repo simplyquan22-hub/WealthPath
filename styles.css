@@ -8,7 +8,7 @@
 /* BODY BACKGROUND */
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0a0a1f 0%, #1a001f 100%);
+  background: radial-gradient(circle at top, #05092d 0%, #0b103e 100%);
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
@@ -34,15 +34,24 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #0b1222 0%, #121b30 100%);
+  background: linear-gradient(135deg, #05092d 0%, #0b103e 100%);
   z-index: -1;
 }
 
 .hero h1 {
   font-size: 2.8rem;
   color: #d4af37;
-  text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
   margin-bottom: 1rem;
+  background: linear-gradient(90deg, #d4af37, #e0c267, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 3s linear infinite;
+}
+
+@keyframes shimmerText {
+  0% { background-position: -500px; }
+  100% { background-position: 500px; }
 }
 
 .hero p {
@@ -55,25 +64,30 @@ body {
 /* CTA BUTTON */
 .cta-btn {
   display: inline-block;
-  background: #d4af37;
+  background: linear-gradient(135deg, #d4af37, #e0c267);
   color: #0b1222;
-  padding: 0.9rem 2rem;
+  padding: 1rem 2.2rem;
   border-radius: 50px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: relative;
   z-index: 1;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
-/* Button pulse ring */
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.7);
+}
+
 .cta-btn::before {
   content: '';
   position: absolute;
-  top: -8px; left: -8px;
-  right: -8px; bottom: -8px;
+  top: -10px; left: -10px;
+  right: -10px; bottom: -10px;
   border-radius: 50px;
-  border: 2px solid rgba(212, 175, 55, 0.6);
+  border: 2px solid rgba(212, 175, 55, 0.5);
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.3s, transform 0.3s;
@@ -92,32 +106,31 @@ body {
   100% { transform: scale(0.9); opacity: 0.6; }
 }
 
-.cta-btn:hover {
-  background: #e0c267;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-}
-
-/* GLASS CARD STRONGER GLOW */
+/* GLASS CARDS */
 .glass-card {
-  background: rgba(15, 22, 40, 0.75);
+  background: rgba(15, 22, 40, 0.8);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
   padding: 2.5rem;
   margin: 3rem auto;
   max-width: 900px;
   transition: all 0.4s ease;
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-  animation: cardGlowPulse 4s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+  position: relative;
 }
 
 .glass-card:hover {
-  box-shadow: 0 0 70px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.45);
 }
 
-@keyframes cardGlowPulse {
-  0% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
-  50% { box-shadow: 0 0 50px rgba(212, 175, 55, 0.45); }
-  100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+/* Section separators */
+section::after {
+  content: '';
+  display: block;
+  width: 80%;
+  height: 1px;
+  margin: 2rem auto 0;
+  background: linear-gradient(to right, rgba(212,175,55,0.3), rgba(212,175,55,0), rgba(212,175,55,0.3));
 }
 
 /* TITLES */
@@ -146,12 +159,13 @@ p {
   margin: 1.2rem 0;
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.8rem;
   font-size: 1.05rem;
 }
 
-.difference-list .emoji {
+.difference-list .icon {
   font-size: 1.3rem;
+  color: #d4af37;
 }
 
 /* FOUNDER QUOTE */
