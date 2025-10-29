@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ===================== HERO DYNAMIC WORD ===================== */
+  /* ====== HERO DYNAMIC WORD ====== */
   const words = ["Starts", "Begins", "Unfolds"];
   let i = 0;
   const dynamicWord = document.getElementById('dynamic-word');
@@ -11,69 +11,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
   }
 
-  /* ===================== SCROLL REVEAL ===================== */
+  /* ====== SCROLL REVEAL ====== */
   const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length > 0) {
-    window.addEventListener('scroll', () => {
-      for (const element of reveals) {
-        const windowHeight = window.innerHeight;
-        const revealTop = element.getBoundingClientRect().top;
-        const revealPoint = 120;
-        if (revealTop < windowHeight - revealPoint) {
-          element.classList.add('active');
-        }
-      }
-    });
-    // Trigger reveal on load in case some elements are visible immediately
-    window.dispatchEvent(new Event('scroll'));
+  if (reveals.length) {
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      reveals.forEach(el => {
+        const revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 120) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // trigger on load
   }
 
-  /* ===================== DIFFERENCE LIST STAGGER ===================== */
+  /* ====== DIFFERENCE LIST STAGGER ====== */
   const diffItems = document.querySelectorAll('.difference-list li');
-  if (diffItems.length > 0) {
-    diffItems.forEach((item, index) => {
+  if (diffItems.length) {
+    diffItems.forEach((item, idx) => {
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => item.classList.add('active'), index * 200);
-          }
+          if (entry.isIntersecting) setTimeout(() => item.classList.add('active'), idx * 200);
         });
       });
       observer.observe(item);
     });
   }
 
-  /* ===================== GLASS CARD TILT ===================== */
-  const glassCards = document.querySelectorAll('.glass-card');
-  if (glassCards.length > 0) {
-    glassCards.forEach(card => {
+  /* ====== GLASS CARD TILT (DESKTOP ONLY) ====== */
+  if (window.innerWidth >= 768) {
+    document.querySelectorAll('.glass-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / centerY * 6;
-        const rotateY = (x - centerX) / centerX * -6;
+        const rotateX = ((y - rect.height/2) / (rect.height/2)) * 6;
+        const rotateY = ((x - rect.width/2) / (rect.width/2)) * -6;
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-      });
+      card.addEventListener('mouseleave', () => card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)');
     });
   }
 
-  /* ===================== PARTICLES CANVAS ===================== */
+  /* ====== PARTICLES CANVAS ====== */
   const canvas = document.getElementById('particles');
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
 
-    function resizeCanvas() {
+    const isMobile = window.innerWidth < 768;
+    const numParticles = isMobile ? 20 : Math.floor(window.innerWidth / 8);
+
+    const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
-    }
+    };
+
     window.addEventListener('resize', resizeCanvas);
 
     class Particle {
@@ -101,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initParticles() {
       particlesArray = [];
-      const numParticles = Math.floor(window.innerWidth / 8);
       for (let i = 0; i < numParticles; i++) {
         particlesArray.push(new Particle());
       }
