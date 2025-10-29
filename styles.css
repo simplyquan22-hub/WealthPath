@@ -11,7 +11,7 @@ body {
 /* HERO SECTION */
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh; /* safer than 100vh on iOS Safari */
   display: flex;
   justify-content: center;
   align-items: center;
