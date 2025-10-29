@@ -8,7 +8,7 @@
 /* BODY BACKGROUND */
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #05092d 0%, #0b103e 100%);
+  background: radial-gradient(circle at top, #1a002f 0%, #2a003f 100%);
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
@@ -34,7 +34,7 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #05092d 0%, #0b103e 100%);
+  background: linear-gradient(135deg, #1a002f 0%, #2a003f 100%);
   z-index: -1;
 }
 
@@ -108,19 +108,27 @@ body {
 
 /* GLASS CARDS */
 .glass-card {
-  background: rgba(15, 22, 40, 0.8);
+  background: rgba(35, 20, 55, 0.85); /* deep purple */
   border-radius: 20px;
   backdrop-filter: blur(14px);
   padding: 2.5rem;
   margin: 3rem auto;
   max-width: 900px;
+  width: 90%; /* uniform width */
   transition: all 0.4s ease;
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); /* subtle glow */
   position: relative;
+  animation: cardGlowPulse 6s ease-in-out infinite;
 }
 
 .glass-card:hover {
-  box-shadow: 0 0 60px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.55); /* hover glow */
+}
+
+@keyframes cardGlowPulse {
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
+  50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.45); }
+  100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
 }
 
 /* Section separators */
@@ -208,17 +216,4 @@ footer a {
 
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .glass-card {
-    padding: 2rem;
-    margin: 2rem 1rem;
-  }
-}
+ 
