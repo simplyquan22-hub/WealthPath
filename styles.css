@@ -5,9 +5,10 @@
   box-sizing: border-box;
 }
 
+/* BODY BACKGROUND */
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #101b33 0%, #0b1325 100%);
+  background: radial-gradient(circle at top, #0a0a1f 0%, #1a001f 100%);
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
@@ -42,6 +43,7 @@ body {
   color: #f5f5f5;
 }
 
+/* CTA BUTTON */
 .cta-btn {
   display: inline-block;
   background: #d4af37;
@@ -51,27 +53,59 @@ body {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.4);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.cta-btn:hover::after {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .cta-btn:hover {
   background: #e0c267;
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+  animation: pulse 1.2s infinite;
+}
+
+/* PULSE ANIMATION FOR BUTTONS */
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px rgba(212,175,55,0.5); }
+  50% { box-shadow: 0 0 30px rgba(212,175,55,0.7); }
+  100% { box-shadow: 0 0 15px rgba(212,175,55,0.5); }
 }
 
 /* GLASS CARD */
 .glass-card {
   background: rgba(15, 22, 40, 0.75);
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
   backdrop-filter: blur(12px);
   padding: 2.5rem;
   margin: 3rem auto;
   max-width: 900px;
   transition: all 0.4s ease;
+  animation: cardGlow 4s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
 }
 
 .glass-card:hover {
-  box-shadow: 0 0 45px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.35);
+}
+
+/* SUBTLE GLOW ANIMATION FOR CARDS */
+@keyframes cardGlow {
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+  50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.25); }
+  100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
 }
 
 /* TITLES */
