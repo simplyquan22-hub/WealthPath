@@ -1,0 +1,219 @@
+/* -------------------- VARIABLES -------------------- */
+:root {
+  --bg: #0b0e12;
+  --text: #e9eef6;
+  --muted: #9aa4b2;
+  --gold: #f5c542;
+  --neon: #00f0ff;
+  --btn-glow: drop-shadow(0 0 10px var(--neon)) drop-shadow(0 0 20px var(--neon));
+  --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------- GLOBAL -------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* -------------------- ANIMATED BACKGROUND -------------------- */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle, #001f3f 0%, #0b0e12 100%);
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--neon);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-50px) translateX(20px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(0) scale(1); opacity: 0; }
+}
+
+/* -------------------- HERO -------------------- */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b0e12 0%, #0b0e12 100%);
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------- BUTTONS -------------------- */
+.btn {
+  display: inline-block;
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--bg);
+  background: var(--gold);
+  position: relative;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-glow {
+  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon);
+}
+
+.btn-pulse {
+  animation: pulse 2s infinite;
+  background: linear-gradient(45deg, var(--gold), var(--neon));
+  color: var(--bg);
+  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--gold);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px var(--neon), 0 0 20px var(--gold); }
+  50% { transform: scale(1.1); box-shadow: 0 0 20px var(--neon), 0 0 40px var(--gold); }
+  100% { transform: scale(1); box-shadow: 0 0 10px var(--neon), 0 0 20px var(--gold); }
+}
+
+/* -------------------- ABOUT -------------------- */
+.about {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  width: 300px;
+  box-shadow: 0 0 15px var(--neon);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px var(--neon);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.founder-quote blockquote {
+  margin-top: 15px;
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* -------------------- CTA -------------------- */
+.cta {
+  background: linear-gradient(135deg, #0b0e12, #001f3f);
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cta h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: var(--muted);
+}
+
+/* -------------------- FOOTER -------------------- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--neon);
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 900px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .about h2, .cta h2 {
+    font-size: 2rem;
+  }
+}
