@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WealthPath — A Journey Uniquely Yours</title>
-  <link rel="stylesheet" href="styles.css"> <!-- updated CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particleCanvas"></canvas>
 
   <!-- HERO SECTION -->
   <section class="hero reveal">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <h1 class="shimmer">Your Journey Starts Today</h1>
+      <h1 class="typing-text"></h1>
       <p>Welcome to WealthPath! Whether you’re starting with $50 or $1,000, we’re here to guide you every step of the way to financial freedom. Click the View PDF Course button to get started.</p>
       <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" class="cta-btn" target="_blank">View the PDF Course</a>
     </div>
@@ -21,20 +24,19 @@
   <!-- ABOUT -->
   <section class="about reveal glass-card">
     <h2>About WealthPath</h2>
-    <p>WealthPath is designed to empower individuals to start their investing journey through IRA accounts, reprogram their mindset, and build wealth—one step at a time. Whether you’re just starting out or looking to deepen your investing knowledge, our step-by-step lessons provide clear guidance and actionable strategies, helping you gain the confidence to take your first steps toward long-term financial growth.</p>
+    <p><svg width="20" height="20" fill="#d4af37" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> WealthPath is designed to empower individuals to start their investing journey through IRA accounts, reprogram their mindset, and build wealth—one step at a time.</p>
   </section>
 
   <!-- MISSION -->
   <section class="mission reveal glass-card">
     <h2>Our Mission</h2>
-    <p>WealthPath was created to empower people to learn about investing with clarity, confidence, and purpose. We believe financial education shouldn't feel intimidating — it should feel personal, inspiring, and practical.</p>
-    <p><strong>Our mission is simple:</strong> To guide you step-by-step in building lasting wealth through wisdom, discipline, and action.</p>
+    <p><svg width="20" height="20" fill="#d4af37" viewBox="0 0 24 24"><path d="M12 2 L2 22h20z"/></svg> WealthPath was created to empower people to learn about investing with clarity, confidence, and purpose.</p>
   </section>
 
   <!-- VISION -->
   <section class="vision reveal glass-card">
     <h2>Our Vision</h2>
-    <p>We see a future where financial freedom is accessible to everyone — not just the few. WealthPath blends education and inspiration to help you grow your wealth, not by chasing trends, but by mastering timeless principles that truly work.</p>
+    <p><svg width="20" height="20" fill="#d4af37" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22"/></svg> We see a future where financial freedom is accessible to everyone — not just the few.</p>
   </section>
 
   <!-- WHAT MAKES US DIFFERENT -->
@@ -46,11 +48,27 @@
     </ul>
   </section>
 
+  <!-- FAQ SECTION -->
+  <section class="faq reveal glass-card">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion-item">
+      <button class="accordion-btn">What is an IRA?</button>
+      <div class="accordion-content">
+        <p>An IRA (Individual Retirement Account) is an account designed to help you save for retirement with tax advantages.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">How much should I invest?</button>
+      <div class="accordion-content">
+        <p>Start with what you can comfortably afford and increase contributions over time. Consistency is key.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- OUR FOUNDER -->
   <section class="founder reveal glass-card">
     <h2>Our Founder</h2>
-    <p><strong>Rae’Quan</strong>, the Founder of WealthPath, created this platform out of love — because there isn't much financial guidance being taught to equip people with the right tools and resources. He built WealthPath to simplify the complex, connect mindset to money, and help people take their first confident step toward wealth.</p>
-    
+    <p><strong>Rae’Quan</strong>, the Founder of WealthPath, created this platform out of love — because there isn't much financial guidance being taught to equip people with the right tools and resources.</p>
     <blockquote>
       “Your Journey is the Investment — every choice compounds.”
       <footer>— Rae’Quan, Founder of WealthPath</footer>
@@ -60,7 +78,7 @@
   <!-- JOIN SECTION -->
   <section class="join reveal glass-card">
     <h2>Join the Journey</h2>
-    <p>Whether you're curious about investing or want the confidence to take your first steps — WealthPath gives you the clarity and confidence to move forward. Your path to wealth starts here.</p>
+    <p>Whether you're curious about investing or want the confidence to take your first steps — WealthPath gives you the clarity and confidence to move forward.</p>
     <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" class="cta-btn" target="_blank">Start Your Journey</a>
   </section>
 
@@ -69,22 +87,6 @@
     <p>© 2026 WealthPath — "A Journey Uniquely Yours" | <a href="mailto:Raequancol12@gmail.com">Contact Us</a></p>
   </footer>
 
-  <!-- SCROLL REVEAL SCRIPT -->
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const revealOnScroll = () => {
-      for (const element of reveals) {
-        const windowHeight = window.innerHeight;
-        const revealTop = element.getBoundingClientRect().top;
-        const revealPoint = 100;
-        if (revealTop < windowHeight - revealPoint) {
-          element.classList.add('active');
-        }
-      }
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
