@@ -152,4 +152,56 @@ body{
   .hero-title{font-size:28px}
   .btn-cta-large{width:100%}
 }
+/* Existing button styles */
+button, a.button {
+  /* existing styles here */
+}
+
+/* NEW: CTA buttons with pulse + sparkle */
+.cta-button {
+  display: inline-block;
+  padding: 14px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(45deg, #f5c542, #00b8ff);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(245,197,66,0.7), 0 0 16px rgba(0,184,255,0.5);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 8px rgba(245,197,66,0.7), 0 0 16px rgba(0,184,255,0.5); }
+  50% { box-shadow: 0 0 16px rgba(245,197,66,0.9), 0 0 24px rgba(0,184,255,0.7); }
+  100% { box-shadow: 0 0 8px rgba(245,197,66,0.7), 0 0 16px rgba(0,184,255,0.5); }
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cta-button:hover::before {
+  opacity: 1;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}
 
