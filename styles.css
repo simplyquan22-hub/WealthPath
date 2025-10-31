@@ -79,6 +79,7 @@ h1, h2, h3 {
 }
 
 /* BUTTON */
+/* Updated .btn for line removal */
 .btn {
   background: var(--accent);
   color: #fff;
@@ -86,11 +87,15 @@ h1, h2, h3 {
   border-radius: 50px;
   font-weight: 600;
   transition: all 0.3s ease;
+  text-decoration: none; /* Removes the underline from the link */
+  border: none; /* Removes any button line/border */
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(59,130,246,0.5);
+/* New code to apply the pulsing effect */
+.btn-glow {
+    position: relative;
+    display: inline-block;
+    animation: pulse 2s infinite cubic-bezier(0.66, 0.0, 0.0, 1);
 }
 
 /* ABOUT */
