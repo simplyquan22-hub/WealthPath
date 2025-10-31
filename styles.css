@@ -112,11 +112,14 @@ h1, h2, h3 {
 }
 
 /* CARDS */
+/* Updated .cards for centering and proper wrapping on large screens */
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  max-width: 1200px; /* Optional: keeps cards contained and centered on very wide monitors */
+  margin: 0 auto;
 }
 
 .card {
