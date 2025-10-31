@@ -22,6 +22,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -36,9 +37,52 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  background: radial-gradient(circle, #001f3f 0%, #0b0e12 100%);
+  z-index: -2;
+  background: radial-gradient(circle at center, #001f3f 0%, #0b0e12 100%);
   overflow: hidden;
+}
+
+/* Glowing Orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: floatOrb linear infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.orb.blue {
+  background: var(--neon);
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 10%;
+  animation-duration: 12s;
+}
+
+.orb.gold {
+  background: var(--gold);
+  width: 250px;
+  height: 250px;
+  bottom: 10%;
+  right: 15%;
+  animation-duration: 15s;
+}
+
+.orb.purple {
+  background: #8a2be2;
+  width: 200px;
+  height: 200px;
+  top: 70%;
+  left: 40%;
+  animation-duration: 18s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.6; }
+  100% { transform: translate(-50px, 40px) scale(1); opacity: 0.4; }
 }
 
 /* -------------------- HERO -------------------- */
@@ -49,6 +93,8 @@ a {
   min-height: 100vh;
   text-align: center;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content h1 {
@@ -95,6 +141,8 @@ a {
 .about {
   padding: 80px 20px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .about h2 {
@@ -175,6 +223,8 @@ a {
   background: linear-gradient(135deg, #0b0e12, #001f3f);
   text-align: center;
   padding: 80px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .cta h2 {
@@ -197,6 +247,8 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.9rem;
   color: var(--muted);
+  position: relative;
+  z-index: 1;
 }
 
 footer a {
