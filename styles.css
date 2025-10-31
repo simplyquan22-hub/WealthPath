@@ -1,165 +1,117 @@
-/* -------------------- VARIABLES -------------------- */
+/* VARIABLES */
 :root {
   --bg: #0b0e12;
   --text: #e9eef6;
   --muted: #9aa4b2;
-  --gold: #f5c542;
-  --neon: #00f0ff;
-  --btn-glow: drop-shadow(0 0 10px var(--neon)) drop-shadow(0 0 20px var(--neon));
-  --card-bg: rgba(255, 255, 255, 0.05);
+  --accent: #3b82f6;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
-/* -------------------- GLOBAL -------------------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
+/* GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
 }
 
-/* -------------------- ANIMATED BACKGROUND -------------------- */
+/* ANIMATED BACKGROUND */
 .animated-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -2;
-  background: radial-gradient(circle at center, #001f3f 0%, #0b0e12 100%);
+  background: radial-gradient(circle at 20% 20%, #0f172a, #0b0e12 80%);
   overflow: hidden;
 }
 
-/* Glowing Orbs */
 .orb {
-  position: absolute;
+  position: fixed;
+  width: 300px; height: 300px;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.35;
-  animation: floatOrb linear infinite alternate;
-  mix-blend-mode: screen;
+  filter: blur(120px);
+  opacity: 0.3;
+  animation: float 10s infinite alternate ease-in-out;
+  z-index: -1;
 }
 
-.orb.blue {
-  background: var(--neon);
-  width: 300px;
-  height: 300px;
-  top: 20%;
-  left: 10%;
-  animation-duration: 12s;
+.orb.blue { background: #3b82f6; top: 20%; left: 15%; }
+.orb.gold { background: #facc15; bottom: 10%; right: 10%; }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-30px) scale(1.1); }
 }
 
-.orb.gold {
-  background: var(--gold);
-  width: 250px;
-  height: 250px;
-  bottom: 10%;
-  right: 15%;
-  animation-duration: 15s;
-}
-
-.orb.purple {
-  background: #8a2be2;
-  width: 200px;
-  height: 200px;
-  top: 70%;
-  left: 40%;
-  animation-duration: 18s;
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-  50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.6; }
-  100% { transform: translate(-50px, 40px) scale(1); opacity: 0.4; }
-}
-
-/* -------------------- HERO -------------------- */
+/* HERO */
 .hero {
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   text-align: center;
-  padding: 0 20px;
-  position: relative;
-  z-index: 1;
+  padding: 0 1.5rem;
 }
 
-.hero-content h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: var(--gold);
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+.hero-content {
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--muted);
 }
 
-/* -------------------- BUTTONS -------------------- */
-.btn {
-  display: inline-block;
-  padding: 15px 35px;
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero p {
   font-size: 1.1rem;
-  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* BUTTON */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 34px;
   border-radius: 50px;
-  border: none;
-  cursor: pointer;
+  font-weight: 600;
   transition: all 0.3s ease;
-  color: var(--bg);
-  background: var(--gold);
-  position: relative;
 }
 
 .btn:hover {
   transform: scale(1.05);
-  filter: brightness(1.1);
+  box-shadow: 0 0 20px rgba(59,130,246,0.5);
 }
 
-.btn-glow {
-  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon);
-}
-
-/* -------------------- ABOUT -------------------- */
+/* ABOUT */
 .about {
-  padding: 80px 20px;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  padding: 80px 20px;
 }
 
 .about h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: var(--gold);
+  font-size: 2.3rem;
+  margin-bottom: 15px;
 }
 
 .about p {
-  max-width: 700px;
-  margin: 0 auto 40px auto;
-  font-size: 1.1rem;
+  max-width: 750px;
+  margin: 0 auto 40px;
   color: var(--muted);
+  font-size: 1.1rem;
 }
 
-/* -------------------- CARD LAYOUT -------------------- */
+/* CARDS */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -169,38 +121,37 @@ a {
 
 .card {
   background: var(--card-bg);
-  padding: 30px;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
   border-radius: 20px;
   width: 320px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 30px;
   text-align: left;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 25px var(--neon);
+  transform: translateY(-8px);
+  border-color: rgba(59,130,246,0.4);
 }
 
-/* -------------------- CARD HEADER -------------------- */
 .card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
 .card-header .icon {
-  width: 28px;
-  height: 28px;
-  filter: drop-shadow(0 0 4px var(--neon));
+  width: 26px;
+  height: 26px;
+  filter: invert(75%) sepia(10%) saturate(200%) hue-rotate(180deg);
+  opacity: 0.8;
 }
 
 .card h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.3rem;
-  color: var(--gold);
+  font-size: 1.25rem;
+  color: #fff;
 }
 
 .card p {
@@ -209,72 +160,51 @@ a {
   font-size: 1rem;
 }
 
-/* -------------------- FOUNDER QUOTE -------------------- */
-.founder-quote blockquote {
-  margin-top: 15px;
+blockquote {
   font-style: italic;
-  color: var(--gold);
-  border-left: 3px solid var(--neon);
-  padding-left: 10px;
+  color: var(--accent);
+  margin-top: 10px;
 }
 
-/* -------------------- CTA -------------------- */
+/* CTA */
 .cta {
-  background: linear-gradient(135deg, #0b0e12, #001f3f);
   text-align: center;
-  padding: 80px 20px;
-  position: relative;
-  z-index: 1;
+  padding: 90px 20px;
+  background: radial-gradient(circle at top, rgba(59,130,246,0.08), transparent);
 }
 
 .cta h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: var(--gold);
+  font-size: 2.3rem;
+  margin-bottom: 15px;
 }
 
 .cta p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
   color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto 30px;
 }
 
-/* -------------------- FOOTER -------------------- */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 40px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
   color: var(--muted);
-  position: relative;
-  z-index: 1;
+  font-size: 0.9rem;
 }
 
 footer a {
-  color: var(--neon);
+  color: var(--accent);
+  text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
 }
 
-/* -------------------- RESPONSIVE -------------------- */
+/* RESPONSIVE */
 @media (max-width: 900px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .about h2, .cta h2 {
-    font-size: 2rem;
-  }
-
-  .card {
-    width: 90%;
-  }
+  .cards { flex-direction: column; align-items: center; }
+  .hero h1 { font-size: 2.2rem; }
+  .about h2, .cta h2 { font-size: 2rem; }
 }
