@@ -24,7 +24,7 @@ h1, h2, h3 {
   color: #fff;
 }
 
-/* ANIMATED BACKGROUND */
+/* --- ANIMATED BACKGROUND --- */
 .animated-bg {
   position: fixed;
   top: 0; left: 0;
@@ -52,7 +52,7 @@ h1, h2, h3 {
   100% { transform: translateY(-30px) scale(1.1); }
 }
 
-/* HERO */
+/* --- HERO --- */
 .hero {
   min-height: 90vh;
   display: flex;
@@ -78,8 +78,19 @@ h1, h2, h3 {
   margin-bottom: 2rem;
 }
 
-/* BUTTON */
-/* Updated .btn for line removal */
+/* --- BUTTON & PULSING ANIMATION --- */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
 .btn {
   background: var(--accent);
   color: #fff;
@@ -87,18 +98,25 @@ h1, h2, h3 {
   border-radius: 50px;
   font-weight: 600;
   transition: all 0.3s ease;
-  text-decoration: none; /* Removes the underline from the link */
-  border: none; /* Removes any button line/border */
+  /* FIX: Line Removal */
+  border: none;
+  text-decoration: none; 
 }
 
-/* Updated .btn-glow block */
 .btn-glow {
+    /* FIX: This block applies the pulse and restores centering */
     position: relative;
-    /* Removed the display property that messed up centering */
+    /* We use 'inline-block' here to make the animation possible, but we fix the centering issue in the parent blocks below. */
+    display: inline-block; 
     animation: pulse 2s infinite cubic-bezier(0.66, 0.0, 0.0, 1);
 }
 
-/* ABOUT */
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(59,130,246,0.5);
+}
+
+/* --- ABOUT --- */
 .about {
   text-align: center;
   padding: 80px 20px;
@@ -116,34 +134,30 @@ h1, h2, h3 {
   font-size: 1.1rem;
 }
 
-/* CARDS */
-/* Updated .cards for centering and proper wrapping on large screens */
+/* --- CARDS LAYOUT FIX --- */
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  max-width: 1200px; /* Optional: keeps cards contained and centered on very wide monitors */
+  max-width: 1200px; 
   margin: 0 auto;
 }
 
-/* Updated .card for responsive sizing */
 .card {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
-  
-  /* FIX: New responsive sizing properties */
-  flex-grow: 1; /* Allows card to fill available space */
-  max-width: 380px; /* Limits max width for a cleaner row of cards */
-  min-width: 300px; /* Ensures they don't get too small */
+  /* FIX: Responsive sizing for cards */
+  flex-grow: 1; 
+  max-width: 380px; 
+  min-width: 300px; 
   
   padding: 30px;
   text-align: left;
   transition: all 0.3s ease;
 }
-
 
 .card:hover {
   transform: translateY(-8px);
@@ -181,7 +195,7 @@ blockquote {
   margin-top: 10px;
 }
 
-/* CTA */
+/* --- CTA FIX (Join the Journey) --- */
 .cta {
   text-align: center;
   padding: 90px 20px;
@@ -199,7 +213,7 @@ blockquote {
   margin: 0 auto 30px;
 }
 
-/* FOOTER */
+/* --- FOOTER --- */
 footer {
   text-align: center;
   padding: 40px 20px;
@@ -217,6 +231,14 @@ footer a:hover {
   text-decoration: underline;
 }
 
-
-
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  /* FIX: Ensure cards still look good on mobile */
+  .card {
+    width: 100%;
+    max-width: 400px;
+  }
+  .hero h1 { font-size: 2.2rem; }
+  .about h2, .cta h2 { font-size: 2rem; }
+}
 
