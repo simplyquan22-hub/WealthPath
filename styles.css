@@ -91,10 +91,10 @@ h1, h2, h3 {
   border: none; /* Removes any button line/border */
 }
 
-/* New code to apply the pulsing effect */
+/* Updated .btn-glow block */
 .btn-glow {
     position: relative;
-    display: inline-block;
+    /* Removed the display property that messed up centering */
     animation: pulse 2s infinite cubic-bezier(0.66, 0.0, 0.0, 1);
 }
 
