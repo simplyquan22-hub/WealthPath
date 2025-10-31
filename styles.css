@@ -122,16 +122,23 @@ h1, h2, h3 {
   margin: 0 auto;
 }
 
+/* Updated .card for responsive sizing */
 .card {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 20px;
-  width: 320px;
+  
+  /* FIX: New responsive sizing properties */
+  flex-grow: 1; /* Allows card to fill available space */
+  max-width: 380px; /* Limits max width for a cleaner row of cards */
+  min-width: 300px; /* Ensures they don't get too small */
+  
   padding: 30px;
   text-align: left;
   transition: all 0.3s ease;
 }
+
 
 .card:hover {
   transform: translateY(-8px);
