@@ -128,10 +128,10 @@
             padding: 80px 20px;
         }
 
-        /* --- NEW MISSION/VISION FLEX LAYOUT --- */
+        /* --- MISSION/VISION FLEX LAYOUT --- */
         .mission-vision-container {
             max-width: 1000px;
-            margin: 0 auto 50px; /* Center the container and add spacing below */
+            margin: 0 auto 50px;
             text-align: center;
         }
 
@@ -144,7 +144,7 @@
             display: flex;
             justify-content: space-around;
             gap: 30px;
-            text-align: left; /* Text alignment back to left inside the item */
+            text-align: left;
         }
 
         .vision-item {
@@ -152,14 +152,14 @@
         }
 
         .vision-item h3 {
-            font-family: 'Inter', sans-serif; /* Use Inter for subtitle for distinction */
-            color: var(--accent); /* Highlight subtitle */
+            font-family: 'Inter', sans-serif;
+            color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
 
         .vision-item p {
-            margin: 0; /* Remove the auto margin set on generic .about p */
+            margin: 0;
         }
 
         /* Divider for visual separation */
@@ -173,7 +173,7 @@
         /* Style the new principles heading */
         .principles-heading {
             font-size: 2.3rem;
-            margin-bottom: 40px; /* Space above the cards */
+            margin-bottom: 40px;
             text-align: center;
         }
 
@@ -187,26 +187,57 @@
             margin: 0 auto;
         }
 
+        /* --- ELECTRIC GLOW ANIMATION --- */
+        @keyframes electric-pulse {
+            0% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
+            50% { opacity: 1; box-shadow: 0 0 15px var(--accent), 0 0 25px rgba(59, 130, 246, 0.5); }
+            100% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
+        }
+
         .card {
+            position: relative; /* Crucial for positioning the electric border */
+            z-index: 10; /* Ensures content sits above the pseudo-element glow */
             background: var(--card-bg);
-            backdrop-filter: blur(16px); /* Increased blur for more glass effect */
-            border: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+            border: 1px solid transparent; /* Border is now handled by the glow */
             border-radius: 20px;
             flex-grow: 1; 
             max-width: 380px; 
             min-width: 300px; 
             padding: 30px;
             text-align: left;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
+            overflow: hidden;
+
+            /* 1. Static, Prominent Glow */
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 5px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 2. Electric Lighting Effect (::before pseudo-element) */
+        .card::before {
+            content: '';
+            position: absolute;
+            /* Creates a slightly larger area for the glow to emanate from */
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 20px;
+            z-index: -1;
+            pointer-events: none;
+            transition: box-shadow 0.5s ease;
+
+            /* Initial glow and Electric hum animation */
+            animation: electric-pulse 2s infinite ease-in-out;
         }
 
         .card:hover {
             transform: translateY(-8px);
-            /* More vibrant glow on hover */
-            box-shadow: 0 0 30px rgba(59,130,246,0.6); 
-            border-color: rgba(59,130,246,0.7); /* Border also glows */
+            /* Boost shadow on hover for extra visual reward */
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3);
         }
 
+        /* --- CARD CONTENT STYLES --- */
         .card-header {
             display: flex;
             align-items: center;
@@ -232,21 +263,22 @@
             font-size: 1rem;
         }
 
-        /* --- FOUNDER CARD ENHANCEMENT (No Image) --- */
+        /* --- FOUNDER CARD ENHANCEMENT --- */
 
-        /* 1. Make the founder card stand out */
         .founder-card {
-            border: 2px solid var(--accent); /* Prominent border */
-            background: rgba(59, 130, 246, 0.15); /* Slightly stronger blue background glow */
-            transform: scale(1.03); /* Slightly larger to draw attention */
+            border: 1px solid var(--accent); /* Now uses a strong border */
+            background: rgba(59, 130, 246, 0.15); /* Stronger blue background glow */
+            transform: scale(1.03);
             transition: all 0.4s ease;
-            /* More vibrant initial glow for the founder card */
-            box-shadow: 0 0 20px rgba(59,130,246,0.4); 
+            /* Keep initial glow stronger for the founder card */
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.8);
         }
+        
+        /* The ::before element will automatically give the founder card its electric hum */
 
         .founder-card:hover {
-            transform: scale(1.05); /* Enhance the hover effect */
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); /* Even more vibrant on hover */
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
         }
 
         .founder-icon {
@@ -254,7 +286,7 @@
             opacity: 1 !important; 
         }
 
-        /* 2. Style the quote to look professional and prominent */
+        /* Style the quote to look professional and prominent */
         .founder-quote {
             font-style: italic;
             font-size: 1.1rem;
@@ -266,7 +298,7 @@
             background: rgba(0, 0, 0, 0.2); 
         }
 
-        /* 3. Style the founder's name below the quote */
+        /* Style the founder's name below the quote */
         .founder-name {
             color: var(--muted);
             font-style: normal;
@@ -297,14 +329,14 @@
         /* --- NEW CTA DIVIDER (The line you requested) --- */
         .cta-divider-container {
             text-align: center;
-            padding: 40px 20px; /* Add vertical padding for breathing room */
+            padding: 40px 20px;
         }
 
         .cta-divider {
-            max-width: 150px; /* Keeps the line short and neat */
+            max-width: 150px;
             margin: 0 auto;
             border: 0;
-            border-top: 2px solid var(--accent); /* Accent color for pop */
+            border-top: 2px solid var(--accent);
             border-radius: 2px;
             opacity: 0.8;
             transition: all 0.3s ease;
@@ -314,9 +346,7 @@
         /* --- NEW REVIEW CTA SECTION --- */
         .review-cta {
             text-align: center;
-            /* Reduced padding compared to main CTA to act as a secondary action */
             padding: 60px 20px; 
-            /* Subtle background to separate it from the footer */
             background: radial-gradient(circle at bottom, rgba(59,130,246,0.05), transparent); 
         }
 
@@ -328,7 +358,7 @@
         .review-cta p {
             color: var(--muted);
             max-width: 600px;
-            margin: 0 auto 25px; /* Adds space above the button */
+            margin: 0 auto 25px;
         }
 
         /* Optional: Slight adjustment to make the review button text clear */
@@ -465,3 +495,5 @@
     </footer>
 </body>
 </html>
+
+I hope one of those formats works for you! Let me know if you can now see the code, and if there's anything else you'd like to change about the design.
