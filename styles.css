@@ -286,6 +286,31 @@ h1, h2, h3 {
     margin: 0 auto 30px;
 }
 
+/* --- NEW REVIEW CTA SECTION --- */
+.review-cta {
+    text-align: center;
+    /* Reduced padding compared to main CTA to act as a secondary action */
+    padding: 60px 20px; 
+    /* Subtle background to separate it from the footer */
+    background: radial-gradient(circle at bottom, rgba(59,130,246,0.05), transparent); 
+}
+
+.review-cta h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.review-cta p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 25px; /* Adds space above the button */
+}
+
+/* Optional: Slight adjustment to make the review button text clear */
+.review-btn {
+    font-size: 1.1rem;
+}
+
 /* --- FOOTER --- */
 footer {
     text-align: center;
