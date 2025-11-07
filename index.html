@@ -124,6 +124,7 @@
 
         /* --- ABOUT --- */
         .about {
+            /* ❗ Removed the old divider margin here. The new divider is now placed before this section. */
             text-align: center;
             padding: 80px 20px;
         }
@@ -384,7 +385,22 @@
             text-decoration: underline;
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE VIDEO STYLES (REQUIRED) --- */
+        .video-container-responsive {
+            /* Required for the absolute positioning of the iframe */
+            position: relative;
+            width: 100%;
+            /* Creates the 16:9 aspect ratio */
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            /* Optional: adds a slight glow/border to the video box */
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); 
+            border-radius: 5px;
+        }
+        
+        /* --- RESPONSIVE GENERAL --- */
         @media (max-width: 900px) {
             .card {
                 width: 100%;
@@ -414,10 +430,27 @@
         <div class="hero-content">
             <h1>Your Journey Starts Today</h1>
             <p>Welcome to WealthPath — where clarity meets confidence! With us, you’ll learn how to invest through IRA Accounts, reprogram your mindset, and build wealth one step at a time. Whether you’re starting with $50 or $1,000 — WealthPath helps you make your money work for you. We built a course with you in mind. Who can start using this course ? Anyone eager to learn about investing through IRAs. Start Today, it’s completely free!</p>
-            <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" target="_blank" class="btn btn-glow">Get the Courses PDF</a>
+            
+            <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" target="_blank" class="btn btn-glow" style="margin-bottom: 20px;">Get the Courses PDF</a>
+            
+            <hr style="width: 100px; border: 0; border-top: 1px solid var(--border); margin: 30px auto;">
+
+            <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #fff; text-align: center;">What You'll Learn in Our Course</h2>
+
+            <div class="video-container-responsive">
+                
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                    src="https://www.youtube.com/embed/LnDmH7hni8s?rel=0&showinfo=0&modestbranding=1" 
+                    title="WealthPath: Your Journey to Financial Freedom" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <hr style="width: 100%; border: 0; border-top: 1px solid var(--border); margin: 60px auto 0;">
+
         </div>
     </section>
-
     <section class="about">
         <div class="mission-vision-container">
             <h2>Our Mission & Vision</h2>
