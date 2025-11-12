@@ -382,23 +382,64 @@
             font-size: 1.1rem;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
+      /* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+}
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
+footer a {
+    color: var(--muted); 
+    text-decoration: none;
+    transition: color 0.2s ease;
+    /* Added to ensure links don't wrap too easily */
+    white-space: nowrap; 
+}
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+footer a:hover {
+    text-decoration: underline;
+    color: var(--accent); 
+}
+
+.footer-content {
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding-top: 10px;
+}
+
+/* FIX: New styling for the link list */
+.footer-links-minimal {
+    display: block; /* Use block/inline-block for spacing */
+    margin: 20px 0; 
+    font-size: 0.95rem;
+}
+
+/* Style for the link separators */
+.footer-links-minimal a:not(:last-child)::after {
+    content: " | "; /* Adds the vertical pipe separator */
+    color: var(--muted);
+    padding: 0 5px;
+}
+
+.footer-disclaimer {
+    font-size: 0.8rem; 
+    margin: 20px auto 10px; 
+    max-width: 700px;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: center; /* Ensure disclaimer text is centered */
+}
+
+/* Responsive adjustment: Ensure links don't break the layout on very small screens */
+@media (max-width: 480px) {
+    .footer-links-minimal a {
+        /* Allow links to slightly shrink text on tiny screens */
+        font-size: 0.9rem; 
+    }
+}
 
         /* --- RESPONSIVE VIDEO STYLES (REQUIRED) --- */
         .video-container-responsive {
@@ -554,7 +595,7 @@
 
 <footer>
     <div class="footer-content">
-        <p style="margin-bottom: 25px; color: #fff; font-weight: 600;">WealthPath — A Journey Uniquely Yours</p>
+        <p style="margin-bottom: 25px; color: #fff; font-weight: 600;">WealthPath — "A Journey Uniquely Yours"</p>
         
         <div class="footer-links-minimal">
             <a href="privacy.html">Privacy Policy</a>
@@ -563,7 +604,7 @@
         </div>
 
         <p class="footer-disclaimer">
-            **Disclaimer: WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
+            **Disclaimer:** WealthPath provides **educational content only** and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
         </p>
         
         <p style="margin-top: 20px; color: var(--muted);">&copy; 2026 WealthPath. All rights reserved.</p>
