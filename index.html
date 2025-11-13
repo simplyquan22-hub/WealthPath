@@ -286,7 +286,7 @@
             transition: all 0.4s ease;
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.8);
         }
-           
+            
         .founder-card:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
@@ -324,6 +324,36 @@
         /* --- END UPDATED QUOTE STYLE --- */
 
 
+        /* --- NEW: TOOLS SECTION --- */
+        .tools-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 15px; /* Adds space above the link */
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .card-link span {
+            /* Style for the arrow */
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .card-link:hover {
+            color: #fff; /* Brighter on hover */
+            text-shadow: 0 0 8px var(--accent);
+        }
+
+        .card-link:hover span {
+            transform: translateX(5px); /* Move arrow on hover */
+        }
         /* --- CTA FIX (Join the Journey) --- */
         .cta {
             text-align: center;
@@ -382,7 +412,7 @@
             font-size: 1.1rem;
         }
 
-      /* --- FOOTER --- */
+    /* --- FOOTER --- */
 footer {
     text-align: center;
     padding: 40px 20px;
@@ -452,7 +482,7 @@ footer a:hover {
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); 
             border-radius: 5px;
         }
-           
+            
         /* --- RESPONSIVE GENERAL --- */
         @media (max-width: 900px) {
             .card {
@@ -557,7 +587,36 @@ footer a:hover {
     
     <hr class="section-divider">
 
-    <section class="founder-section">
+    <section class="tools-section">
+        <h2 class="principles-heading">Explore Our Free Tools</h2>
+        
+        <div class="cards">
+            <div class="card">
+                <div class="card-header">
+                    <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/piggy-bank.svg" alt="Piggy Bank" class="icon">
+                    <h3>WealthPath Builder</h3>
+                </div>
+                <p>Use our builder to build practice portfolios, experiment with different contributions using our compounding calculator , and visualize your path to wealth.</p>
+                
+                <a href="https://wealthpath-builder.vercel.app/" target="_blank" class="card-link">
+                    Launch Builder <span>&rarr;</span>
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/clipboard-check.svg" alt="Clipboard Check" class="icon">
+                    <h3>WealthPath Tester</h3>
+                </div>
+                <p>Test your financial knowledge after you finish our course . No skipping ahead go through our course first, then take our interactive quiz to assess your understanding of key investment principles and identify areas to grow.</p>
+                
+                <a href="https://wealthpathtester.vercel.app/" target="_blank" class="card-link">
+                    Start the Test <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <hr class="section-divider"> <section class="founder-section">
         <h2 class="principles-heading">About the Founder</h2>
         
         <div class="cards">
@@ -604,9 +663,12 @@ footer a:hover {
         </div>
 
         <p class="footer-disclaimer">
-            Disclaimer:**WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
+            Disclaimer : WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
         </p>
         
         <p style="margin-top: 20px; color: var(--muted);">&copy; 2026 WealthPath. All rights reserved.</p>
     </div>
 </footer>
+
+</body>
+</html>
