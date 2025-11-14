@@ -15,6 +15,11 @@
             /* Updated for more glass-like effect */
             --card-bg: rgba(255, 255, 255, 0.08); /* Slightly more opaque for better background */
             --border: rgba(255, 255, 255, 0.15); /* More visible border */
+            --header-height: 70px; /* New: Define header height */
+
+            /* New: Custom Properties for Parallax JS integration */
+            --tiltX: 0deg;
+            --tiltY: 0deg;
         }
 
         /* GLOBAL */
@@ -26,12 +31,76 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
+            padding-top: 0; /* Changed from 70px to 0 as the new header is initially hidden */
         }
 
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
             color: #fff;
         }
+
+        /* --- NEW: FADE IN ANIMATION STYLES --- */
+        .fade-in-element {
+            /* Initial state: invisible and slightly pushed down */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            /* Delay based on content is applied in JS, but a base transition speed is here */
+            will-change: opacity, transform; /* Optimization hint */
+        }
+
+        .fade-in-element.visible {
+            /* Final state: visible and in its natural position */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* --- END FADE IN ANIMATION STYLES --- */
+
+        /* --- NEW: FIXED GLOW HEADER (for Scroll-Glow feature) --- */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(11, 14, 18, 0.9); /* Dark background with slight transparency */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 1000;
+            transform: translateY(-100%); /* Start above the viewport */
+            transition: transform 0.4s ease-out, border-bottom 0.4s ease;
+        }
+
+        .fixed-header.scrolled {
+            transform: translateY(0); /* Slide down when scrolled */
+            border-bottom: 1px solid rgba(59, 130, 246, 0.4); /* Accent glow line */
+        }
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .header-nav a {
+            color: var(--muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .header-nav a:hover {
+            color: var(--accent);
+        }
+        /* --- END NEW HEADER STYLES --- */
+
 
         /* --- ANIMATED BACKGROUND --- */
         .animated-bg {
@@ -109,6 +178,7 @@
             transition: all 0.3s ease;
             border: none;
             text-decoration: none; 
+            cursor: pointer; /* Added for JS button */
         }
 
         .btn-glow {
@@ -186,7 +256,7 @@
             max-width: 1200px; 
             margin: 0 auto;
         }
-        
+          
         /* --- FOUNDER SECTION STYLES --- */
         .founder-section {
             padding: 60px 20px 80px; 
@@ -194,7 +264,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+          
         .founder-section h2 {
             font-size: 2.3rem;
             margin-bottom: 40px;
@@ -220,11 +290,16 @@
             min-width: 300px; 
             padding: 30px;
             text-align: left;
-            transition: all 0.5s ease;
             overflow: hidden;
 
             /* 1. Static, Prominent Glow */
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 5px rgba(59, 130, 246, 0.4);
+
+            /* UPDATED: Parallax transition properties - JS will only update --tiltX/Y */
+            will-change: transform;
+            /* Combines custom properties for tilt and static hover lift */
+            transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
+            transition: transform 0.3s ease-out, box-shadow 0.5s ease; 
         }
 
         /* 2. Electric Lighting Effect (::before pseudo-element) */
@@ -244,8 +319,9 @@
             animation: electric-pulse 2s infinite ease-in-out;
         }
 
+        /* UPDATED: On hover, we keep the tilt values and add the lift */
         .card:hover {
-            transform: translateY(-8px);
+            transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY)) translateY(-8px);
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3);
         }
 
@@ -263,7 +339,6 @@
             height: 26px;
             /* Direct color application for SVGs */
             filter: invert(49%) sepia(97%) saturate(1519%) hue-rotate(193deg) brightness(100%) contrast(90%); /* This filter roughly corresponds to --accent */
-            /* Alternatively, if SVGs are inline or handled differently, you could use 'fill: var(--accent);' */
             opacity: 1; /* Ensure full visibility */
         }
 
@@ -309,8 +384,6 @@
             margin: 25px 0 10px; 
             background: transparent; 
         }
-
-        /* REMOVED: .founder-quote::before { ... } */
 
         /* Style the founder's name below the quote */
         .founder-name {
@@ -413,63 +486,63 @@
         }
 
     /* --- FOOTER --- */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.9rem;
-}
-
-footer a {
-    color: var(--muted); 
-    text-decoration: none;
-    transition: color 0.2s ease;
-    /* Added to ensure links don't wrap too easily */
-    white-space: nowrap; 
-}
-
-footer a:hover {
-    text-decoration: underline;
-    color: var(--accent); 
-}
-
-.footer-content {
-    max-width: 900px; 
-    margin: 0 auto; 
-    padding-top: 10px;
-}
-
-/* FIX: New styling for the link list */
-.footer-links-minimal {
-    display: block; /* Use block/inline-block for spacing */
-    margin: 20px 0; 
-    font-size: 0.95rem;
-}
-
-/* Style for the link separators */
-.footer-links-minimal a:not(:last-child)::after {
-    content: " | "; /* Adds the vertical pipe separator */
-    color: var(--muted);
-    padding: 0 5px;
-}
-
-.footer-disclaimer {
-    font-size: 0.8rem; 
-    margin: 20px auto 10px; 
-    max-width: 700px;
-    line-height: 1.5;
-    color: var(--muted);
-    text-align: center; /* Ensure disclaimer text is centered */
-}
-
-/* Responsive adjustment: Ensure links don't break the layout on very small screens */
-@media (max-width: 480px) {
-    .footer-links-minimal a {
-        /* Allow links to slightly shrink text on tiny screens */
-        font-size: 0.9rem; 
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.9rem;
     }
-}
+
+    footer a {
+        color: var(--muted); 
+        text-decoration: none;
+        transition: color 0.2s ease;
+        /* Added to ensure links don't wrap too easily */
+        white-space: nowrap; 
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+        color: var(--accent); 
+    }
+
+    .footer-content {
+        max-width: 900px; 
+        margin: 0 auto; 
+        padding-top: 10px;
+    }
+
+    /* FIX: New styling for the link list */
+    .footer-links-minimal {
+        display: block; /* Use block/inline-block for spacing */
+        margin: 20px 0; 
+        font-size: 0.95rem;
+    }
+
+    /* Style for the link separators */
+    .footer-links-minimal a:not(:last-child)::after {
+        content: " | "; /* Adds the vertical pipe separator */
+        color: var(--muted);
+        padding: 0 5px;
+    }
+
+    .footer-disclaimer {
+        font-size: 0.8rem; 
+        margin: 20px auto 10px; 
+        max-width: 700px;
+        line-height: 1.5;
+        color: var(--muted);
+        text-align: center; /* Ensure disclaimer text is centered */
+    }
+
+    /* Responsive adjustment: Ensure links don't break the layout on very small screens */
+    @media (max-width: 480px) {
+        .footer-links-minimal a {
+            /* Allow links to slightly shrink text on tiny screens */
+            font-size: 0.9rem; 
+        }
+    }
 
         /* --- RESPONSIVE VIDEO STYLES (REQUIRED) --- */
         .video-container-responsive {
@@ -491,6 +564,12 @@ footer a:hover {
             }
             .hero h1 { font-size: 2.2rem; }
             .about h2, .cta h2, .founder-section h2 { font-size: 2rem; }
+
+            /* New: Adjust header on smaller screens */
+            .fixed-header { padding: 0 15px; }
+            .header-logo { font-size: 1.2rem; }
+            .header-nav { display: none; } /* Hide complex nav on small screens */
+            .header-btn { padding: 8px 18px; }
         }
 
         @media (max-width: 768px) {
@@ -505,12 +584,21 @@ footer a:hover {
     </style>
 </head>
 <body>
+    <header id="fixedHeader" class="fixed-header">
+        <a href="#hero" class="header-logo">WealthPath</a>
+        <nav class="header-nav">
+            <a href="#about">About</a>
+            <a href="#tools">Tools</a>
+            <a href="#founder">Founder</a>
+        </nav>
+        <a href="#cta" class="btn header-btn">Start Today</a>
+    </header>
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
     <div class="orb gold"></div>
 
-    <section class="hero">
-        <div class="hero-content">
+    <section class="hero" id="hero">
+        <div class="hero-content fade-in-element">
             <h1>Your Journey Starts Today</h1>
             <p>Welcome to WealthPath — where clarity meets confidence! With us, you’ll learn how to invest through IRA Accounts, reprogram your mindset, and build wealth one step at a time. Whether you’re starting with $50 or $1,000 — WealthPath helps you make your money work for you. We built a course with you in mind. Who can start using this course ? Anyone eager to learn about investing through IRAs. Start Today !</p>
             
@@ -535,8 +623,8 @@ footer a:hover {
         </div>
     </section>
     
-    <section class="about">
-        <div class="mission-vision-container">
+    <section class="about" id="about">
+        <div class="mission-vision-container fade-in-element">
             <h2>About WealthPath</h2>
             <div class="mission-vision-flex">
                 <div class="vision-item">
@@ -550,12 +638,12 @@ footer a:hover {
             </div>
         </div>
         
-        <hr class="section-divider">
+        <hr class="section-divider fade-in-element">
 
-        <h2 class="principles-heading">Our Core Principles</h2>
+        <h2 class="principles-heading fade-in-element">Our Core Principles</h2>
         
-        <div class="cards">
-            <div class="card">
+        <div class="cards fade-in-element" id="parallaxCardsContainer">
+            <div class="card parallax-card">
                 <div class="card-header">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/graduation-cap.svg" alt="Graduation Cap" class="icon">
                     <h3>Education that feels personal</h3>
@@ -564,7 +652,7 @@ footer a:hover {
                 <p>Our goal is to make financial education personal, practical, and empowering so you can move with confidence, not confusion.</p>
             </div>
 
-            <div class="card">
+            <div class="card parallax-card">
                 <div class="card-header">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/brain.svg" alt="Brain Icon" class="icon">
                     <h3>Mindset first</h3>
@@ -573,7 +661,7 @@ footer a:hover {
                 <p>At WealthPath, we help you unlearn fear, rebuild your relationship with money, and create a foundation strong enough to sustain real success.</p>
             </div>
             
-            <div class="card">
+            <div class="card parallax-card">
                 <div class="card-header">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/bar-chart-3.svg" alt="Growth Icon" class="icon">
                     <h3>Consistency Over Complexity</h3>
@@ -585,12 +673,12 @@ footer a:hover {
         </div>
     </section>
     
-    <hr class="section-divider">
+    <hr class="section-divider fade-in-element">
 
-    <section class="tools-section">
-        <h2 class="principles-heading">Explore Our Free Tools</h2>
+    <section class="tools-section" id="tools">
+        <h2 class="principles-heading fade-in-element">Explore Our Free Tools</h2>
         
-        <div class="cards">
+        <div class="cards fade-in-element">
             <div class="card">
                 <div class="card-header">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/piggy-bank.svg" alt="Piggy Bank" class="icon">
@@ -616,10 +704,12 @@ footer a:hover {
             </div>
         </div>
     </section>
-    <hr class="section-divider"> <section class="founder-section">
-        <h2 class="principles-heading">About the Founder</h2>
+    <hr class="section-divider fade-in-element"> 
+    
+    <section class="founder-section" id="founder">
+        <h2 class="principles-heading fade-in-element">About the Founder</h2>
         
-        <div class="cards">
+        <div class="cards fade-in-element">
             <div class="card founder-card">
                 <div class="card-header">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/sparkles.svg" alt="Sparkle Icon" class="icon founder-icon"> 
@@ -633,27 +723,31 @@ footer a:hover {
         </div>
     </section>
 
-    <section class="cta">
-        <h2>Join the Journey</h2>
-        <p>Whether you're curious or completely lost about investing — WealthPath gives you the clarity and confidence to move forward. Your path to wealth starts here.</p>
-        <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" target="_blank" class="btn btn-glow">Start the Journey</a>
+    <section class="cta" id="cta">
+        <div class="fade-in-element">
+            <h2>Join the Journey</h2>
+            <p>Whether you're curious or completely lost about investing — WealthPath gives you the clarity and confidence to move forward. Your path to wealth starts here.</p>
+            <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" target="_blank" class="btn btn-glow">Start the Journey</a>
+        </div>
     </section>
 
     <div class="cta-divider-container">
-        <hr class="cta-divider">
+        <hr class="cta-divider fade-in-element">
     </div>
 
     <section class="review-cta">
-        <h2>Help Us Improve WealthPath</h2>
-        <p>If you've started your free course, please take a moment to share your honest feedback. Your review is vital to helping us empower more learners!</p>
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8cXejgjVl5mL7W6QUi-8_1pi-lTuUuyw1QffKaC08yHTjjw/viewform?usp=sharing" target="_blank" class="btn btn-glow review-btn">
-            Leave a Review
-        </a>
+        <div class="fade-in-element">
+            <h2>Help Us Improve WealthPath</h2>
+            <p>If you've started your free course, please take a moment to share your honest feedback. Your review is vital to helping us empower more learners!</p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8cXejgjVl5mL7W6QUi-8_1pi-lTuUuyw1QffKaC08yHTjjw/viewform?usp=sharing" target="_blank" class="btn btn-glow review-btn">
+                Leave a Review
+            </a>
+        </div>
     </section>
 
 <footer>
-    <div class="footer-content">
+    <div class="footer-content fade-in-element">
         <p style="margin-bottom: 25px; color: #fff; font-weight: 600;">WealthPath — "A Journey Uniquely Yours"</p>
         
         <div class="footer-links-minimal">
@@ -666,9 +760,135 @@ footer a:hover {
             Disclaimer : WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
         </p>
         
-        <p style="margin-top: 20px; color: var(--muted);">&copy; 2026 WealthPath. All rights reserved.</p>
+        <p style="margin-top: 20px; color: var(--muted);">&copy; <span id="currentYear">2026</span> WealthPath. All rights reserved.</p>
     </div>
 </footer>
 
+<script>
+    // Simple debounce function for performance optimization
+    const debounce = (func, delay) => {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
+
+    // Function to handle the header scroll class toggle
+    const handleScrollGlow = () => {
+        const header = document.getElementById('fixedHeader');
+        const scrollThreshold = 200;
+        
+        // Use requestAnimationFrame for smooth visual updates
+        const action = () => {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+
+        requestAnimationFrame(action);
+    };
+
+    // **********************************************
+    // 5. NEW: INTERSECTION OBSERVER FOR FADE-IN
+    // **********************************************
+    const fadeInObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Check if the element is visible
+            if (entry.isIntersecting) {
+                // Add the 'visible' class to trigger the CSS transition
+                entry.target.classList.add('visible');
+                // Stop observing the element once it has appeared
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        // Options: Trigger when 10% of the element is visible
+        threshold: 0.1,
+        // Options: Start checking 50 pixels before the viewport hits the element
+        rootMargin: "0px 0px -50px 0px" 
+    });
+
+    // Attach the observer to all elements with the 'fade-in-element' class
+    document.querySelectorAll('.fade-in-element').forEach(element => {
+        fadeInObserver.observe(element);
+    });
+    // **********************************************
+    // END NEW FADE-IN CODE
+    // **********************************************
+
+    // 1. Optimized Scroll-Glow Header Script
+    window.addEventListener('scroll', debounce(handleScrollGlow, 10));
+
+    // 2. Optimized Card-Hover Parallax Effect Script (on Core Principles cards)
+    const cardsContainer = document.getElementById('parallaxCardsContainer');
+    const cards = document.querySelectorAll('.parallax-card');
+    const maxTilt = 4; // Max tilt in degrees
+
+    if (cardsContainer) {
+        cardsContainer.addEventListener('mousemove', (e) => {
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                
+                // Mouse position relative to the center of the card
+                const xCenter = rect.left + rect.width / 2;
+                const yCenter = rect.top + rect.height / 2;
+                
+                const xPos = e.clientX - xCenter;
+                const yPos = e.clientY - yCenter;
+
+                // Calculate tilt degrees
+                const tiltX = (yPos / (rect.height / 2)) * maxTilt * -1; // Inverted for natural look
+                const tiltY = (xPos / (rect.width / 2)) * maxTilt; 
+
+                // Update CSS custom properties only
+                card.style.setProperty('--tiltX', `${tiltX}deg`);
+                card.style.setProperty('--tiltY', `${tiltY}deg`);
+            });
+        });
+
+        cardsContainer.addEventListener('mouseleave', () => {
+            cards.forEach(card => {
+                // Reset custom properties, letting CSS transition handle the smooth reset
+                card.style.setProperty('--tiltX', `0deg`);
+                card.style.setProperty('--tiltY', `0deg`);
+            });
+        });
+    }
+
+    // 3. Dynamic Year Update in Footer
+    document.addEventListener('DOMContentLoaded', () => {
+        const yearSpan = document.getElementById('currentYear');
+        if (yearSpan) {
+            const currentYear = new Date().getFullYear();
+            yearSpan.textContent = currentYear;
+        }
+    });
+
+    // 4. Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Only apply to links that don't have external targets
+        if (!anchor.classList.contains('btn') && anchor.getAttribute('target') !== '_blank') {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
