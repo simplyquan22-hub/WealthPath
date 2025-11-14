@@ -18,22 +18,85 @@
 
         /* GLOBAL STYLES */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll from orb animation */
+            position: relative;
         }
+        
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
             color: #fff;
             margin-top: 1.5rem;
         }
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 15px; }
+        
+        h1 { font-size: 2.8rem; font-weight: 800; }
+        
+        h2 { 
+            font-size: 1.8rem; 
+            border-bottom: 1px solid var(--accent); /* Accent color for section dividers */
+            padding-bottom: 8px; 
+            margin-bottom: 15px; 
+            color: var(--accent); /* Highlight section headers */
+        }
+        
         p, li { color: var(--muted); margin-bottom: 1rem; }
-        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: #fff; text-decoration: underline; }
+        
+        a { 
+            color: var(--accent); 
+            text-decoration: none; 
+            transition: all 0.2s ease; 
+        }
+        
+        /* Enhanced Link Hover Effect (from main page footer) */
+        a:hover { 
+            color: #fff; 
+            text-shadow: 0 0 5px rgba(59, 130, 246, 0.5); 
+            text-decoration: none;
+        }
+        
+        strong { color: var(--text); } /* Highlight key phrases */
+
+        /* --- ANIMATED BACKGROUND & ORBS (From main page) --- */
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 20%, #0f172a, #0b0e12 80%);
+        }
+
+        .orb {
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.3;
+            animation: float 10s infinite alternate ease-in-out, 
+                       drift 15s infinite alternate ease-in-out; 
+            z-index: -1;
+        }
+        .orb.blue { background: #3b82f6; top: 20%; left: 15%; }
+        .orb.gold { 
+             background: #facc15; 
+             bottom: 10%; 
+             right: 10%; 
+             animation: float 10s infinite alternate ease-in-out, 
+                        drift 18s infinite alternate-reverse ease-in-out; 
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.1); }
+        }
+        @keyframes drift {
+            0% { transform: translateX(0) scale(1.1); }
+            100% { transform: translateX(50px) scale(1); }
+        }
 
         /* LAYOUT */
         .container {
@@ -41,22 +104,33 @@
             margin: 0 auto;
             padding: 80px 20px;
             min-height: 100vh;
+            position: relative; /* Ensure content is above orbs */
+            z-index: 1;
+            /* Subtle glass-like container effect */
+            background: rgba(11, 14, 18, 0.6); 
+            backdrop-filter: blur(5px);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
         /* DESIGN ELEMENTS */
         .header-section {
             text-align: center;
             padding-bottom: 30px;
-            border-bottom: 1px solid var(--accent);
+            /* Glow under the title */
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 2px 10px -5px var(--accent);
         }
         .header-section p {
             font-size: 1.1rem;
+            color: var(--text);
         }
         .date {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--accent);
             display: block;
-            margin-top: 10px;
+            margin-top: 20px;
+            font-weight: 600;
         }
         ul {
             list-style-type: disc;
@@ -64,9 +138,16 @@
             padding-left: 0;
             margin-bottom: 20px;
         }
+        ul li {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
+    <div class="orb blue"></div>
+    <div class="orb gold"></div>
+
     <div class="container">
         <div class="header-section">
             <h1>WealthPath Privacy Policy</h1>
@@ -77,7 +158,7 @@
         <h2>1. Information We Collect</h2>
         <p>We collect information in a few ways:</p>
         <ul>
-            <li><strong>Personal Data You Provide:</strong> This includes your name and email address when you contact us directly via email (Raequancol12@gmail.com) or submit a review/feedback through our Google Forms link.</li>
+            <li><strong>Personal Data You Provide:</strong> This includes your name and email address when you contact us directly via email (<a href="mailto:Raequancol12@gmail.com">Raequancol12@gmail.com</a>) or submit a review/feedback through our Google Forms link.</li>
             <li><strong>Usage Data:</strong> When you access our website (the landing page), we automatically collect standard information such as your computer's Internet Protocol (IP) address, browser type, pages viewed, and the time/date of your visit. This is primarily done through standard web hosting and analytics tools.</li>
             <li><strong>Third-Party Data:</strong> We may receive usage data from linked third-party services like Google Docs (for course PDF access) and Google Forms (for reviews). We do not control their policies; please review them directly.</li>
         </ul>
@@ -105,7 +186,7 @@
         
         <h2>7. Contact Us</h2>
         <p>If you have any questions or suggestions about our Privacy Policy, you can contact us:</p>
-        <p>Email: <a href="mailto:Raequancol12@gmail.com">Raequancol12@gmail.com</a></p>
+        <p style="margin-bottom: 0;">Email: <a href="mailto:Raequancol12@gmail.com">Raequancol12@gmail.com</a></p>
 
     </div>
 </body>
