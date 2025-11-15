@@ -581,6 +581,12 @@
                 margin-top: 20px;
             }
         }
+        /* iOS Tap Glow Fix */
+.card.touch-glow {
+    transform: perspective(1000px) translateY(-8px);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.7),
+                0 0 50px rgba(59, 130, 246, 0.3);
+}
     </style>
 </head>
 <body>
@@ -889,6 +895,22 @@
             });
         }
     });
+    // iOS FIX: Make cards glow on tap like hover
+const glowCards = document.querySelectorAll('.card');
+
+glowCards.forEach(card => {
+    card.addEventListener('touchstart', () => {
+        card.classList.add('touch-glow');
+    });
+
+    card.addEventListener('touchend', () => {
+        card.classList.remove('touch-glow');
+    });
+
+    card.addEventListener('touchcancel', () => {
+        card.classList.remove('touch-glow');
+    });
+});
 </script>
 </body>
 </html>
