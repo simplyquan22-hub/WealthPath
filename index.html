@@ -12,12 +12,9 @@
             --text: #e9eef6;
             --muted: #9aa4b2;
             --accent: #3b82f6;
-            /* Updated for more glass-like effect */
-            --card-bg: rgba(255, 255, 255, 0.08); /* Slightly more opaque for better background */
-            --border: rgba(255, 255, 255, 0.15); /* More visible border */
-            --header-height: 70px; /* New: Define header height */
-
-            /* New: Custom Properties for Parallax JS integration */
+            --card-bg: rgba(255, 255, 255, 0.08); 
+            --border: rgba(255, 255, 255, 0.15); 
+            --header-height: 70px; 
             --tiltX: 0deg;
             --tiltY: 0deg;
         }
@@ -31,7 +28,7 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
-            padding-top: 0; /* Changed from 70px to 0 as the new header is initially hidden */
+            padding-top: 0; 
         }
 
         h1, h2, h3 {
@@ -41,29 +38,26 @@
 
         /* --- NEW: FADE IN ANIMATION STYLES --- */
         .fade-in-element {
-            /* Initial state: invisible and slightly pushed down */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            /* Delay based on content is applied in JS, but a base transition speed is here */
-            will-change: opacity, transform; /* Optimization hint */
+            will-change: opacity, transform; 
         }
 
         .fade-in-element.visible {
-            /* Final state: visible and in its natural position */
             opacity: 1;
             transform: translateY(0);
         }
         /* --- END FADE IN ANIMATION STYLES --- */
 
-        /* --- NEW: FIXED GLOW HEADER (for Scroll-Glow feature) --- */
+        /* --- NEW: FIXED GLOW HEADER --- */
         .fixed-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: var(--header-height);
-            background: rgba(11, 14, 18, 0.9); /* Dark background with slight transparency */
+            background: rgba(11, 14, 18, 0.9); 
             backdrop-filter: blur(10px);
             border-bottom: 1px solid transparent;
             display: flex;
@@ -71,13 +65,13 @@
             align-items: center;
             padding: 0 30px;
             z-index: 1000;
-            transform: translateY(-100%); /* Start above the viewport */
+            transform: translateY(-100%); 
             transition: transform 0.4s ease-out, border-bottom 0.4s ease;
         }
 
         .fixed-header.scrolled {
-            transform: translateY(0); /* Slide down when scrolled */
-            border-bottom: 1px solid rgba(59, 130, 246, 0.4); /* Accent glow line */
+            transform: translateY(0); 
+            border-bottom: 1px solid rgba(59, 130, 246, 0.4); 
         }
 
         .header-logo {
@@ -178,7 +172,7 @@
             transition: all 0.3s ease;
             border: none;
             text-decoration: none; 
-            cursor: pointer; /* Added for JS button */
+            cursor: pointer; 
         }
 
         .btn-glow {
@@ -192,401 +186,129 @@
             box-shadow: 0 0 20px rgba(59,130,246,0.5);
         }
 
-        /* --- ABOUT (Mission/Vision) --- */
-        .about {
-            text-align: center;
-            padding: 80px 20px;
+        /* --- MOBILE/DESKTOP SWITCH STYLES --- */
+
+        /* By default, show the mobile instructions block */
+        #mobileInstructionBlock {
+            display: block; 
+        }
+        /* By default, hide the simple desktop link */
+        #desktopSimpleLink {
+            display: none;
         }
 
-        /* --- MISSION/VISION FLEX LAYOUT --- */
-        .mission-vision-container {
-            max-width: 1000px;
-            margin: 0 auto 50px;
-            text-align: center;
+        /* Desktop Breakpoint: On larger screens (e.g., 900px and up) */
+        @media (min-width: 900px) {
+            /* Hide the complex mobile instructions and app links */
+            #mobileInstructionBlock {
+                display: none !important;
+            }
+            /* Show the simple desktop link */
+            #desktopSimpleLink {
+                display: block !important;
+                margin-top: 40px; /* Space above the button */
+            }
         }
 
-        .mission-vision-container h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        /* --- END MOBILE/DESKTOP SWITCH STYLES --- */
+
+        /* New list spacing fix (already in place) */
+        .instruction-list li {
+            margin-bottom: 12px; 
         }
 
-        .mission-vision-flex {
-            display: flex;
-            justify-content: space-around;
-            gap: 30px;
-            text-align: left;
-        }
-
-        .vision-item {
-            flex: 1;
-        }
-
-        .vision-item h3 {
-            font-family: 'Inter', sans-serif;
-            color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .vision-item p {
-            margin: 0;
-        }
-
-        /* Divider for visual separation */
-        .section-divider {
-            max-width: 900px;
-            margin: 60px auto;
-            border: 0;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Style the principles and founder headings */
-        .principles-heading {
-            font-size: 2.3rem;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        /* --- CARDS LAYOUT FIX --- */
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1200px; 
-            margin: 0 auto;
-        }
-          
-        /* --- FOUNDER SECTION STYLES --- */
-        .founder-section {
-            padding: 60px 20px 80px; 
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-          
-        .founder-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 40px;
-        }
-
-
-        /* --- ELECTRIC GLOW ANIMATION --- */
+        /* --- GENERAL STYLES (Rest of your existing CSS) --- */
+        .about { text-align: center; padding: 80px 20px; }
+        .mission-vision-container { max-width: 1000px; margin: 0 auto 50px; text-align: center; }
+        .mission-vision-container h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .mission-vision-flex { display: flex; justify-content: space-around; gap: 30px; text-align: left; }
+        .vision-item { flex: 1; }
+        .vision-item h3 { font-family: 'Inter', sans-serif; color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
+        .section-divider { max-width: 900px; margin: 60px auto; border: 0; border-top: 1px solid var(--border); }
+        .principles-heading { font-size: 2.3rem; margin-bottom: 40px; text-align: center; }
+        .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .founder-section { padding: 60px 20px 80px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        .founder-section h2 { font-size: 2.3rem; margin-bottom: 40px; }
         @keyframes electric-pulse {
             0% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
             50% { opacity: 1; box-shadow: 0 0 15px var(--accent), 0 0 25px rgba(59, 130, 246, 0.5); }
             100% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
         }
-
         .card {
-            position: relative; 
-            z-index: 10; 
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid transparent; 
-            border-radius: 20px;
-            flex-grow: 1; 
-            max-width: 380px; 
-            min-width: 300px; 
-            padding: 30px;
-            text-align: left;
-            overflow: hidden;
-
-            /* 1. Static, Prominent Glow */
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 5px rgba(59, 130, 246, 0.4);
-
-            /* UPDATED: Parallax transition properties - JS will only update --tiltX/Y */
-            will-change: transform;
-            /* Combines custom properties for tilt and static hover lift */
-            transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
+            position: relative; z-index: 10; background: var(--card-bg); backdrop-filter: blur(16px);
+            border: 1px solid transparent; border-radius: 20px; flex-grow: 1; max-width: 380px; min-width: 300px;
+            padding: 30px; text-align: left; overflow: hidden; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 5px rgba(59, 130, 246, 0.4);
+            will-change: transform; transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
             transition: transform 0.3s ease-out, box-shadow 0.5s ease; 
         }
-
-        /* 2. Electric Lighting Effect (::before pseudo-element) */
         .card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 20px;
-            z-index: -1;
-            pointer-events: none;
-            transition: box-shadow 0.5s ease;
-
-            /* Initial glow and Electric hum animation */
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border-radius: 20px; z-index: -1; pointer-events: none; transition: box-shadow 0.5s ease;
             animation: electric-pulse 2s infinite ease-in-out;
         }
-
-        /* UPDATED: On hover, we keep the tilt values and add the lift */
-        .card:hover {
-            transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY)) translateY(-8px);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3);
-        }
-
-        /* --- CARD CONTENT STYLES --- */
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* UPDATED: Color for all SVG icons */
+        .card:hover { transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY)) translateY(-8px); box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3); }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
         .card-header .icon {
-            width: 26px;
-            height: 26px;
-            /* Direct color application for SVGs */
-            filter: invert(49%) sepia(97%) saturate(1519%) hue-rotate(193deg) brightness(100%) contrast(90%); /* This filter roughly corresponds to --accent */
-            opacity: 1; /* Ensure full visibility */
+            width: 26px; height: 26px;
+            filter: invert(49%) sepia(97%) saturate(1519%) hue-rotate(193deg) brightness(100%) contrast(90%); 
+            opacity: 1; 
         }
-
-        .card h3 {
-            font-size: 1.25rem;
-            color: #fff;
-        }
-
-        .card p {
-            color: var(--muted);
-            margin-bottom: 12px; 
-            font-size: 1rem;
-        }
-
-        /* --- FOUNDER CARD ENHANCEMENT --- */
+        .card h3 { font-size: 1.25rem; color: #fff; }
+        .card p { color: var(--muted); margin-bottom: 12px; font-size: 1rem; }
         .founder-card {
-            border: 1px solid var(--accent); 
-            background: rgba(59, 130, 246, 0.15); 
-            transform: scale(1.03);
-            transition: all 0.4s ease;
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.8);
+            border: 1px solid var(--accent); background: rgba(59, 130, 246, 0.15); transform: scale(1.03);
+            transition: all 0.4s ease; box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.8);
         }
-            
-        .founder-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
-        }
-
-        /* UPDATED: Founder icon color also set by the general .icon rule now */
-        .founder-icon {
-            opacity: 1 !important; 
-        }
-
-        /* --- UPDATED PROFESSIONAL QUOTE STYLE (WITHOUT LARGE QUOTATION MARK) --- */
+        .founder-card:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        .founder-icon { opacity: 1 !important; }
         .founder-quote {
-            position: relative; 
-            font-style: italic;
-            font-size: 1.2rem; 
-            font-weight: 500; 
-            color: var(--text); 
-            padding: 15px 0 15px 20px; /* Adjusted padding as the pseudo-element is gone */
-            border-left: 3px solid var(--accent); 
-            margin: 25px 0 10px; 
-            background: transparent; 
+            position: relative; font-style: italic; font-size: 1.2rem; font-weight: 500; color: var(--text); 
+            padding: 15px 0 15px 20px; border-left: 3px solid var(--accent); margin: 25px 0 10px; background: transparent; 
         }
-
-        /* Style the founder's name below the quote */
-        .founder-name {
-            color: var(--muted);
-            font-style: normal;
-            text-align: right;
-            font-size: 0.95rem !important; 
-            margin-top: 0 !important; 
-            margin-bottom: 0 !important;
-        }
-        /* --- END UPDATED QUOTE STYLE --- */
-
-
-        /* --- NEW: TOOLS SECTION --- */
-        .tools-section {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .card-link {
-            display: inline-block;
-            margin-top: 15px; /* Adds space above the link */
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .card-link span {
-            /* Style for the arrow */
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .card-link:hover {
-            color: #fff; /* Brighter on hover */
-            text-shadow: 0 0 8px var(--accent);
-        }
-
-        .card-link:hover span {
-            transform: translateX(5px); /* Move arrow on hover */
-        }
-        /* --- CTA FIX (Join the Journey) --- */
-        .cta {
-            text-align: center;
-            padding: 90px 20px;
-            background: radial-gradient(circle at top, rgba(59,130,246,0.08), transparent);
-        }
-
-        .cta h2 {
-            font-size: 2.3rem;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: var(--muted);
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        /* --- NEW CTA DIVIDER (The line you requested) --- */
-        .cta-divider-container {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
+        .founder-name { color: var(--muted); font-style: normal; text-align: right; font-size: 0.95rem !important; margin-top: 0 !important; margin-bottom: 0 !important; }
+        .tools-section { padding: 60px 20px; text-align: center; }
+        .card-link { display: inline-block; margin-top: 15px; font-weight: 600; font-size: 1.05rem; color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
+        .card-link span { display: inline-block; transition: transform 0.3s ease; }
+        .card-link:hover { color: #fff; text-shadow: 0 0 8px var(--accent); }
+        .card-link:hover span { transform: translateX(5px); }
+        .cta { text-align: center; padding: 90px 20px; background: radial-gradient(circle at top, rgba(59,130,246,0.08), transparent); }
+        .cta h2 { font-size: 2.3rem; margin-bottom: 15px; }
+        .cta p { color: var(--muted); max-width: 700px; margin: 0 auto 30px; }
+        .cta-divider-container { text-align: center; padding: 40px 20px; }
         .cta-divider {
-            max-width: 150px;
-            margin: 0 auto;
-            border: 0;
-            border-top: 2px solid var(--accent);
-            border-radius: 2px;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+            max-width: 150px; margin: 0 auto; border: 0; border-top: 2px solid var(--accent);
+            border-radius: 2px; opacity: 0.8; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
         }
-
-        /* --- NEW REVIEW CTA SECTION --- */
-        .review-cta {
-            text-align: center;
-            padding: 60px 20px; 
-            background: radial-gradient(circle at bottom, rgba(59,130,246,0.05), transparent); 
-        }
-
-        .review-cta h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .review-cta p {
-            color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto 25px;
-        }
-
-        /* Optional: Slight adjustment to make the review button text clear */
-        .review-btn {
-            font-size: 1.1rem;
-        }
-
-    /* --- FOOTER --- */
-    footer {
-        text-align: center;
-        padding: 40px 20px;
-        border-top: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 0.9rem;
-    }
-
-    footer a {
-        color: var(--muted); 
-        text-decoration: none;
-        transition: color 0.2s ease;
-        /* Added to ensure links don't wrap too easily */
-        white-space: nowrap; 
-    }
-
-    footer a:hover {
-        text-decoration: underline;
-        color: var(--accent); 
-    }
-
-    .footer-content {
-        max-width: 900px; 
-        margin: 0 auto; 
-        padding-top: 10px;
-    }
-
-    /* FIX: New styling for the link list */
-    .footer-links-minimal {
-        display: block; /* Use block/inline-block for spacing */
-        margin: 20px 0; 
-        font-size: 0.95rem;
-    }
-
-    /* Style for the link separators */
-    .footer-links-minimal a:not(:last-child)::after {
-        content: " | "; /* Adds the vertical pipe separator */
-        color: var(--muted);
-        padding: 0 5px;
-    }
-
-    .footer-disclaimer {
-        font-size: 0.8rem; 
-        margin: 20px auto 10px; 
-        max-width: 700px;
-        line-height: 1.5;
-        color: var(--muted);
-        text-align: center; /* Ensure disclaimer text is centered */
-    }
-
-    /* Responsive adjustment: Ensure links don't break the layout on very small screens */
-    @media (max-width: 480px) {
-        .footer-links-minimal a {
-            /* Allow links to slightly shrink text on tiny screens */
-            font-size: 0.9rem; 
-        }
-    }
-
-        /* --- RESPONSIVE VIDEO STYLES (REQUIRED) --- */
+        .review-cta { text-align: center; padding: 60px 20px; background: radial-gradient(circle at bottom, rgba(59,130,246,0.05), transparent); }
+        .review-cta h2 { font-size: 2rem; margin-bottom: 10px; }
+        .review-cta p { color: var(--muted); max-width: 600px; margin: 0 auto 25px; }
+        .review-btn { font-size: 1.1rem; }
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+        footer a { color: var(--muted); text-decoration: none; transition: color 0.2s ease; white-space: nowrap; }
+        footer a:hover { text-decoration: underline; color: var(--accent); }
+        .footer-content { max-width: 900px; margin: 0 auto; padding-top: 10px; }
+        .footer-links-minimal { display: block; margin: 20px 0; font-size: 0.95rem; }
+        .footer-links-minimal a:not(:last-child)::after { content: " | "; color: var(--muted); padding: 0 5px; }
+        .footer-disclaimer { font-size: 0.8rem; margin: 20px auto 10px; max-width: 700px; line-height: 1.5; color: var(--muted); text-align: center; }
+        @media (max-width: 480px) { .footer-links-minimal a { font-size: 0.9rem; } }
         .video-container-responsive {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); 
-            border-radius: 5px;
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; margin-top: 20px; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); border-radius: 5px;
         }
-            
-        /* --- RESPONSIVE GENERAL --- */
         @media (max-width: 900px) {
-            .card {
-                width: 100%;
-                max-width: 400px;
-            }
+            .card { width: 100%; max-width: 400px; }
             .hero h1 { font-size: 2.2rem; }
             .about h2, .cta h2, .founder-section h2 { font-size: 2rem; }
-
-            /* New: Adjust header on smaller screens */
             .fixed-header { padding: 0 15px; }
             .header-logo { font-size: 1.2rem; }
-            .header-nav { display: none; } /* Hide complex nav on small screens */
+            .header-nav { display: none; } 
             .header-btn { padding: 8px 18px; }
         }
-
         @media (max-width: 768px) {
-            .mission-vision-flex {
-                flex-direction: column;
-                text-align: center;
-            }
-            .vision-item h3 {
-                margin-top: 20px;
-            }
+            .mission-vision-flex { flex-direction: column; text-align: center; }
+            .vision-item h3 { margin-top: 20px; }
         }
-        /* iOS Tap Glow Fix */
-.card.touch-glow {
-    transform: perspective(1000px) translateY(-8px);
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.7),
-                0 0 50px rgba(59, 130, 246, 0.3);
-}
+        .card.touch-glow { transform: perspective(1000px) translateY(-8px); box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3); }
     </style>
 </head>
 <body>
@@ -606,10 +328,78 @@
     <section class="hero" id="hero">
         <div class="hero-content fade-in-element">
             <h1>Your Journey Starts Today</h1>
-            <p>Welcome to WealthPath — where clarity meets confidence! With us, you’ll learn how to invest through IRA Accounts, reprogram your mindset, and build wealth one step at a time. Whether you’re starting with $50 or $1,000 — WealthPath helps you make your money work for you. We built a course with you in mind. Who can start using this course ? Anyone eager to learn about investing through IRAs. Start Today !</p>
             
-            <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" target="_blank" class="btn btn-glow" style="margin-bottom: 20px;">Get the Courses PDF</a>
+            <p>Welcome to WealthPath — where clarity meets confidence! With us, you’ll learn how to invest through IRA Accounts, reprogram your mindset, and build wealth one step at a time. Whether you’re starting with $50 or $1,000 — WealthPath helps you make your money work for you. We built a course with you in mind. Who can start using this course? Anyone eager to learn about investing through IRAs. Start Today!</p>
             
+            <div id="desktopSimpleLink">
+                 <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" 
+                    target="_blank" 
+                    class="btn btn-glow"
+                    style="font-size: 1.1rem; padding: 14px 40px; margin-bottom: 20px;">
+                    View Course Document Now
+                </a>
+                <p style="font-size: 0.9rem; color: var(--muted); margin-top: 10px;">(Opens directly in your web browser)</p>
+            </div>
+
+
+            <div id="mobileInstructionBlock" style="
+                background-color: rgba(26, 42, 71, 0.9); 
+                border-radius: 12px;
+                padding: 30px; 
+                margin: 40px auto; 
+                max-width: 500px; 
+                text-align: left;
+                color: var(--text); 
+                box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); 
+            ">
+                <h3 style="font-size: 1.4rem; margin-top: 0; color: var(--accent);">For the Best Experience possible:</h3>
+                <p style="margin-top: 15px; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.5; color: var(--muted);">
+                    If you are on a desktop we recommend viewing our course on a phone or tablet, please use the free **Google Docs mobile App** for best experience.
+                </p>
+                
+                <h4 style="color: var(--text); margin-top: 25px; margin-bottom: 10px;">Quick Guide:</h4>
+                <ul class="instruction-list" style="list-style-type: decimal; padding-left: 20px; margin-bottom: 30px; line-height: 1.6; color: var(--muted);">
+                    <li>Click a **Download** link below to install the app.</li>
+                    <li>Once installed, **return to this page** and click the **View Document** button.</li>
+                    <li>**If the app is already installed on your device,** you can skip straight to clicking the **View Course Document Now** button.</li>
+                </ul>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column; 
+                    gap: 12px; 
+                    margin-top: 25px;
+                    text-align: center;
+                ">
+                    <a href="https://apps.apple.com/us/app/google-docs/id842842640" 
+                       target="_blank" 
+                       class="btn"
+                       style="padding: 12px 20px; font-size: 1rem;">
+                        Download on the App Store
+                    </a>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.docs" 
+                       target="_blank" 
+                       class="btn"
+                       style="padding: 12px 20px; font-size: 1rem;">
+                        Get it on Google Play
+                    </a>
+
+                    <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" 
+                       target="_blank" 
+                       class="btn" 
+                       style="
+                           background: transparent;
+                           color: var(--accent);
+                           border: 2px solid var(--accent);
+                           font-size: 1.1rem;
+                           padding: 14px 20px;
+                           margin-top: 20px; 
+                       ">
+                        View Course Document Now
+                    </a>
+                </div>
+            </div>
             <hr style="width: 100px; border: 0; border-top: 1px solid var(--border); margin: 30px auto;">
 
             <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #fff; text-align: center;">What You'll Learn in Our Course</h2>
@@ -875,42 +665,27 @@
         }
     });
 
-    // 4. Smooth Scroll for Anchor Links
+    // 4. Smooth Scroll for Anchor
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        // Only apply to links that don't have external targets
-        if (!anchor.classList.contains('btn') && anchor.getAttribute('target') !== '_blank') {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId.length > 1) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
-        }
-    });
-    // iOS FIX: Make cards glow on tap like hover
-const glowCards = document.querySelectorAll('.card');
-
-glowCards.forEach(card => {
-    card.addEventListener('touchstart', () => {
-        card.classList.add('touch-glow');
+        });
     });
 
-    card.addEventListener('touchend', () => {
-        card.classList.remove('touch-glow');
+    // 5. iOS Touch Glow Fix (Applies the hover effect on touch)
+    document.querySelectorAll('.parallax-card').forEach(card => {
+        card.addEventListener('touchstart', function() {
+            this.classList.add('touch-glow');
+        });
+        card.addEventListener('touchend', function() {
+            // Delay removal slightly so the user sees the effect
+            setTimeout(() => this.classList.remove('touch-glow'), 200);
+        });
     });
-
-    card.addEventListener('touchcancel', () => {
-        card.classList.remove('touch-glow');
-    });
-});
 </script>
 </body>
 </html>
