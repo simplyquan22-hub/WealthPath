@@ -665,27 +665,42 @@
         }
     });
 
-    // 4. Smooth Scroll for Anchor
+     // 4. Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+        // Only apply to links that don't have external targets
+        if (!anchor.classList.contains('btn') && anchor.getAttribute('target') !== '_blank') {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
-        });
+        }
+    });
+    // iOS FIX: Make cards glow on tap like hover
+const glowCards = document.querySelectorAll('.card');
+
+glowCards.forEach(card => {
+    card.addEventListener('touchstart', () => {
+        card.classList.add('touch-glow');
     });
 
-    // 5. iOS Touch Glow Fix (Applies the hover effect on touch)
-    document.querySelectorAll('.parallax-card').forEach(card => {
-        card.addEventListener('touchstart', function() {
-            this.classList.add('touch-glow');
-        });
-        card.addEventListener('touchend', function() {
-            // Delay removal slightly so the user sees the effect
-            setTimeout(() => this.classList.remove('touch-glow'), 200);
-        });
+    card.addEventListener('touchend', () => {
+        card.classList.remove('touch-glow');
     });
+
+    card.addEventListener('touchcancel', () => {
+        card.classList.remove('touch-glow');
+    });
+});
 </script>
 </body>
 </html>
