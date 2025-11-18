@@ -354,3 +354,57 @@ text-decoration: underline;
         margin-top: 20px;
     }
 }
+/* --- LIQUID GLASS PULSING BUTTON STYLES --- */
+
+.liquid-btn {
+    /* Layout and Positioning */
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    margin: 30px auto 0 auto;
+    max-width: 320px;
+    width: 100%;
+    
+    /* Typography and Size */
+    font-size: 1.25rem; /* Large text */
+    font-weight: 700;
+    padding: 16px 30px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 50px;
+    
+    /* Color and Glass Effect */
+    background: rgba(59, 130, 246, 0.4); /* Semi-transparent blue background */
+    backdrop-filter: blur(10px); /* Glass effect */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    color: #fff; /* White text */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    
+    /* Transition */
+    transition: all 0.3s ease;
+}
+
+.liquid-btn:hover {
+    background: rgba(59, 130, 246, 0.6); /* Less transparent on hover */
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+}
+
+/* --- PULSING EFFECT --- */
+
+/* The pulsing effect is applied via the box-shadow */
+.liquid-btn {
+    animation: liquid-pulse 2s infinite cubic-bezier(0.66, 0.0, 0.0, 1);
+}
+
+@keyframes liquid-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); /* Strong blue glow start */
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); /* Glow fades out and expands */
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); /* Reset */
+    }
+}
