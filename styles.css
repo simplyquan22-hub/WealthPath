@@ -357,32 +357,31 @@ text-decoration: underline;
 /* --- VOLTAGE BUTTON STYLES (FROM UIVERSE.IO) --- */
 .voltage-button {
   position: relative;
-  /* Ensure the button takes the full width of its container for max size */
-  width: 100%; 
-  max-width: 300px; /* Optional: Adjust max width to match the old button's scale */
-  margin: 0 auto;
+  /* Set a maximum width that suits your large button size */
+  max-width: 350px; 
+  width: 100%;
+  margin: 0 auto; 
 }
 
 .voltage-button button {
   color: white;
-  /* Use your site's dark background color */
-  background: var(--background); 
-  /* Adjusted padding to match the large size of your previous button */
-  padding: 1.25rem 3rem 1.25rem 3rem; 
+  /* Using the dark background color (#0B0E12) for a flush look */
+  background: #0B0E12; 
+  /* Adjusted padding for large button size */
+  padding: 1.3rem 3rem 1.3rem 3rem; 
   border-radius: 5rem;
   /* Use your accent color for the border */
   border: 5px solid var(--accent);
-  /* Adjusted font size to match the large size of your previous button */
+  /* Adjusted font size for large button size */
   font-size: 1.2rem; 
   line-height: 1em;
   letter-spacing: 0.075em;
   transition: background 0.3s;
-  width: 100%; /* Force button to respect the max-width of the container */
+  width: 100%; /* Make the button fill the container width */
 }
 
 .voltage-button button:hover {
   cursor: pointer;
-  /* A slightly darker blue on hover */
   background: #0F1C53; 
 }
 
@@ -393,10 +392,12 @@ text-decoration: underline;
 .voltage-button svg {
   display: block;
   position: absolute;
-  top: -0.75em;
-  left: -0.25em;
-  width: calc(100% + 0.5em);
-  height: calc(100% + 1.5em);
+  /* Adjusted top/left to ensure the SVG frames the large button */
+  top: -10px; 
+  left: -5px;
+  /* Adjusted width/height to cover the large button */
+  width: calc(100% + 10px);
+  height: calc(100% + 20px); 
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s;
