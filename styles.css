@@ -313,26 +313,26 @@ h1, h2, h3 {
 
 /* --- FOOTER --- */
 footer {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #0B0E12; /* MATCH HEADER COLOR */
-    border-top: none; 
-    color: var(--muted);
-    font-size: 0.9rem;
+text-align: center;
+padding: 40px 20px;
+background-color: #0E1629;
+border-top: 1px solid var(--border);
+color: var(--muted);
+font-size: 0.9rem;
 }
 
-/* Ensure the content container also matches */
+/* Add this new rule to your styles.css */
 .footer-content {
-    background-color: #0B0E12; /* MATCH HEADER COLOR */
+background-color: #0E1629;
 }
 
 footer a {
-    color: var(--accent);
-    text-decoration: none;
+color: var(--accent);
+text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 
 /* --- RESPONSIVE --- */
