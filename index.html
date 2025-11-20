@@ -291,10 +291,19 @@
         .footer-links-minimal a:not(:last-child)::after { content: " | "; color: var(--muted); padding: 0 5px; }
         .footer-disclaimer { font-size: 0.8rem; margin: 20px auto 10px; max-width: 700px; line-height: 1.5; color: var(--muted); text-align: center; }
         @media (max-width: 480px) { .footer-links-minimal a { font-size: 0.9rem; } }
-        .video-container-responsive {
-            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; margin-top: 20px; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); border-radius: 5px;
-        }
+       .video-container-responsive {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    margin-top: 20px;
+
+    /* Premium design */
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+    backdrop-filter: blur(10px);
+}
         @media (max-width: 900px) {
             .card { width: 100%; max-width: 400px; }
             .hero h1 { font-size: 2.2rem; }
@@ -485,7 +494,15 @@
 <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #fff; text-align: center;">What You'll Learn in Our Course</h2>
 
 <div class="video-container-responsive">
-    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+   <iframe style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+"
         src="https://www.youtube.com/embed/Ji3NFZEwGEw"
         title="WealthPath: Your Journey to Financial Freedom" 
         frameborder="0" 
