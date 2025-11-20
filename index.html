@@ -673,7 +673,7 @@
             Disclaimer : WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
         </p>
         
-        <p style="margin-top: 20px; color: var(--muted);">&copy; <span id="currentYear">2026</span> WealthPath. All rights reserved.</p>
+        <p style="margin-top: 20px; color: var(--muted);">&copy; <span id="currentYear">2025</span> WealthPath. All rights reserved.</p>
     </div>
 </footer>
 
@@ -817,6 +817,14 @@ glowCards.forEach(card => {
     card.addEventListener('touchcancel', () => {
         card.classList.remove('touch-glow');
     });
+});
+// 1. UPDATE FOOTER YEAR AUTOMATICALLY
+// This ensures your copyright date is always correct
+document.addEventListener("DOMContentLoaded", () => {
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });
 </script>
 </body>
