@@ -262,9 +262,19 @@
         .founder-card:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
         .founder-icon { opacity: 1 !important; }
         .founder-quote {
-            position: relative; font-style: italic; font-size: 1.2rem; font-weight: 500; color: var(--text); 
-            padding: 15px 0 15px 20px; border-left: 3px solid var(--accent); margin: 25px 0 10px; background: transparent; 
-        }
+    position: relative; 
+    font-style: italic; 
+    font-size: 1.3rem; /* Enhanced size */
+    font-weight: 600; /* Enhanced weight/boldness */
+    color: var(--text); 
+    
+    /* New spacing and glow */
+    padding: 15px 0 15px 25px; /* Increased left padding for visual weight */
+    border-left: 3px solid var(--accent); 
+    box-shadow: inset 3px 0 8px rgba(59, 130, 246, 0.4); /* Subtle inner glow on the accent line */
+    margin: 25px 0 10px; 
+    background: transparent; 
+}
         .founder-name { color: var(--muted); font-style: normal; text-align: right; font-size: 0.95rem !important; margin-top: 0 !important; margin-bottom: 0 !important; }
         .tools-section { padding: 60px 20px; text-align: center; }
         .card-link { display: inline-block; margin-top: 15px; font-weight: 600; font-size: 1.05rem; color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
