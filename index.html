@@ -138,21 +138,32 @@
         .hero-content {
             max-width: 700px;
         }
-
-      .hero h1 {
-    position: relative;
-    z-index: 10;
-    font-size: 3.3rem;
-    line-height: 1.15;
-    font-weight: 800;
-    color: #ffffff;
-    text-align: center;
-    text-shadow:
-        0 0 12px rgba(59,130,246,0.65),
-        0 0 28px rgba(28,188,255,0.55),
-        0 0 45px rgba(28,188,255,0.35),
-        0 0 70px rgba(28,188,255,0.25);
+.hero h1 {
+    position: relative;
+    z-index: 10;
+    font-size: 4.8rem; /* INCREASED: Makes the text much bigger */
+    line-height: 1.05; /* DECREASED: Lines are closer, like the image */
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    /* Enhanced White/Blue Glow for main text */
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.9), /* White inner glow */
+        0 0 20px rgba(59, 130, 246, 0.8), /* Blue outer glow */
+        0 0 40px rgba(59, 130, 246, 0.4);
 }
+.hero h1 .hero-accent {
+    color: transparent;
+    background-image: linear-gradient(90deg, #60a5fa, #3b82f6); /* Blue gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Blue glow effect */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.5), 
+        0 0 15px rgba(59, 130, 246, 0.9),
+        0 0 25px rgba(59, 130, 246, 0.6);
+}
+     
         .hero p {
             font-size: 1.1rem;
             color: var(--muted);
@@ -377,7 +388,7 @@
 }
         @media (max-width: 900px) {
             .card { width: 100%; max-width: 400px; }
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 3.3rem; }
             .about h2, .cta h2, .founder-section h2 { font-size: 2rem; }
             .fixed-header { padding: 0 15px; }
             .header-logo { font-size: 1.2rem; }
