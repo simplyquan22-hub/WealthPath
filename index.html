@@ -257,10 +257,8 @@
         }
 
         /* --- GENERAL STYLES (Rest of your existing CSS) --- */
-     .about { 
-    text-align: center; 
-    padding: 0 20px 30px; /* top padding removed */
-    margin-top: -20px;   /* gently pulls section upward */
+  .about { 
+    text-align: center;
 }
         .mission-vision-container { max-width: 1000px; margin: 0 auto 15px; text-align: center; }
         .mission-vision-container h2 { font-size: 2.5rem; margin-bottom: 20px; }
@@ -477,6 +475,58 @@ footer {
 .footer-copy {
     font-size: 0.82rem;
     opacity: 0.8;
+}
+/* ---------------------------------------------------------
+   UNIVERSAL SECTION SPACING FIX
+   Makes spacing consistent on all mobile devices
+--------------------------------------------------------- */
+
+section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Remove huge padding from hero because it has custom layout */
+.hero {
+    padding-top: 80px !important;
+}
+
+/* Fix About spacing */
+.about {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+    margin-top: 0 !important;
+}
+
+/* Clean up section dividers */
+.section-divider,
+hr.section-divider {
+    margin: 40px auto !important;
+}
+
+/* Core Principles heading */
+.principles-heading {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Tools spacing */
+.tools-section {
+    padding-top: 40px !important;
+    padding-bottom: 70px !important;
+}
+
+/* Founder spacing */
+.founder-section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+/* CTA & Review spacing */
+.cta,
+.review-cta {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
 }
     </style>
 </head>
