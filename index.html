@@ -382,56 +382,75 @@
         .card.touch-glow { transform: perspective(1000px) translateY(-8px); box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 50px rgba(59, 130, 246, 0.3); }
         /* --- FOOTER SPECIFIC STYLES --- */
 
-/* 1. Glow Divider */
-.footer-top-divider {
-    max-width: 150px; 
-    margin: 0 auto 30px; 
-    border: 0;
-    border-top: 2px solid var(--accent);
-    border-radius: 2px;
-    opacity: 0.8;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); 
-    transition: all 0.3s ease;
+/* --- CLEAN PROFESSIONAL FOOTER --- */
+footer {
+    padding: 60px 20px;
+    background: transparent;
+    color: var(--muted);
 }
 
-/* 3. Professional Disclaimer Box (Base Style) */
-.footer-disclaimer {
-    /* Existing styles remain... */
-    padding: 15px; 
-    background: rgba(255, 255, 255, 0.05); 
-    border: 1px solid var(--border); 
-    border-radius: 8px; 
-    margin: 20px auto 10px; 
-    /* Existing styles: */
-    font-size: 0.8rem; 
-    max-width: 700px; 
-    line-height: 1.5; 
-    color: var(--muted); 
+.footer-container {
+    max-width: 850px;
+    margin: 0 auto;
     text-align: center;
 }
 
-/* 2. Responsive Link Layout (Default/Mobile) */
-.footer-links-minimal { 
-    display: block; 
-    margin: 20px 0; 
-    font-size: 0.95rem; 
-}
-.footer-links-minimal a:not(:last-child)::after { 
-    content: " | "; /* Pipe separator for mobile */
-    color: var(--muted); 
-    padding: 0 5px; 
+.footer-divider {
+    width: 140px;
+    margin: 0 auto 35px;
+    border: 0;
+    border-top: 2px solid var(--accent);
+    opacity: 0.8;
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(59,130,246,0.5);
 }
 
-/* 2. Responsive Link Layout (Desktop override) */
-@media (min-width: 768px) {
-    .footer-links-minimal {
-        display: flex;
-        justify-content: center;
-        gap: 30px; /* Space out the links on desktop */
-    }
-    .footer-links-minimal a:not(:last-child)::after {
-        content: none; /* Remove pipe separator on desktop */
-    }
+.footer-brand {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(59,130,246,0.4);
+}
+
+.footer-disclaimer-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    max-width: 680px;
+    margin: 0 auto 25px;
+}
+
+.footer-disclaimer-box p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+.footer-copy {
+    font-size: 0.85rem;
+    color: var(--muted);
 }
     </style>
 </head>
@@ -761,23 +780,29 @@
     </section>
 
 <footer>
-    <div class="footer-content fade-in-element">
-        
-        <hr class="footer-top-divider"> 
+    <div class="footer-container">
 
-        <p style="margin-bottom: 25px; color: #fff; font-weight: 600;">WealthPath — "A Journey Uniquely Yours"</p>
-        
-        <div class="footer-links-minimal">
+        <hr class="footer-divider">
+
+        <p class="footer-brand">WealthPath — “A Journey Uniquely Yours”</p>
+
+        <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms of Use</a>
             <a href="mailto:info@mywealthpath.org">Contact Us</a>
         </div>
 
-        <p class="footer-disclaimer">
-            Disclaimer : WealthPath provides educational content only and is not a licensed financial advisor. The information is not a substitute for professional advice. Consult a qualified professional before making any investment decisions.
+        <div class="footer-disclaimer-box">
+            <p>
+                WealthPath provides educational content only and is not a licensed financial advisor.
+                This information is not a substitute for professional guidance. Always consult a 
+                qualified professional before making investment decisions.
+            </p>
+        </div>
+
+        <p class="footer-copy">
+            © <span id="currentYear">2025</span> WealthPath. All rights reserved.
         </p>
-        
-        <p style="margin-top: 20px; color: var(--muted);">&copy; <span id="currentYear">2025</span> WealthPath. All rights reserved.</p>
     </div>
 </footer>
 
