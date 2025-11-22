@@ -291,7 +291,7 @@
         .footer-links-minimal a:not(:last-child)::after { content: " | "; color: var(--muted); padding: 0 5px; }
         .footer-disclaimer { font-size: 0.8rem; margin: 20px auto 10px; max-width: 700px; line-height: 1.5; color: var(--muted); text-align: center; }
         @media (max-width: 480px) { .footer-links-minimal a { font-size: 0.9rem; } }
-       .video-container-responsive {
+    .video-container-responsive {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* 16:9 ratio */
@@ -301,8 +301,31 @@
 
     /* Premium design */
     border-radius: 18px;
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+    
+    /* ENHANCED GLOW: Increased intensity and multiple shadow layers */
+    box-shadow: 
+        0 0 50px rgba(59, 130, 246, 0.5), /* Stronger, outer glow */
+        0 0 20px rgba(59, 130, 246, 0.7); /* Inner glow definition */
+
     backdrop-filter: blur(10px);
+    
+    /* ANIMATION: Add the same electric-pulse effect as the cards */
+    animation: electric-pulse-subtle 4s infinite ease-in-out alternate;
+}
+
+/* NEW ANIMATION KEYFRAMES for the video */
+/* Using a slightly different name to avoid conflict with the card animation if it were adjusted */
+@keyframes electric-pulse-subtle {
+    0% {
+        box-shadow: 
+            0 0 30px rgba(59, 130, 246, 0.4), 
+            0 0 10px rgba(59, 130, 246, 0.6);
+    }
+    100% {
+        box-shadow: 
+            0 0 60px rgba(59, 130, 246, 0.6), 
+            0 0 25px rgba(59, 130, 246, 0.9);
+    }
 }
         @media (max-width: 900px) {
             .card { width: 100%; max-width: 400px; }
