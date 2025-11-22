@@ -876,41 +876,6 @@ footer {
     // 1. Optimized Scroll-Glow Header Script
     window.addEventListener('scroll', debounce(handleScrollGlow, 10));
 
-    // 2. Optimized Card-Hover Parallax Effect Script (on Core Principles cards)
-    const cardsContainer = document.getElementById('parallaxCardsContainer');
-    const cards = document.querySelectorAll('.parallax-card');
-    const maxTilt = 4; // Max tilt in degrees
-
-    if (cardsContainer) {
-        cardsContainer.addEventListener('mousemove', (e) => {
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                
-                // Mouse position relative to the center of the card
-                const xCenter = rect.left + rect.width / 2;
-                const yCenter = rect.top + rect.height / 2;
-                
-                const xPos = e.clientX - xCenter;
-                const yPos = e.clientY - yCenter;
-
-                // Calculate tilt degrees
-                const tiltX = (yPos / (rect.height / 2)) * maxTilt * -1; // Inverted for natural look
-                const tiltY = (xPos / (rect.width / 2)) * maxTilt; 
-
-                // Update CSS custom properties only
-                card.style.setProperty('--tiltX', `${tiltX}deg`);
-                card.style.setProperty('--tiltY', `${tiltY}deg`);
-            });
-        });
-
-        cardsContainer.addEventListener('mouseleave', () => {
-            cards.forEach(card => {
-                // Reset custom properties, letting CSS transition handle the smooth reset
-                card.style.setProperty('--tiltX', `0deg`);
-                card.style.setProperty('--tiltY', `0deg`);
-            });
-        });
-    }
 
     // 3. Dynamic Year Update in Footer
     document.addEventListener('DOMContentLoaded', () => {
