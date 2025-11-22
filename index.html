@@ -149,20 +149,28 @@
             color: var(--muted);
             margin-bottom: 2rem;
         }
-      /* --- SHINY STATIC TEXT EFFECT --- */
+/* --- PREMIUM LUXURY FLOW TEXT ANIMATION --- */
 .shiny-text {
   background: linear-gradient(
       90deg,
       #facc15,
-      #ffe38a 20%,
-      #ffffff 35%,
-      #4ade80 60%,
-      #38bdf8
+      #ffe38a,
+      #ffffff,
+      #4ade80,
+      #38bdf8,
+      #facc15
   );
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   color: transparent;
   font-weight: 800;
-  filter: brightness(1.25);
+  animation: luxuryFlow 6s ease-in-out infinite;
+}
+
+@keyframes luxuryFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes shimmer {
