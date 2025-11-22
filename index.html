@@ -149,6 +149,37 @@
             color: var(--muted);
             margin-bottom: 2rem;
         }
+        /* --- SHIMMER TEXT EFFECT FOR "one path" --- */
+.shimmer-text {
+  background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,0.7) 50%,
+      transparent 100%
+  );
+  animation: shimmer 3.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -120%; }
+  50%  { left: 120%; }
+  100% { left: 120%; }
+}
 
         /* --- BUTTON & PULSING ANIMATION --- */
         @keyframes pulse {
@@ -433,14 +464,7 @@
     investing<br>
     breakthrough<br>
     is 
-    <span style="
-        background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8);
-        -webkit-background-clip: text;
-        color: transparent;
-        font-weight: 800;
-    ">
-        one path
-    </span>
+   <span class="shimmer-text">one path</span>
     away.
 </h1>
 
