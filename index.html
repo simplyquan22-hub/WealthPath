@@ -379,16 +379,25 @@
             0 0 25px rgba(59, 130, 246, 0.9);
     }
 }
-    @media (max-width: 900px) {
+   /* ✅ FIXED VERSION */
+@media (max-width: 900px) {
+    /* Card fix */
     .card { width: 100%; max-width: 400px; }
+    
+    /* Font resizing */
+    .about h2, .cta h2, .founder-section h2 { font-size: 2rem; }
+    
+    /* Header adjustments */
+    .fixed-header { padding: 0 15px; }
+    .header-logo { font-size: 1.2rem; }
+    .header-nav { display: none; } 
+    .header-btn { padding: 8px 18px; }
 
-            .about h2, .cta h2, .founder-section h2 { font-size: 2rem; }
-            /* ... rest of mobile CSS ... */
-            .fixed-header { padding: 0 15px; }
-            .header-logo { font-size: 1.2rem; }
-            .header-nav { display: none; } 
-            .header-btn { padding: 8px 18px; }
-        }
+    /* THIS IS THE PART THAT FIXES THE SQUISHED TEXT */
+    /* It forces the Mission/Vision to stack vertically on mobile */
+    .mission-vision-flex { flex-direction: column; text-align: center; }
+    .vision-item h3 { margin-top: 20px; }
+}
         @media (max-width: 768px) {
             .mission-vision-flex { flex-direction: column; text-align: center; }
             .vision-item h3 { margin-top: 20px; }
