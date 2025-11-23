@@ -496,13 +496,93 @@ footer {
     text-shadow: 0 0 5px rgba(250, 204, 21, 0.8), /* Yellow glow */
                  0 0 10px rgba(59, 130, 246, 0.8); /* Blue glow */
 }
+/* ---- MOBILE MENU PANEL (clean + matches header) ---- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background: rgba(11, 14, 18, 0.92);
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255,255,255,0.08);
+    box-shadow: none !important;
+    z-index: 2000;
+    padding: 80px 25px;
+    transition: right 0.35s ease;
+}
+
+/* ---- MENU LINKS ---- */
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    transition: 0.25s ease;
+}
+
+.mobile-menu a:hover {
+    background: rgba(59,130,246,0.12);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 15px rgba(59,130,246,0.45);
+    transform: translateX(4px);
+}
+
+/* ---- HAMBURGER BUTTON ---- */
+.menu-btn {
+    width: 32px;
+    height: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 3000;
+}
+
+.menu-btn span {
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+/* ---- HAMBURGER → X animation ---- */
+.menu-btn.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
     </style>
 </head>
 <body>
     <header id="fixedHeader" class="fixed-header">
         <a href="#hero" class="header-logo">WealthPath</a>
-       
+<div id="menuBtn" class="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
     </header>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about">🌟 About Us</a>
+    <a href="#parallaxCardsContainer">🏛️ Our Pillars</a>
+    <a href="#tools">🧰 Toolkit</a>
+    <a href="privacy.html">🔒 Privacy Policy</a>
+    <a href="terms.html">📄 Terms of Service</a>
+    <a href="mailto:info@mywealthpath.org">✉️ Contact Us</a>
+</div>
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
     <div class="orb gold"></div>
@@ -976,6 +1056,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+});
+/* ---- MOBILE MENU TOGGLE ---- */
+const mobileMenu = document.getElementById("mobileMenu");
+const menuBtn = document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle("active");
+    mobileMenu.style.right = 
+        mobileMenu.style.right === "0px" ? "-280px" : "0px";
 });
 </script>
 </body>
