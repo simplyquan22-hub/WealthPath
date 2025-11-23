@@ -511,6 +511,9 @@ footer {
     padding: 80px 25px;
     transition: right 0.35s ease;
 }
+.mobile-menu.open {
+    right: 0;
+}
 
 /* ---- MENU LINKS ---- */
 .mobile-menu a {
@@ -564,6 +567,36 @@ footer {
 .menu-btn.active span:nth-child(3) {
     transform: translateY(-11px) rotate(-45deg);
 }
+/* FIX: Premium X Close Button */
+.menu-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 1.9rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 9999;
+    transition: 0.25s ease;
+    text-shadow: 0 0 8px rgba(255,255,255,0.65);
+}
+
+.menu-close:hover {
+    transform: scale(1.15) rotate(4deg);
+    text-shadow: 0 0 12px rgba(255,255,255,0.9);
+}
+
+/* FIX: Clean + tighter menu spacing */
+.menu-item {
+    padding: 12px 18px; /* smaller */
+    margin-bottom: 14px; /* tighter */
+    min-height: 52px; /* reduced card height */
+}
+
+/* FIX: reduce icon size */
+.menu-item-icon {
+    font-size: 1.3rem;
+    margin-right: 12px;
+}
     </style>
 </head>
 <body>
@@ -576,12 +609,14 @@ footer {
 </div>
     </header>
 <div class="mobile-menu" id="mobileMenu">
-    <a href="#about">🌟 About Us</a>
-    <a href="#parallaxCardsContainer">🏛️ Our Pillars</a>
-    <a href="#tools">🧰 Toolkit</a>
-    <a href="privacy.html">🔒 Privacy Policy</a>
-    <a href="terms.html">📄 Terms of Service</a>
-    <a href="mailto:info@mywealthpath.org">✉️ Contact Us</a>
+    <div class="menu-close" onclick="toggleMenu()">✕</div>
+
+    <a href="#about" class="menu-item">🌟 About Us</a>
+    <a href="#parallaxCardsContainer" class="menu-item">🏛️ Our Pillars</a>
+    <a href="#tools" class="menu-item">🧰 Toolkit</a>
+    <a href="privacy.html" class="menu-item">🔒 Privacy Policy</a>
+    <a href="terms.html" class="menu-item">📄 Terms of Service</a>
+    <a href="mailto:info@mywealthpath.org" class="menu-item">✉️ Contact Us</a>
 </div>
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
@@ -1057,14 +1092,48 @@ document.addEventListener("DOMContentLoaded", () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 });
-/* ---- MOBILE MENU TOGGLE ---- */
-const mobileMenu = document.getElementById("mobileMenu");
-const menuBtn = document.getElementById("menuBtn");
+// ==========================
+// PREMIUM MOBILE MENU JS
+// ==========================
 
-menuBtn.addEventListener("click", () => {
-    menuBtn.classList.toggle("active");
-    mobileMenu.style.right = 
-        mobileMenu.style.right === "0px" ? "-280px" : "0px";
+// Open / Close Menu
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    const body = document.body;
+
+    menu.classList.toggle("open");
+
+    // Prevent background scroll when menu is open
+    if (menu.classList.contains("open")) {
+        body.style.overflow = "hidden";
+    } else {
+        body.style.overflow = "";
+    }
+}
+
+// Hamburger button click
+document.getElementById("menuBtn").addEventListener("click", toggleMenu);
+
+// Close menu when clicking outside the panel
+document.addEventListener("click", function (e) {
+    const menu = document.getElementById("mobileMenu");
+    const menuBtn = document.getElementById("menuBtn");
+
+    if (
+        menu.classList.contains("open") &&
+        !menu.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+        toggleMenu();
+    }
+});
+
+// Close menu when any menu link is clicked
+document.querySelectorAll(".menu-item").forEach(item => {
+    item.addEventListener("click", () => {
+        const menu = document.getElementById("mobileMenu");
+        if (menu.classList.contains("open")) toggleMenu();
+    });
 });
 </script>
 </body>
