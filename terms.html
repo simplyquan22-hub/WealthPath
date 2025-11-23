@@ -4,280 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use | WealthPath</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* VARIABLES (Consistent with Privacy Policy) */
         :root {
             --bg: #0b0e12;
             --text: #e9eef6;
             --muted: #9aa4b2;
-            --accent: #3b82f6; /* Blue */
-            --secondary-accent: #facc15; /* Gold/Yellow for subtle depth */
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.1); 
-            --container-bg: rgba(11, 14, 18, 0.75); 
+            --accent: #3b82f6;
+            --border: rgba(255, 255, 255, 0.12);
         }
 
-        /* GLOBAL STYLES */
+        /* GLOBAL */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.65; /* Increased line-height for better body text readability */
+            font-family: 'Inter', sans-serif;
+            line-height: 1.65;
             overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Typography Polish */
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #fff;
-            margin-top: 2rem; /* Increased top margin for section spacing */
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        h1 { 
-            font-size: clamp(2.2rem, 5vw, 3.5rem); 
-            font-weight: 800; 
-            letter-spacing: -0.05em; 
-        }
-        
-        h2 { 
-            font-size: 1.8rem; 
-            font-weight: 700;
-            /* Border and spacing refinement */
-            border-bottom: 1px solid rgba(59, 130, 246, 0.4); 
-            padding-bottom: 10px; 
-            margin-bottom: 20px; 
-            color: var(--accent);
-        }
-        
-        p, li { 
-            color: var(--muted); 
-            margin-bottom: 1.2rem; 
-            font-size: 1rem;
-        }
-        
-        a { 
-            color: var(--accent); 
-            text-decoration: none; 
-            transition: color 0.3s ease, text-shadow 0.3s ease; 
-        }
-        
-        a:hover { 
-            color: var(--text); 
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.8); 
-        }
-        
-        strong { 
-            color: var(--text); 
-            font-weight: 600; 
-        }
-        
-        /* Specific Polish for Disclaimers/Warnings */
-        .disclaimer-box {
-            border-left: 4px solid var(--secondary-accent); /* Gold line for emphasis */
-            background: rgba(250, 204, 21, 0.05); /* Subtle gold background */
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        .disclaimer-box p {
-            margin-bottom: 0;
-            color: var(--text);
-            font-weight: 600;
         }
 
-        /* --- ANIMATED BACKGROUND & ORBS (Consistent with Privacy Policy) --- */
+        /* BACKGROUND */
         .animated-bg {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
+            background: radial-gradient(circle at 25% 15%, #0f172a, #0b0e12 80%);
             z-index: -2;
-            background: radial-gradient(circle at 25% 15%, #0f172a 10%, var(--bg) 90%); 
         }
 
         .orb {
             position: fixed;
-            width: 350px; height: 350px; 
+            width: 300px; height: 300px;
             border-radius: 50%;
-            filter: blur(150px); 
-            opacity: 0.35; 
-            animation: float 12s infinite alternate ease-in-out, drift 18s infinite alternate ease-in-out; 
+            filter: blur(130px);
+            opacity: 0.32;
+            animation: float 11s ease-in-out infinite alternate;
             z-index: -1;
         }
-        .orb.blue { 
-            background: var(--accent); 
-            top: 20%; left: 15%; 
-        }
-        .orb.gold { 
-            background: var(--secondary-accent); 
-            bottom: 10%; right: 10%; 
-            animation: float 12s infinite alternate ease-in-out, drift-reverse 20s infinite alternate-reverse ease-in-out; 
-        }
+        .orb.blue { background: #3b82f6; top: 18%; left: 12%; }
+        .orb.gold { background: #facc15; bottom: 10%; right: 10%; }
 
         @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-40px) scale(1.05); } 
-        }
-        @keyframes drift {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(60px); }
-        }
-        @keyframes drift-reverse {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-60px); }
+            from { transform: translateY(0); }
+            to { transform: translateY(-35px); }
         }
 
-        /* LAYOUT & CONTAINER POLISH */
-        .container {
+        /* PAGE WRAPPER */
+        .page-wrapper {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 30px; 
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            /* Refined Glass Effect */
-            background: var(--container-bg); 
-            backdrop-filter: blur(8px); 
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); 
+            padding: 120px 22px 80px;
         }
 
-        /* DESIGN ELEMENTS */
-        .header-section {
+        /* HEADER SECTION */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.7rem;
             text-align: center;
-            padding-bottom: 40px; 
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 4px 15px -8px var(--accent); 
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
-        .header-section p {
-            font-size: 1.15rem; 
-            color: var(--text);
+
+        .page-intro {
+            text-align: center;
             max-width: 650px;
-            margin: 15px auto 0; 
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+            color: var(--muted);
         }
-        .date {
-            font-size: 1rem;
-            color: var(--secondary-accent); 
-            display: block;
-            margin-top: 15px;
+
+        .policy-date {
+            text-align: center;
+            color: var(--accent);
             font-weight: 600;
+            margin-bottom: 55px;
         }
-        
-        /* Custom List Style for Professionalism */
+
+        /* SECTION HEADERS */
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-top: 60px;
+            font-weight: 700;
+        }
+
+        .blue-divider {
+            width: 120px;
+            border: 0;
+            border-top: 2px solid var(--accent);
+            margin: 12px 0 28px;
+            opacity: 0.9;
+            border-radius: 2px;
+            box-shadow: 0 0 12px rgba(59,130,246,0.4);
+        }
+
+        /* BODY TEXT */
+        p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
         ul {
-            list-style-type: none; 
-            margin-left: 0;
-            padding-left: 0;
-            margin-bottom: 30px;
+            padding-left: 20px;
+            margin-bottom: 25px;
         }
         ul li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem; 
-            line-height: 1.6;
-        }
-        ul li::before {
-            content: "•";
-            color: var(--accent);
-            font-size: 1.2em;
-            position: absolute;
-            left: 0;
-            top: 0;
-            line-height: inherit;
-        }
-        
-        /* Contact specific styling */
-        .contact-info {
-            margin-top: 10px; /* Space after the preceding paragraph */
-            border: 1px solid var(--border);
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            display: inline-block; 
-        }
-        .contact-info p {
-            margin: 0;
             font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 12px;
         }
-        
-        /* Media Query for Mobile Readability */
-        @media (max-width: 768px) {
-            .container {
-                padding: 50px 15px; 
-            }
-            h1 {
-                font-size: 2.2rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            body {
-                line-height: 1.6;
-            }
+
+        /* CONTACT BOX */
+        .contact-box {
+            border: 1px solid var(--border);
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .contact-box a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
         }
     </style>
 </head>
+
 <body>
+
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
     <div class="orb gold"></div>
 
-    <div class="container">
-        <div class="header-section">
-            <h1>WealthPath Terms of Use</h1>
-            <p>Welcome to WealthPath. By accessing or using our website and course content, you agree to comply with these binding terms and conditions.</p>
-            <span class="date">Effective Date: November 12, 2025</span>
-        </div>
+    <div class="page-wrapper">
 
+        <!-- HEADER -->
+        <h1>WealthPath Terms of Use</h1>
+
+        <p class="page-intro">
+            These Terms explain the rules, responsibilities, and boundaries of using 
+            WealthPath’s website, tools, and educational content.
+        </p>
+
+        <p class="policy-date">Effective Date: November 12, 2025</p>
+
+        <!-- SECTION 1 -->
         <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using the WealthPath website and our educational course materials (including the PDF course), you acknowledge that you have read, understood, and agree to be bound by these Terms of Use. If you do not agree to these terms, you are expressly prohibited from using our website or course materials.</p>
+        <hr class="blue-divider">
 
+        <p>
+            By accessing or using WealthPath’s website or free educational course materials,
+            you acknowledge that you have read, understood, and agree to be bound by these Terms.
+            If you do not agree, please discontinue use immediately.
+        </p>
+
+
+        <!-- SECTION 2 -->
         <h2>2. Educational Content & Financial Disclaimer</h2>
-        <div class="disclaimer-box">
-            <p><strong>IMPORTANT DISCLOSURE:</strong> WealthPath provides educational content only and is **NOT** a provider of personalized financial advice.</p>
-        </div>
+        <hr class="blue-divider">
+
+        <p><strong>WealthPath provides educational content only.</strong> We are not licensed financial professionals and do not provide personalized investment or financial advice.</p>
+
         <ul>
-            <li><strong>Not Financial Advice:</strong> WealthPath provides **educational content only**. We are not licensed financial advisors, brokers, or tax professionals. All content is strictly for informational and educational purposes and should **not** be construed as personalized investment, financial, or tax advice.</li>
-            <li><strong>Your Responsibility:</strong> You acknowledge and agree that you are solely responsible for your own financial decisions. We strongly advise that any investment or financial strategies you pursue are based on your own independent research and consultation with qualified professionals.</li>
-            <li><strong>Risk:</strong> Investing involves inherent risk, including the possible loss of principal. We make no guarantees or promises regarding the performance of any investment or strategy discussed within our content.</li>
+            <li><strong>No Financial Advice:</strong> All content is strictly educational.</li>
+            <li><strong>Your Responsibility:</strong> All financial decisions remain your own.</li>
+            <li><strong>Investment Risk:</strong> Investing always involves risk, including loss of capital.</li>
         </ul>
 
-        <h2>3. Intellectual Property (IP) and Content Use</h2>
+
+        <!-- SECTION 3 -->
+        <h2>3. Intellectual Property Rights</h2>
+        <hr class="blue-divider">
+
+        <p>
+            All content provided by WealthPath—including the PDF course, written materials, 
+            icons, branding, and overall design—is owned exclusively by WealthPath and 
+            protected by copyright law.
+        </p>
+
         <ul>
-            <li><strong>Ownership:</strong> All content provided by WealthPath, including the proprietary course PDF, text, graphics, trademarks, and overall website design, is the exclusive property of WealthPath and is protected by international copyright laws.</li>
-            <li><strong>Limited License:</strong> You are granted a limited, non-exclusive, non-transferable license to access and use the course content solely for your **personal, non-commercial educational use only**.</li>
-            <li><strong>Restrictions:</strong> You may **not**, under any circumstances, sell, or make profit from any part of the course materials or content without the explicit, prior written permission of WealthPath.</li>
+            <li><strong>Personal License Only:</strong> You may use the course solely for personal learning.</li>
+            <li><strong>No Reproduction:</strong> Selling, redistributing, or repackaging any WealthPath content is prohibited.</li>
+            <li><strong>No Commercial Use:</strong> Course materials may not be used for any commercial purpose.</li>
         </ul>
 
-        <h2>4. User Conduct and Prohibitions</h2>
-        <p>You agree not to use the website or course materials to:</p>
+
+        <!-- SECTION 4 -->
+        <h2>4. Acceptable Use</h2>
+        <hr class="blue-divider">
+
+        <p>Users agree not to:</p>
+
         <ul>
-            <li>Violate any applicable local, state, national, or international law or regulation.</li>
-            <li>Transmit or upload any harmful or unlawful material, including but not limited to viruses, malware, or destructive code.</li>
-            <li>Engage in any form of harassment, abuse, or unauthorized data collection directed at other users or WealthPath personnel.</li>
-            <li>Attempt to gain unauthorized access to any portion of the website, its systems, or networks.</li>
+            <li>Violate any laws or regulations.</li>
+            <li>Use the website to transmit harmful or malicious code.</li>
+            <li>Attempt unauthorized access to any part of the service.</li>
+            <li>Engage in harassment, abuse, or harmful behavior.</li>
         </ul>
 
-        <h2>5. Third-Party Links and External Resources</h2>
-        <p>Our website may contain links to third-party resources (such as Google Docs for materials or Google Forms for feedback). These links are provided for convenience only. We do not endorse and are not responsible for the content, accuracy, legality, products, or services offered on those external sites. You access and use these third-party links entirely at your own risk.</p>
 
+        <!-- SECTION 5 -->
+        <h2>5. Third-Party Links</h2>
+        <hr class="blue-divider">
+
+        <p>
+            WealthPath uses external services such as Google Docs and Google Forms.
+            We do not control these platforms, and their privacy and terms apply when you use them.
+        </p>
+
+
+        <!-- SECTION 6 -->
         <h2>6. Termination of Access</h2>
-        <p>WealthPath reserves the right to terminate or suspend your access to the website and course content immediately, without prior notice, for any reason, including without limitation if we believe you have breached any provision of these Terms.</p>
-        
-        <h2>7. Contact Information</h2>
-        <p>If you have any questions or concerns about these Terms of Use, please contact us:</p>
-        <div class="contact-info">
+        <hr class="blue-divider">
+
+        <p>
+            WealthPath reserves the right to suspend or terminate your access 
+            if you violate these Terms or engage in harmful behavior.
+        </p>
+
+
+        <!-- SECTION 7 -->
+        <h2>7. Changes to These Terms</h2>
+        <hr class="blue-divider">
+
+        <p>
+            We may update these Terms occasionally. The updated revision date at the top of the page
+            indicates the latest version.
+        </p>
+
+
+        <!-- SECTION 8 -->
+        <h2>8. Contact Us</h2>
+        <hr class="blue-divider">
+
+        <p>If you have questions about these Terms, you can reach us here:</p>
+
+        <div class="contact-box">
             <p>Email: <a href="mailto:info@mywealthpath.org">info@mywealthpath.org</a></p>
         </div>
 
     </div>
+
 </body>
 </html>
