@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WealthPath — A Journey Uniquely Yours</title>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
         /* VARIABLES */
@@ -496,7 +497,21 @@ footer {
     text-shadow: 0 0 5px rgba(250, 204, 21, 0.8), /* Yellow glow */
                  0 0 10px rgba(59, 130, 246, 0.8); /* Blue glow */
 }
+/* Floating animation for the Vision Lottie */
+.vision-lottie-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 35px 0 20px;
 
+    animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes floaty {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
     </style>
 </head>
 <body>
@@ -631,6 +646,16 @@ footer {
                 <div class="vision-item">
                     <h3>🔮 Our Vision</h3>
                     <p>We see a future where financial freedom is accessible to everyone. WealthPath blends education and inspiration to help you grow your wealth — not by chasing trends, but by mastering timeless principles that truly work.</p>
+<div class="vision-lottie-container">
+    <lottie-player
+        src="animation.json"
+        background="transparent"
+        speed="1"
+        style="width: 180px; height: 180px;"
+        loop
+        autoplay>
+    </lottie-player>
+</div>
                 </div>
             </div>
        
