@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WealthPath — A Journey Uniquely Yours</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
         /* VARIABLES */
         :root {
@@ -145,6 +145,7 @@
     text-align: center;
     margin-bottom: 1.2rem;
     color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
 }
 .hero h1 .hero-accent {
     background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8);
@@ -476,6 +477,18 @@ footer {
 .footer-copy {
     font-size: 0.82rem;
     opacity: 0.8;
+}
+/* Add this new rule to your <style> block */
+.hero h1 .hero-accent {
+    /* Keep the existing background and clipping */
+    background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    
+    /* Add a colorful glow to the accent text */
+    text-shadow: 0 0 5px rgba(250, 204, 21, 0.8), /* Yellow glow */
+                 0 0 10px rgba(59, 130, 246, 0.8); /* Blue glow */
 }
 
     </style>
