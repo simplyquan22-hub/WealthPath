@@ -4,263 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | WealthPath</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* VARIABLES (Copied from main page) */
         :root {
             --bg: #0b0e12;
             --text: #e9eef6;
             --muted: #9aa4b2;
-            --accent: #3b82f6; /* Blue */
-            --secondary-accent: #facc15; /* Gold/Yellow for subtle depth */
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.1); /* Slightly less opaque border */
-            --container-bg: rgba(11, 14, 18, 0.75); /* Darker, slightly more solid container background */
+            --accent: #3b82f6;
+            --border: rgba(255, 255, 255, 0.12);
         }
 
-        /* GLOBAL STYLES */
+        /* GLOBAL */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.65; /* Increased line-height for better body text readability */
+            font-family: 'Inter', sans-serif;
+            line-height: 1.65;
             overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Typography Polish */
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #fff;
-            margin-top: 2rem; /* Increased top margin for section spacing */
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        h1 { 
-            font-size: clamp(2.2rem, 5vw, 3.5rem); /* Responsive H1 size */
-            font-weight: 800; 
-            letter-spacing: -0.05em; /* Subtle tightening for punch */
-        }
-        
-        h2 { 
-            font-size: 1.8rem; 
-            font-weight: 700;
-            /* Border and spacing refinement */
-            border-bottom: 1px solid rgba(59, 130, 246, 0.4); /* Softer accent border */
-            padding-bottom: 10px; 
-            margin-bottom: 20px; 
-            color: var(--accent);
-        }
-        
-        p, li { 
-            color: var(--muted); 
-            margin-bottom: 1.2rem; /* Increased spacing between paragraphs */
-            font-size: 1rem;
-        }
-        
-        a { 
-            color: var(--accent); 
-            text-decoration: none; 
-            transition: color 0.3s ease, text-shadow 0.3s ease; 
-        }
-        
-        a:hover { 
-            color: var(--text); /* Highlight to white */
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.8); /* Stronger glow for professionalism */
-        }
-        
-        strong { 
-            color: var(--text); 
-            font-weight: 600; /* Use a moderate weight for bolding */
         }
 
-        /* --- ANIMATED BACKGROUND & ORBS (No major changes) --- */
+        /* BACKGROUND */
         .animated-bg {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
+            background: radial-gradient(circle at 25% 15%, #0f172a, #0b0e12 80%);
             z-index: -2;
-            /* Subtly refined radial gradient */
-            background: radial-gradient(circle at 25% 15%, #0f172a 10%, var(--bg) 90%); 
         }
 
         .orb {
             position: fixed;
-            width: 350px; height: 350px; /* Slightly larger orbs for softer effect */
+            width: 300px; height: 300px;
             border-radius: 50%;
-            filter: blur(150px); /* Increased blur */
-            opacity: 0.35; /* Slightly higher opacity */
-            animation: float 12s infinite alternate ease-in-out, drift 18s infinite alternate ease-in-out; 
+            filter: blur(130px);
+            opacity: 0.32;
+            animation: float 11s ease-in-out infinite alternate;
             z-index: -1;
         }
-        .orb.blue { 
-            background: var(--accent); 
-            top: 20%; left: 15%; 
-        }
-        .orb.gold { 
-            background: var(--secondary-accent); 
-            bottom: 10%; right: 10%; 
-            animation: float 12s infinite alternate ease-in-out, drift-reverse 20s infinite alternate-reverse ease-in-out; 
-        }
+        .orb.blue { background: #3b82f6; top: 18%; left: 12%; }
+        .orb.gold { background: #facc15; bottom: 10%; right: 10%; }
 
         @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-40px) scale(1.05); } /* Softer movement */
-        }
-        @keyframes drift {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(60px); }
-        }
-        @keyframes drift-reverse {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-60px); }
+            from { transform: translateY(0); }
+            to { transform: translateY(-35px); }
         }
 
-        /* LAYOUT & CONTAINER POLISH */
-        .container {
+        /* PAGE CONTAINER */
+        .page-wrapper {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 30px; /* Increased padding top/bottom and side padding for better desktop spacing */
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            /* Refined Glass Effect */
-            background: var(--container-bg); 
-            backdrop-filter: blur(8px); /* Increased blur for better separation */
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            /* Subtle shadow to lift the container off the background */
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); 
+            padding: 120px 22px 80px;
         }
 
-        /* DESIGN ELEMENTS */
-        .header-section {
+        /* HEADER SECTION */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.7rem;
             text-align: center;
-            padding-bottom: 40px; /* Increased bottom padding */
-            border-bottom: 2px solid var(--accent);
-            /* Refined shadow effect: slightly wider, less opaque */
-            box-shadow: 0 4px 15px -8px var(--accent); 
-            margin-bottom: 30px; /* Space after the header section */
-        }
-        .header-section p {
-            font-size: 1.15rem; /* Slightly larger intro text */
-            color: var(--text);
-            max-width: 600px;
-            margin: 15px auto 0; /* Center and space the paragraph */
-        }
-        .date {
-            font-size: 1rem;
-            color: var(--secondary-accent); /* Use gold for the date for contrast */
-            display: block;
-            margin-top: 15px;
-            font-weight: 600;
-        }
-        ul {
-            list-style-type: none; /* Remove default disc */
-            margin-left: 0;
-            padding-left: 0;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
-        /* Custom List Style for Professionalism */
-        ul li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem; /* Space for custom bullet */
-            line-height: 1.6;
+        .page-intro {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+            color: var(--muted);
         }
-        ul li::before {
-            content: "•";
+
+        .policy-date {
+            text-align: center;
             color: var(--accent);
-            font-size: 1.2em;
-            position: absolute;
-            left: 0;
-            top: 0;
-            line-height: inherit;
+            font-weight: 600;
+            margin-bottom: 55px;
         }
-        
-        /* Contact specific styling */
-        .contact-info {
-            margin-top: -10px; /* Pull up closer to the heading */
-            border: 1px solid var(--border);
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            display: inline-block; /* Keep the border tight around the content */
+
+        /* SECTION HEADERS (Style 2) */
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-top: 60px;
+            text-align: left;
+            font-weight: 700;
         }
-        .contact-info p {
-            margin: 0;
+
+        .blue-divider {
+            width: 120px;
+            border: 0;
+            border-top: 2px solid var(--accent);
+            margin: 12px 0 28px;
+            border-radius: 2px;
+            opacity: 0.85;
+            box-shadow: 0 0 12px rgba(59,130,246,0.4);
+        }
+
+        /* TEXT BLOCKS */
+        p {
             font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 18px;
         }
-        
-        /* Media Query for Mobile Readability */
-        @media (max-width: 768px) {
-            .container {
-                padding: 50px 15px; /* Adjust padding for smaller screens */
-            }
-            h1 {
-                font-size: 2.2rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            body {
-                line-height: 1.6;
-            }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
         }
+        ul li {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        /* CONTACT BOX */
+        .contact-box {
+            border: 1px solid var(--border);
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .contact-box a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
     </style>
 </head>
+
 <body>
+
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
     <div class="orb gold"></div>
 
-    <div class="container">
-        <div class="header-section">
-            <h1>WealthPath Privacy Policy</h1>
-            <p>Your privacy is important to us. This policy explains how we collect and use your information to provide our services and educational content.</p>
-            <span class="date">Effective Date: November 12, 2025</span>
-        </div>
+    <div class="page-wrapper">
 
+        <!-- HEADER -->
+        <h1>WealthPath Privacy Policy</h1>
+        <p class="page-intro">
+            Your privacy matters. This page explains how we collect, use, and protect the information connected to our tools, free courses, and website experience.
+        </p>
+        <p class="policy-date">Effective Date: November 12, 2025</p>
+
+
+        <!-- SECTION 1 -->
         <h2>1. Information We Collect</h2>
-        <p>We collect essential information to operate and improve our services, categorized as follows:</p>
+        <hr class="blue-divider">
+
+        <p>We only collect the minimum information needed to operate and improve WealthPath.</p>
         <ul>
-            <li><strong>Personal Data You Provide:</strong> This includes your name and email address when you contact us directly via email (<a href="mailto:info@mywealthpath.org">info@mywealthpath.org</a>) or submit a review/feedback through our designated Google Forms link.</li>
-            <li><strong>Usage Data (Automatically Collected):</strong> When you access our website (the landing page), we automatically collect standard information such as your computer's Internet Protocol (IP) address, browser type, pages viewed, and the time/date of your visit. This is primarily gathered through standard web hosting and analytics tools.</li>
-            <li><strong>Third-Party Data:</strong> We may receive non-identifiable usage data from linked third-party services like Google Docs (for course PDF access) and Google Forms (for reviews). We do not control their privacy policies; please review them directly.</li>
+            <li><strong>Personal Data You Provide:</strong> Your name or email when you contact us or submit feedback.</li>
+            <li><strong>Usage Data:</strong> Basic analytics such as IP address, browser type, and pages visited.</li>
+            <li><strong>Third-Party Data:</strong> Non-identifiable usage data from Google Docs or Google Forms.</li>
         </ul>
 
+
+        <!-- SECTION 2 -->
         <h2>2. How We Use Your Information</h2>
-        <p>The information collected serves the following specific business purposes:</p>
+        <hr class="blue-divider">
+
+        <p>Your information is used strictly to improve your experience. This includes:</p>
+
         <ul>
-            <li>To **communicate** with you effectively, responding to your inquiries, questions, and requests sent via email.</li>
-            <li>To **improve service delivery** by analyzing usage data to enhance the design, content, and performance of our landing page and course materials.</li>
-            <li>To **evaluate and enhance** the educational content based on feedback submitted through the review form.</li>
-            <li>To **ensure security** and integrity of our website and services, including preventing fraudulent or malicious activity.</li>
+            <li>Responding to your questions.</li>
+            <li>Improving our learning tools and design.</li>
+            <li>Analyzing feedback to update our free course.</li>
+            <li>Keeping our platform secure.</li>
         </ul>
 
-        <h2>3. Data Storage and Security Measures</h2>
-        <p>We prioritize the security of your Personal Data. While we strive to use commercially acceptable means of protecting it, remember that no method of transmission over the internet, or method of electronic storage, is 100% secure. Any information you provide via third-party links (Google Docs/Forms) is subject to their respective security measures and policies.</p>
 
+        <!-- SECTION 3 -->
+        <h2>3. Data Storage & Security</h2>
+        <hr class="blue-divider">
+
+        <p>
+            We use commercially accepted methods to protect your data. However, no online transmission or storage system is ever 100% secure.
+        </p>
+
+
+        <!-- SECTION 4 -->
         <h2>4. Disclosure of Information</h2>
-        <p>We are committed to the principle that **we do not sell, trade, or rent your Personal Data to third parties.** We may share generic aggregated demographic information (which is anonymized and not linked to any personal identification) with our business partners and trusted affiliates for the internal purposes outlined in Section 2.</p>
+        <hr class="blue-divider">
 
-        <h2>5. Links to External Sites (Third-Party Services)</h2>
-        <p>Our website contains links to third-party services, primarily Google Docs (for the course PDF) and Google Forms (for reviews). Please be aware that these external sites are not operated by us. We strongly advise you to review the separate Privacy Policy of these third-party websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any external sites or services.</p>
+        <p>
+            WealthPath does <strong>not</strong> sell, rent, or trade your information.  
+            We may share anonymized demographic data with trusted partners to help improve our content.
+        </p>
 
-        <h2>6. Changes to This Privacy Policy</h2>
-        <p>We reserve the right to update our Privacy Policy periodically to reflect changes in our practices or for legal reasons. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the **"Effective Date"** at the top. We encourage you to review this page occasionally for the latest information on our privacy practices.</p>
-        
+
+        <!-- SECTION 5 -->
+        <h2>5. External Links (Google Docs & More)</h2>
+        <hr class="blue-divider">
+
+        <p>
+            Some of our tools rely on external services such as Google Docs and Google Forms.  
+            These sites have their own privacy policies that we do not control.  
+            Please review their policies directly.
+        </p>
+
+
+        <!-- SECTION 6 -->
+        <h2>6. Updates to This Policy</h2>
+        <hr class="blue-divider">
+
+        <p>
+            We may update this policy from time to time. The effective date at the top of this page will always reflect the most recent version.
+        </p>
+
+
+        <!-- SECTION 7 -->
         <h2>7. Contact Us</h2>
-        <p>Should you have any questions or suggestions regarding this Privacy Policy, please contact us directly:</p>
-        <div class="contact-info">
+        <hr class="blue-divider">
+
+        <p>If you have questions about this Privacy Policy, contact us:</p>
+
+        <div class="contact-box">
             <p>Email: <a href="mailto:info@mywealthpath.org">info@mywealthpath.org</a></p>
         </div>
 
     </div>
+
 </body>
 </html>
