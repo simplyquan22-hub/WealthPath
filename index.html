@@ -163,25 +163,34 @@
 .shiny-text {
     background: linear-gradient(
         90deg,
-        #facc15,
-        #ffe38a,
-        #ffffff,
-        #4ade80,
-        #38bdf8,
-        #3b82f6,
-        #facc15
+        #ffe066,   /* HOT gold */
+        #facc15,   /* classic gold */
+        #fff7b3,   /* highlight */
+        #4ade80,   /* lime pop */
+        #38bdf8,   /* neon cyan */
+        #3b82f6,   /* deep neon blue */
+        #60a5fa,   /* electric blue */
+        #ffe066    /* loop back to gold */
     );
-    background-size: 400% 400%;
+    background-size: 500% 500%;
     -webkit-background-clip: text;
     color: transparent;
-    font-weight: 800;
-    animation: luxuryFlow 6s ease-in-out infinite;
+    font-weight: 900;
+
+    /* 💥 MASSIVE glow to make it pop */
+    text-shadow:
+        0 0 14px rgba(255, 230, 102, 0.9),  /* gold glow */
+        0 0 24px rgba(250, 204, 21, 0.8),   /* golden halo */
+        0 0 32px rgba(59, 130, 246, 0.9),   /* neon blue glow */
+        0 0 50px rgba(59, 130, 246, 0.7);   /* outer neon haze */
+
+    animation: shinyFlow 3.5s ease-in-out infinite;
 }
 
-@keyframes luxuryFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes shinyFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 @keyframes shimmer {
@@ -225,6 +234,10 @@
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(59,130,246,0.5);
         }
+        /* Remove white blur from the accent text */
+.shiny-text {
+    text-shadow: none !important;
+}
 
         /* --- MOBILE/DESKTOP SWITCH STYLES --- */
 
@@ -527,17 +540,15 @@ footer {
     font-size: 0.82rem;
     opacity: 0.8;
 }
-/* Add this new rule to your <style> block */
 .hero h1 .hero-accent {
-    /* Keep the existing background and clipping */
-    background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8);
+    background: linear-gradient(90deg, #facc15, #ffe38a, #ffffff, #4ade80, #38bdf8);
     -webkit-background-clip: text;
     color: transparent;
     font-weight: 800;
-    
-    /* Add a colorful glow to the accent text */
-    text-shadow: 0 0 5px rgba(250, 204, 21, 0.8), /* Yellow glow */
-                 0 0 10px rgba(59, 130, 246, 0.8); /* Blue glow */
+
+    /* Golden shimmer only */
+    text-shadow: 0 0 6px rgba(250, 204, 21, 0.8),
+                 0 0 12px rgba(250, 204, 21, 0.6);
 }
 /* ---- MOBILE MENU PANEL (clean + matches header) ---- */
 .mobile-menu {
@@ -866,7 +877,7 @@ footer {
     Your next<br>
     investing<br>
     breakthrough<br>
-    is <span class="hero-accent shiny-text">one path</span> away.
+    is <span class="shiny-text">one path</span> away.
 </h1>
 <p style="
     font-size: 1.15rem;
