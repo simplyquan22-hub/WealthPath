@@ -272,6 +272,10 @@
         .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 45px; max-width: 1200px; margin: 0 auto; }
         .founder-section { padding: 60px 20px 80px; text-align: center; max-width: 1200px; margin: 0 auto; }
         .founder-section h2 { font-size: 2.3rem; margin-bottom: 40px; }
+        /* Fix anchor scroll jump for Our Pillars */
+#parallaxCardsContainer {
+    scroll-margin-top: 190px; /* adjust until perfect */
+}
         @keyframes electric-pulse {
             0% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
             50% { opacity: 1; box-shadow: 0 0 15px var(--accent), 0 0 25px rgba(59, 130, 246, 0.5); }
@@ -540,8 +544,8 @@ footer {
 
 /* ---- HAMBURGER BUTTON ---- */
 .menu-btn {
-    width: 32px;
-    height: 26px;
+    width: 26px;
+    height: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -550,7 +554,7 @@ footer {
 }
 
 .menu-btn span {
-    height: 3px;
+    height: 2.5px;
     width: 100%;
     background: #fff;
     border-radius: 3px;
