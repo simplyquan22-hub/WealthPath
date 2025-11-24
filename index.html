@@ -436,37 +436,76 @@ footer {
 
 /* Brand line */
 .footer-brand {
-    font-weight: 500;
-    font-size: 0.78rem;       /* small + premium */
-    letter-spacing: 0.35px;
-    
-    color: var(--muted);      /* softer tone */
-    opacity: 0.75;            /* reduces visual tension */
-
-    margin-top: 12px;         /* moves it down */
-    margin-bottom: 26px;      /* opens space to links */
-
+    font-weight: 700;                /* thicker + premium */
+    font-size: 0.92rem;              /* slightly larger */
+    letter-spacing: 0.45px;          /* more luxury spacing */
+    color: #e9eef6;                  /* stronger, cleaner tone */
+    opacity: 0.9;                    /* more visible */
+    margin-top: 18px;
+    margin-bottom: 30px;
     white-space: nowrap;
+
+    /* Soft glow to match your brand aesthetic */
+    text-shadow: 0 0 6px rgba(255,255,255,0.25);
 }
-/* Links row */
+/* Footer Links — Stacked + Divider Lines + Gold Hover */
 .footer-links {
     display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-bottom: 22px;
+    flex-direction: column;       /* Stack vertically */
+    align-items: center;          /* Center each line */
+    gap: 12px;
+    margin: 30px 0 34px 0;
 }
 
 .footer-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.92rem;
+    font-size: 1rem;
+    font-weight: 500;             /* Slightly thicker for readability */
+    transition: color 0.25s ease, transform 0.25s ease;
+    position: relative;
+}
+
+/* Gold Hover */
+.footer-links a:hover {
+    color: #facc15;               /* GOLD */
+    transform: translateY(-1px);  /* subtle lift */
+}
+
+/* Divider lines under each link (except last) */
+.footer-links a:not(:last-child)::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    background: linear-gradient(
+        to right,
+        rgba(250, 204, 21, 0.0),
+        rgba(250, 204, 21, 0.35),
+        rgba(250, 204, 21, 0.0)
+    );
+}
+/* STACKED FOOTER LINKS */
+.footer-links-stack {
+    display: flex;
+    flex-direction: column;     /* stack vertically */
+    align-items: center;        /* center the links */
+    gap: 10px;                  /* space between each link */
+    margin-top: 28px;           /* pushes it DOWN from tagline */
+    margin-bottom: 28px;
+}
+
+.footer-links-stack a {
+    font-size: 1rem;
+    color: var(--muted);
+    text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
+.footer-links-stack a:hover {
     color: var(--accent);
 }
-
 /* Disclaimer */
 .footer-disclaimer-box {
     background: rgba(255,255,255,0.04);
@@ -1145,11 +1184,11 @@ footer {
 
         <p class="footer-brand">WealthPath — A Journey Uniquely Yours</p>
 
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="mailto:info@mywealthpath.org">Contact Us</a>
-        </div>
+        <div class="footer-links footer-links-stack">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="mailto:info@mywealthpath.org">Contact Us</a>
+</div>
 
         <div class="footer-disclaimer-box">
             <p>
