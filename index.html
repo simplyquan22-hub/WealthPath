@@ -1514,6 +1514,26 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
+<script>
+/* ================================
+   GLOBAL VIBRATION (HAPTICS ONLY)
+================================ */
+function vibrate(ms = 12) {
+    if (navigator.vibrate) navigator.vibrate(ms);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const clickTargets = document.querySelectorAll(
+        "button, a, .menu-item, .menu-btn, .card-link"
+    );
+
+    clickTargets.forEach(el => {
+        el.addEventListener("click", () => {
+            vibrate(15); // nice tap-feedback
+        });
+    });
+});
+</script>
 
 </body>
 </html>
