@@ -1515,38 +1515,49 @@ avatar.addEventListener("click", () => {
 });
 </script>
 <!-- ================================
-     GLOBAL BUTTON HAPTICS + SOUND
+     UNIVERSAL HAPTICS + SOUND FIX
 ================================ -->
 <script>
-// Vibrate function (works on iPhone + Android when allowed)
-function vibrate(ms = 10) {
+// Vibrate (safe fallback)
+function vibrate(ms = 12) {
     if (navigator.vibrate) navigator.vibrate(ms);
 }
 
-// Click sound — SIMPLE SAFE FILE
-const clickSound = new Audio("https://actions.google.com/sounds/v1/ui/click.ogg");
-clickSound.volume = 0.25;
+// Reliable click sound (iPhone-safe)
+let clickSound = new Audio("https://cdn.jsdelivr.net/gh/akabab/sfx/click1.mp3");
+clickSound.volume = 0.35;
 
-// Play click sound safely
+// iPhone requires first interaction to "unlock" audio
+let audioUnlocked = false;
+
+function unlockAudio() {
+    if (!audioUnlocked) {
+        clickSound.play().catch(() => {});
+        audioUnlocked = true;
+    }
+}
+
+document.addEventListener("touchstart", unlockAudio, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
+
+// Safe play wrapper
 function playClick() {
+    if (!audioUnlocked) return; // prevents Safari error
     clickSound.currentTime = 0;
     clickSound.play().catch(() => {});
 }
 
-// Attach to all clickable elements AFTER page loads
 document.addEventListener("DOMContentLoaded", () => {
-
-    const elements = document.querySelectorAll(
+    const targets = document.querySelectorAll(
         "a, button, .card, .category-card, .nav-btn, .menu-item, .cta-button"
     );
 
-    elements.forEach(el => {
+    targets.forEach(el => {
         el.addEventListener("click", () => {
             vibrate(15);
             playClick();
         });
     });
-
 });
 </script>
 </body>
