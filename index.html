@@ -849,14 +849,14 @@ footer {
     <img src="images/logo-orb.png" alt="WealthPath Logo" class="logo-orb">
     <span class="logo-text">WealthPath</span>
 </a>
-<div id="menuBtn" class="menu-btn">
+<div id="menuToggle" class="menu-btn">
     <span></span>
     <span></span>
     <span></span>
 </div>
     </header>
 <div class="mobile-menu" id="mobileMenu">
-    <div class="menu-close" onclick="toggleMenu()">✕</div>
+    <div id="menuClose" class="menu-close" onclick="toggleMenu()">✕</div>
     <div class="menu-title">WealthPath Menu</div>
     <div class="menu-title-underline"></div>
 
@@ -1511,6 +1511,68 @@ avatar.addEventListener("click", () => {
         textSpan.textContent = "";
         charIndex = 0;
         typingInterval = setInterval(typeLine, 45);
+    }
+});
+</script>
+<script>
+/* ================================
+   LOAD SOUNDS
+================================ */
+const s_click = new Audio("sounds/click.mp3");
+const s_menuOpen = new Audio("sounds/menu-open.mp3");
+const s_menuClose = new Audio("sounds/menu-close.mp3");
+
+s_click.volume = 0.35;
+s_menuOpen.volume = 0.45;
+s_menuClose.volume = 0.45;
+
+/* ================================
+   HAPTICS (vibration)
+================================ */
+function vibrate(ms = 12) {
+    if (navigator.vibrate) navigator.vibrate(ms);
+}
+
+/* ================================
+   GLOBAL CLICK EFFECTS
+================================ */
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Everything clickable
+    const clickTargets = document.querySelectorAll(
+        "button, a, .card, .category-card, .nav-btn, .menu-item"
+    );
+
+    clickTargets.forEach(el => {
+        el.addEventListener("click", () => {
+            s_click.currentTime = 0;
+            s_click.play();
+            vibrate(10);
+        });
+    });
+});
+
+/* ================================
+   MENU OPEN / CLOSE
+================================ */
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const menuClose = document.getElementById("menuClose");
+
+    if (menuToggle) {
+        menuToggle.addEventListener("click", () => {
+            s_menuOpen.currentTime = 0;
+            s_menuOpen.play();
+            vibrate(20);
+        });
+    }
+
+    if (menuClose) {
+        menuClose.addEventListener("click", () => {
+            s_menuClose.currentTime = 0;
+            s_menuClose.play();
+            vibrate(20);
+        });
     }
 });
 </script>
