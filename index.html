@@ -1595,6 +1595,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+/* =======================================
+   FIX DELAY: PRELOAD MENU SOUNDS
+======================================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Preload your sounds
+    const s_click = new Audio("sounds/click.mp3");
+    const s_menuOpen = new Audio("sounds/menu-open.mp3");
+    const s_menuClose = new Audio("sounds/menu-close.mp3");
+
+    // Force preloading
+    s_click.load();
+    s_menuOpen.load();
+    s_menuClose.load();
+
+    // First tap on body unlocks audio instantly on iPhone
+    const unlockAudio = () => {
+        s_click.play().then(() => {
+            s_click.pause();
+            s_click.currentTime = 0;
+        });
+        document.removeEventListener("touchstart", unlockAudio);
+        document.removeEventListener("click", unlockAudio);
+    };
+
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+    document.addEventListener("click", unlockAudio, { once: true });
+});
+</script>
 
 </body>
 </html>
