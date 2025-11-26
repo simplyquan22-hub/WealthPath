@@ -1518,49 +1518,35 @@ avatar.addEventListener("click", () => {
      GLOBAL BUTTON HAPTICS + SOUND
 ================================ -->
 <script>
-// Vibrate (iPhone-compatible)
-function vibrate(ms = 12) {
+// Vibrate function (works on iPhone + Android when allowed)
+function vibrate(ms = 10) {
     if (navigator.vibrate) navigator.vibrate(ms);
 }
 
-// Click sound
-const clickSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1122.mp3");
-clickSound.volume = 0.35;
+// Click sound — SIMPLE SAFE FILE
+const clickSound = new Audio("https://actions.google.com/sounds/v1/ui/click.ogg");
+clickSound.volume = 0.25;
 
+// Play click sound safely
 function playClick() {
     clickSound.currentTime = 0;
-    clickSound.play();
+    clickSound.play().catch(() => {});
 }
 
-// Apply to ALL clickable elements
+// Attach to all clickable elements AFTER page loads
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Buttons, links, cards, menus — everything tappable
-    const clickTargets = document.querySelectorAll(
-        "button, a, .card, .category-card, .nav-btn, .menu-item, .cta-button"
+    const elements = document.querySelectorAll(
+        "a, button, .card, .category-card, .nav-btn, .menu-item, .cta-button"
     );
 
-    clickTargets.forEach(el => {
+    elements.forEach(el => {
         el.addEventListener("click", () => {
-            vibrate(12);
-            playClick();
-        });
-    });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Select ALL interactive elements
-    const interactiveElements = document.querySelectorAll(
-        "a, button, .category-card, .nav-btn"
-    );
-
-    interactiveElements.forEach(el => {
-        el.addEventListener("click", () => {
-            playClick();
             vibrate(15);
+            playClick();
         });
     });
+
 });
 </script>
 </body>
