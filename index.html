@@ -1539,9 +1539,15 @@ function vibrate(ms = 12) {
 document.addEventListener("DOMContentLoaded", () => {
 
     // Everything clickable
+    
     const clickTargets = document.querySelectorAll(
-        "button, a, .card, .category-card, .nav-btn, .menu-item"
-    );
+    "button:not(#founderAvatar), 
+     a, 
+     .card:not(.founder-card), 
+     .category-card, 
+     .nav-btn, 
+     .menu-item"
+);
 
     clickTargets.forEach(el => {
         el.addEventListener("click", () => {
