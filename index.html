@@ -849,14 +849,14 @@ footer {
     <img src="images/logo-orb.png" alt="WealthPath Logo" class="logo-orb">
     <span class="logo-text">WealthPath</span>
 </a>
-<div id="menuToggle" class="menu-btn" onclick="toggleMenu()">
+<div id="menuToggle" class="menu-btn">
     <span></span>
     <span></span>
     <span></span>
 </div>
     </header>
 <div class="mobile-menu" id="mobileMenu">
-    <div id="menuClose" class="menu-close" onclick="toggleMenu()">✕</div>
+  <div class="menu-close" onclick="toggleMenu()">✕</div>
     <div class="menu-title">WealthPath Menu</div>
     <div class="menu-title-underline"></div>
 
@@ -1514,71 +1514,5 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
-<script>
-/* ================================
-   LOAD SOUNDS
-================================ */
-const s_click = new Audio("sounds/click.mp3");
-const s_menuOpen = new Audio("sounds/menu-open.mp3");
-const s_menuClose = new Audio("sounds/menu-close.mp3");
-
-s_click.volume = 0.35;
-s_menuOpen.volume = 0.45;
-s_menuClose.volume = 0.45;
-
-/* ================================
-   HAPTICS
-================================ */
-function vibrate(ms = 12) {
-    if (navigator.vibrate) navigator.vibrate(ms);
-}
-
-/* ================================
-   GLOBAL CLICK EFFECTS
-   (NO CARDS! NO FOUNDER AVATAR!)
-================================ */
-document.addEventListener("DOMContentLoaded", () => {
-
-    const clickTargets = document.querySelectorAll(
-        "button, a:not(#founderAvatar), .menu-item, .nav-btn, .category-card"
-    );
-
-    clickTargets.forEach(el => {
-        el.addEventListener("click", (e) => {
-
-            if (el.id === "founderAvatar" || el.closest("#founderAvatar")) return;
-
-            s_click.currentTime = 0;
-            s_click.play();
-            vibrate(10);
-        });
-    });
-});
-
-/* ================================
-   MENU OPEN / CLOSE
-================================ */
-document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.getElementById("menuBtn");
-    const menuCloseBtn = document.querySelector(".menu-close");
-
-    if (menuBtn) {
-        menuBtn.addEventListener("click", () => {
-            s_menuOpen.currentTime = 0;
-            s_menuOpen.play();
-            vibrate(20);
-        });
-    }
-
-    if (menuCloseBtn) {
-        menuCloseBtn.addEventListener("click", () => {
-            s_menuClose.currentTime = 0;
-            s_menuClose.play();
-            vibrate(20);
-        });
-    }
-});
-</script>
-
 </body>
 </html>
