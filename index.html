@@ -1552,33 +1552,60 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script>
-/* =======================================
-   FIX DELAY: PRELOAD MENU SOUNDS
-======================================== */
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Preload your sounds
-    const s_click = new Audio("sounds/click.mp3");
+    /* LOAD + PRELOAD SOUNDS */
     const s_menuOpen = new Audio("sounds/menu-open.mp3");
     const s_menuClose = new Audio("sounds/menu-close.mp3");
 
-    // Force preloading
-    s_click.load();
-    s_menuOpen.load();
-    s_menuClose.load();
+    // Force Safari to preload audio
+    s_menuOpen.preload = "auto";
+    s_menuClose.preload = "auto";
 
-    // First tap on body unlocks audio instantly on iPhone
-    const unlockAudio = () => {
-        s_click.play().then(() => {
-            s_click.pause();
-            s_click.currentTime = 0;
-        });
-        document.removeEventListener("touchstart", unlockAudio);
-        document.removeEventListener("click", unlockAudio);
+    // Play 0.001s silently so Safari unlocks the audio
+    const unlock = () => {
+        s_menuOpen.volume = 0;
+        s_menuClose.volume = 0;
+
+        s_menuOpen.play().catch(()=>{});
+        s_menuClose.play().catch(()=>{});
+
+        setTimeout(() => {
+            s_menuOpen.pause();
+            s_menuClose.pause();
+
+            // restore real volume
+            s_menuOpen.volume = 0.45;
+            s_menuClose.volume = 0.45;
+        }, 50);
+
+        // Remove listener after first touch
+        window.removeEventListener("touchstart", unlock);
+        window.removeEventListener("click", unlock);
     };
 
-    document.addEventListener("touchstart", unlockAudio, { once: true });
-    document.addEventListener("click", unlockAudio, { once: true });
+    // Unlock audio on first user gesture (Safari requirement)
+    window.addEventListener("touchstart", unlock, { once:true });
+    window.addEventListener("click", unlock, { once:true });
+
+    /* MENU OPEN */
+    const menuBtn = document.getElementById("menuBtn");
+    if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+            s_menuOpen.currentTime = 0;
+            s_menuOpen.play().catch(() => {});
+        });
+    }
+
+    /* MENU CLOSE */
+    const closeBtn = document.querySelector(".menu-close");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            s_menuClose.currentTime = 0;
+            s_menuClose.play().catch(() => {});
+        });
+    }
+
 });
 </script>
 
