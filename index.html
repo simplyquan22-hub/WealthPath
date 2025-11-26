@@ -1521,25 +1521,6 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
-<script>
-function vibrate(ms = 15) {
-    if (navigator.vibrate) navigator.vibrate(ms);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Select all tappable elements
-    const interactive = document.querySelectorAll(
-        "a, button, .btn, .card, .menu-item, .menu-btn, .card-link"
-    );
-
-    interactive.forEach(el => {
-        el.addEventListener("touchstart", () => vibrate(15)); 
-        el.addEventListener("click", () => vibrate(15));
-    });
-
-});
-</script>
 
 </body>
 </html>
