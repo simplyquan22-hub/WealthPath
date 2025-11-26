@@ -1514,51 +1514,5 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
-<!-- ================================
-     UNIVERSAL HAPTICS + SOUND FIX
-================================ -->
-<script>
-// Vibrate (safe fallback)
-function vibrate(ms = 12) {
-    if (navigator.vibrate) navigator.vibrate(ms);
-}
-
-// Reliable click sound (iPhone-safe)
-let clickSound = new Audio("https://cdn.jsdelivr.net/gh/akabab/sfx/click1.mp3");
-clickSound.volume = 0.35;
-
-// iPhone requires first interaction to "unlock" audio
-let audioUnlocked = false;
-
-function unlockAudio() {
-    if (!audioUnlocked) {
-        clickSound.play().catch(() => {});
-        audioUnlocked = true;
-    }
-}
-
-document.addEventListener("touchstart", unlockAudio, { once: true });
-document.addEventListener("click", unlockAudio, { once: true });
-
-// Safe play wrapper
-function playClick() {
-    if (!audioUnlocked) return; // prevents Safari error
-    clickSound.currentTime = 0;
-    clickSound.play().catch(() => {});
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const targets = document.querySelectorAll(
-        "a, button, .card, .category-card, .nav-btn, .menu-item, .cta-button"
-    );
-
-    targets.forEach(el => {
-        el.addEventListener("click", () => {
-            vibrate(15);
-            playClick();
-        });
-    });
-});
-</script>
 </body>
 </html>
