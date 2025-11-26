@@ -841,6 +841,13 @@ footer {
     letter-spacing: 0.5px;
     text-shadow: 0 0 6px rgba(255,255,255,0.25);
 }
+/* Disable long-press save image popup, but allow taps */
+#founderAvatar img {
+    -webkit-touch-callout: none;  /* disables image preview */
+    -webkit-user-select: none;    /* disable highlight */
+    user-select: none;
+    pointer-events: auto;         /* keep avatar tappable */
+}
     </style>
 </head>
 <body>
