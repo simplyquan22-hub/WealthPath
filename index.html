@@ -1521,6 +1521,80 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ================================
+       LOAD SOUNDS
+    ================================ */
+    const s_click = new Audio("sounds/click.mp3");
+    const s_menuOpen = new Audio("sounds/menu-open.mp3");
+    const s_menuClose = new Audio("sounds/menu-close.mp3");
+
+    s_click.volume = 0.35;
+    s_menuOpen.volume = 0.45;
+    s_menuClose.volume = 0.45;
+
+    /* ================================
+       CLICK SOUND — GLOBAL
+       (EXCLUDES AVATAR)
+    ================================ */
+    const clickTargets = document.querySelectorAll(
+        "a, button, .card, .category-card, .menu-item, .nav-btn, .card-link, .cta-button"
+    );
+
+    clickTargets.forEach(el => {
+
+        // Skip avatar + bubble completely
+        if (
+            el.id === "founderAvatar" ||
+            el.closest("#founderAvatar") ||
+            el.closest("#founderBubble")
+        ) {
+            return;
+        }
+
+        el.addEventListener("click", () => {
+            s_click.currentTime = 0;
+            s_click.play().catch(() => {});
+        });
+
+    });
+
+    /* ================================
+       MENU OPEN SOUND
+    ================================ */
+    const menuBtn = document.getElementById("menuBtn");
+    if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+            s_menuOpen.currentTime = 0;
+            s_menuOpen.play().catch(() => {});
+        });
+    }
+
+    /* ================================
+       MENU CLOSE SOUND
+    ================================ */
+    const closeBtn = document.querySelector(".menu-close");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            s_menuClose.currentTime = 0;
+            s_menuClose.play().catch(() => {});
+        });
+    }
+
+    /* ================================
+       CLOSE SOUND WHEN ANY MENU ITEM IS CLICKED
+    ================================ */
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.addEventListener("click", () => {
+            s_menuClose.currentTime = 0;
+            s_menuClose.play().catch(() => {});
+        });
+    });
+
+});
+</script>
 
 </body>
 </html>
