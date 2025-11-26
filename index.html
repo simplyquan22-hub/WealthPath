@@ -1548,5 +1548,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Select ALL interactive elements
+    const interactiveElements = document.querySelectorAll(
+        "a, button, .category-card, .nav-btn"
+    );
+
+    interactiveElements.forEach(el => {
+        el.addEventListener("click", () => {
+            playClick();
+            vibrate(15);
+        });
+    });
+});
+</script>
 </body>
 </html>
