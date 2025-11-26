@@ -1527,7 +1527,7 @@ s_menuOpen.volume = 0.45;
 s_menuClose.volume = 0.45;
 
 /* ================================
-   HAPTICS (vibration)
+   HAPTICS
 ================================ */
 function vibrate(ms = 12) {
     if (navigator.vibrate) navigator.vibrate(ms);
@@ -1535,22 +1535,19 @@ function vibrate(ms = 12) {
 
 /* ================================
    GLOBAL CLICK EFFECTS
+   (NO CARDS! NO FOUNDER AVATAR!)
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Everything clickable
-    
     const clickTargets = document.querySelectorAll(
-    "button:not(#founderAvatar), 
-     a, 
-     .card:not(.founder-card), 
-     .category-card, 
-     .nav-btn, 
-     .menu-item"
-);
+        "button, a:not(#founderAvatar), .menu-item, .nav-btn, .category-card"
+    );
 
     clickTargets.forEach(el => {
-        el.addEventListener("click", () => {
+        el.addEventListener("click", (e) => {
+
+            if (el.id === "founderAvatar" || el.closest("#founderAvatar")) return;
+
             s_click.currentTime = 0;
             s_click.play();
             vibrate(10);
@@ -1562,19 +1559,19 @@ document.addEventListener("DOMContentLoaded", () => {
    MENU OPEN / CLOSE
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById("menuToggle");
-    const menuClose = document.getElementById("menuClose");
+    const menuBtn = document.getElementById("menuBtn");
+    const menuCloseBtn = document.querySelector(".menu-close");
 
-    if (menuToggle) {
-        menuToggle.addEventListener("click", () => {
+    if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
             s_menuOpen.currentTime = 0;
             s_menuOpen.play();
             vibrate(20);
         });
     }
 
-    if (menuClose) {
-        menuClose.addEventListener("click", () => {
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener("click", () => {
             s_menuClose.currentTime = 0;
             s_menuClose.play();
             vibrate(20);
@@ -1582,5 +1579,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 </script>
+
 </body>
 </html>
