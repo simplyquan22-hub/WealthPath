@@ -1514,5 +1514,39 @@ avatar.addEventListener("click", () => {
     }
 });
 </script>
+<!-- ================================
+     GLOBAL BUTTON HAPTICS + SOUND
+================================ -->
+<script>
+// Vibrate (iPhone-compatible)
+function vibrate(ms = 12) {
+    if (navigator.vibrate) navigator.vibrate(ms);
+}
+
+// Click sound
+const clickSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1122.mp3");
+clickSound.volume = 0.35;
+
+function playClick() {
+    clickSound.currentTime = 0;
+    clickSound.play();
+}
+
+// Apply to ALL clickable elements
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Buttons, links, cards, menus — everything tappable
+    const clickTargets = document.querySelectorAll(
+        "button, a, .card, .category-card, .nav-btn, .menu-item, .cta-button"
+    );
+
+    clickTargets.forEach(el => {
+        el.addEventListener("click", () => {
+            vibrate(12);
+            playClick();
+        });
+    });
+});
+</script>
 </body>
 </html>
