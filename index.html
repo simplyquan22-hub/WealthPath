@@ -1451,7 +1451,7 @@ const avatar = document.getElementById("founderAvatar");
 const bubble = document.getElementById("founderBubble");
 const textSpan = document.getElementById("founderText");
 
-const founderLines = [
+const founderMessages = [
     "Hey👋🏾, I’m Rae’Quan.",
     "I didn’t grow up with anyone",
     "teaching me about money",
@@ -1464,6 +1464,10 @@ const founderLines = [
     "You deserve a clear path,",
     "real guidance,",
     "and someone in your corner.",
+    "Any endeavor in life,",
+    "you have to want it yourself.",
+    "And the fact that you're here",
+    "speaks volume.",
     "Let’s build your future",
     "the way it should’ve always been",
     "built… together 😏💙."
@@ -1476,7 +1480,7 @@ let bubbleVisible = false;
 
 // Typewriter effect
 function typeLine() {
-    const line = founderLines[currentLine];
+    const line = founderMessages[currentLine];
 
     if (charIndex < line.length) {
         textSpan.textContent += line.charAt(charIndex);
@@ -1485,7 +1489,7 @@ function typeLine() {
         clearInterval(typingInterval);
 
         // Last line → hide bubble + reset
-        if (currentLine === founderLines.length - 1) {
+        if (currentLine === founderMessages.length - 1) {
             setTimeout(() => {
                 bubble.style.display = "none";
                 textSpan.textContent = "";
@@ -1513,7 +1517,7 @@ avatar.addEventListener("click", () => {
     }
 
     // If bubble already visible → move to next line
-    if (currentLine < founderLines.length - 1) {
+    if (currentLine < founderMessages.length - 1) {
         currentLine++;
         textSpan.textContent = "";
         charIndex = 0;
