@@ -848,17 +848,6 @@ footer {
     user-select: none;
     pointer-events: auto;         /* keep avatar tappable */
 }
-/* =========================================
-   FAKE HAPTIC TAP EFFECT (NO AVATAR)
-========================================= */
-.haptic-tap {
-    transition: transform 0.08s ease, opacity 0.08s ease;
-}
-
-.haptic-tap:active {
-    transform: scale(0.96);
-    opacity: 0.85;
-}
     </style>
 </head>
 <body>
@@ -1619,37 +1608,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-<script>
-/* =========================================
-   AUTO-APPLY FAKE HAPTICS TO CLICKABLES
-   (EXCLUDES FOUNDER AVATAR + BUBBLE)
-========================================= */
-document.addEventListener("DOMContentLoaded", () => {
 
-    const clickable = document.querySelectorAll(`
-        a,
-        button,
-        .btn,
-        .card-link,
-        .menu-item,
-        #menuBtn,
-        .menu-close,
-        .nav-btn
-    `);
-
-    clickable.forEach(el => {
-
-        // Skip avatar + bubble
-        if (
-            el.id === "founderAvatar" ||
-            el.closest("#founderAvatar") ||
-            el.closest("#founderBubble")
-        ) return;
-
-        el.classList.add("haptic-tap");
-    });
-
-});
-</script>
 </body>
 </html>
