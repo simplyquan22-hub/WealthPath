@@ -1526,74 +1526,42 @@ avatar.addEventListener("click", () => {
 });
 </script>
 <script>
+// ===============================
+// CLEAN MENU AUDIO (NO DUPLICATES)
+// ===============================
 document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn  = document.getElementById("menuBtn");
+    const closeBtn = document.querySelector(".menu-close");
 
-    /* LOAD SOUNDS */
-    const s_menuOpen = new Audio("sounds/menu-open.mp3");
+    // Load sounds once
+    const s_menuOpen  = new Audio("sounds/menu-open.mp3");
     const s_menuClose = new Audio("sounds/menu-close.mp3");
 
-    s_menuOpen.volume = 0.45;
+    s_menuOpen.volume  = 0.45;
     s_menuClose.volume = 0.45;
 
-    /* MENU OPEN */
-    const menuBtn = document.getElementById("menuBtn");
-    if (menuBtn) {
-        menuBtn.addEventListener("click", () => {
-            s_menuOpen.currentTime = 0;
-            s_menuOpen.play().catch(() => {});
+    // iOS / Safari audio unlock
+    const unlockAudio = () => {
+        [s_menuOpen, s_menuClose].forEach(sound => {
+            sound.volume = 0;
+            sound.play().catch(() => {});
         });
-    }
-
-    /* MENU CLOSE */
-    const closeBtn = document.querySelector(".menu-close");
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            s_menuClose.currentTime = 0;
-            s_menuClose.play().catch(() => {});
-        });
-    }
-
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* LOAD + PRELOAD SOUNDS */
-    const s_menuOpen = new Audio("sounds/menu-open.mp3");
-    const s_menuClose = new Audio("sounds/menu-close.mp3");
-
-    // Force Safari to preload audio
-    s_menuOpen.preload = "auto";
-    s_menuClose.preload = "auto";
-
-    // Play 0.001s silently so Safari unlocks the audio
-    const unlock = () => {
-        s_menuOpen.volume = 0;
-        s_menuClose.volume = 0;
-
-        s_menuOpen.play().catch(()=>{});
-        s_menuClose.play().catch(()=>{});
 
         setTimeout(() => {
             s_menuOpen.pause();
             s_menuClose.pause();
-
-            // restore real volume
-            s_menuOpen.volume = 0.45;
+            s_menuOpen.volume  = 0.45;
             s_menuClose.volume = 0.45;
-        }, 50);
+        }, 80);
 
-        // Remove listener after first touch
-        window.removeEventListener("touchstart", unlock);
-        window.removeEventListener("click", unlock);
+        window.removeEventListener("touchstart", unlockAudio);
+        window.removeEventListener("click", unlockAudio);
     };
 
-    // Unlock audio on first user gesture (Safari requirement)
-    window.addEventListener("touchstart", unlock, { once:true });
-    window.addEventListener("click", unlock, { once:true });
+    window.addEventListener("touchstart", unlockAudio, { once: true });
+    window.addEventListener("click",      unlockAudio, { once: true });
 
-    /* MENU OPEN */
-    const menuBtn = document.getElementById("menuBtn");
+    // Play sounds on open / close
     if (menuBtn) {
         menuBtn.addEventListener("click", () => {
             s_menuOpen.currentTime = 0;
@@ -1601,15 +1569,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* MENU CLOSE */
-    const closeBtn = document.querySelector(".menu-close");
     if (closeBtn) {
         closeBtn.addEventListener("click", () => {
             s_menuClose.currentTime = 0;
             s_menuClose.play().catch(() => {});
         });
     }
-
 });
 </script>
 
