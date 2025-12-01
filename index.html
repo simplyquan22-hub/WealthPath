@@ -874,9 +874,20 @@ footer {
     0% { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(0.3); }
 }
+#glowTrailContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0; /* stays behind header */
+}
     </style>
 </head>
 <body>
+    <div id="glowTrailContainer"></div>
     <header id="fixedHeader" class="fixed-header">
      <a href="#hero" class="header-logo logo-mixed">
     <img src="images/logo-orb.png" alt="WealthPath Logo" class="logo-orb">
