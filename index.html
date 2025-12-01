@@ -848,6 +848,32 @@ footer {
     user-select: none;
     pointer-events: none;         /* prevents Safari from treating it as a file */
 }
+/* ===========================
+   GLOW TRAIL PARTICLES
+=========================== */
+#glowTrailContainer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.glow-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    filter: blur(6px);
+    animation: glowFade 0.7s ease-out forwards;
+}
+
+/* Fade + shrink */
+@keyframes glowFade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.3); }
+}
     </style>
 </head>
 <body>
@@ -877,6 +903,8 @@ footer {
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
     <div class="orb gold"></div>
+    <!-- GLOW TRAIL CONTAINER -->
+<div id="glowTrailContainer"></div>
 
     <section class="hero" id="hero">
         <div class="hero-content fade-in-element">
@@ -1526,58 +1554,73 @@ avatar.addEventListener("click", () => {
         typingInterval = setInterval(typeLine, 45);
     }
 });
-</script>
-<script>
-// ===============================
-// CLEAN MENU AUDIO (NO DUPLICATES)
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn  = document.getElementById("menuBtn");
-    const closeBtn = document.querySelector(".menu-close");
+/* ======================================
+   GLOW TRAIL (EVERY TOUCH, SCROLL SAFE)
+   - fires on every tap / scroll start
+   - random sizes
+   - comet burst effect
+====================================== */
 
-    // Load sounds once
-    const s_menuOpen  = new Audio("sounds/menu-open.mp3");
-    const s_menuClose = new Audio("sounds/menu-close.mp3");
+function createGlowDot(x, y, extraGlow = false) {
+    const dot = document.createElement("div");
+    dot.classList.add("glow-dot");
 
-    s_menuOpen.volume  = 0.45;
-    s_menuClose.volume = 0.45;
+    // WealthPath colors
+    const colors = ["#3b82f6", "#facc15", "#38bdf8", "#4ade80"];
+    dot.style.background = colors[Math.floor(Math.random() * colors.length)];
 
-    // iOS / Safari audio unlock
-    const unlockAudio = () => {
-        [s_menuOpen, s_menuClose].forEach(sound => {
-            sound.volume = 0;
-            sound.play().catch(() => {});
-        });
+    // Random size (8–18px)
+    const size = 8 + Math.random() * 10;
+    dot.style.width = size + "px";
+    dot.style.height = size + "px";
+
+    // Extra glow for "comet" bursts
+    if (extraGlow) {
+        dot.style.filter = "blur(10px)";
+        dot.style.opacity = "0.9";
+        dot.style.transform = "scale(1.3)";
+    }
+
+    dot.style.left = x + "px";
+    dot.style.top = y + "px";
+
+    document.getElementById("glowTrailContainer").appendChild(dot);
+
+    setTimeout(() => dot.remove(), 900);
+}
+
+/* Little burst of dots around a point */
+function burstGlow(x, y) {
+    for (let i = 0; i < 10; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 25;
+        const offsetX = Math.cos(angle) * distance;
+        const offsetY = Math.sin(angle) * distance;
+
+        const delay = i * 20;
 
         setTimeout(() => {
-            s_menuOpen.pause();
-            s_menuClose.pause();
-            s_menuOpen.volume  = 0.45;
-            s_menuClose.volume = 0.45;
-        }, 80);
-
-        window.removeEventListener("touchstart", unlockAudio);
-        window.removeEventListener("click", unlockAudio);
-    };
-
-    window.addEventListener("touchstart", unlockAudio, { once: true });
-    window.addEventListener("click",      unlockAudio, { once: true });
-
-    // Play sounds on open / close
-    if (menuBtn) {
-        menuBtn.addEventListener("click", () => {
-            s_menuOpen.currentTime = 0;
-            s_menuOpen.play().catch(() => {});
-        });
+            const isComet = i > 4;
+            createGlowDot(x + offsetX, y + offsetY, isComet);
+        }, delay);
     }
+}
 
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            s_menuClose.currentTime = 0;
-            s_menuClose.play().catch(() => {});
-        });
-    }
+// ---------- DESKTOP ----------
+document.addEventListener("mousemove", (e) => {
+    createGlowDot(e.clientX, e.clientY, false);
 });
+
+// ---------- MOBILE ----------
+document.addEventListener("touchstart", (e) => {
+    const t = e.touches[0];
+    burstGlow(t.clientX, t.clientY);
+}, { passive: true });
+
+document.addEventListener("touchmove", (e) => {
+    const t = e.touches[0];
+    createGlowDot(t.clientX, t.clientY, false);
+}, { passive: true });
 </script>
 
 </body>
