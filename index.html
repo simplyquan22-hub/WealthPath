@@ -887,14 +887,8 @@ footer {
     z-index: 0; /* stays behind header */
 }
 .fixed-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    /* FIXES THE GAP ABOVE HEADER ON iPHONE */
     padding-top: env(safe-area-inset-top);
-    height: calc(var(--header-height) + env(safe-area-inset-top));
+}
     </style>
 </head>
 <body>
