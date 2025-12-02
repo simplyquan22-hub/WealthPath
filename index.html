@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>WealthPath — A Journey Uniquely Yours</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.PNG">
@@ -886,6 +886,15 @@ footer {
     pointer-events: none;
     z-index: 0; /* stays behind header */
 }
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    /* FIXES THE GAP ABOVE HEADER ON iPHONE */
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--header-height) + env(safe-area-inset-top));
     </style>
 </head>
 <body>
