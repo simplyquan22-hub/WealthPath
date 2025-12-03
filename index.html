@@ -9,6 +9,21 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
    
     <style>
+   html {
+    height: 100%;
+    background-color: #0b0e12;
+    padding-top: env(safe-area-inset-top);
+}
+
+body {
+    background-color: #0b0e12;
+    margin: 0;
+    padding-top: env(safe-area-inset-top);
+}
+
+header.fixed-header {
+    padding-top: env(safe-area-inset-top);
+}
         /* VARIABLES */
         :root {
             --bg: #0b0e12;
@@ -897,11 +912,6 @@ footer {
     z-index: 0; /* stays behind header */
 }
 body {
-    background-color: #0b0e12;
-    padding-top: env(safe-area-inset-top);
-}
-
-header {
     background-color: #0b0e12;
     padding-top: env(safe-area-inset-top);
 }
