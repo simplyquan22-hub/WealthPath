@@ -309,6 +309,76 @@
             will-change: transform; transform: perspective(1000px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
             transition: transform 0.3s ease-out, box-shadow 0.5s ease; 
         }
+      /* =======================================
+   WealthPath Clean Blue Neon-Core Glow
+   (Balanced + Founder Included)
+   ======================================= */
+
+.card,
+.founder-card {
+    position: relative !important;
+
+    /* Soft inner glow (very toned down) */
+    background: radial-gradient(
+        circle at center,
+        rgba(59,130,246,0.08),   /* subtle blue core */
+        rgba(11,14,18,0.96) 70%  /* dark outer ring */
+    ) !important;
+
+    border-radius: 22px !important;
+
+    /* Blue border glow (reduced intensity) */
+    border: 1px solid rgba(59,130,246,0.28) !important;
+
+    /* Clean blue halo + soft inner glow */
+    box-shadow:
+        0 0 12px rgba(59,130,246,0.20),   /* outer blue halo */
+        0 0 26px rgba(59,130,246,0.10),   /* big halo (very soft) */
+        inset 0 0 10px rgba(59,130,246,0.14); /* inner blue core */
+
+    animation: bluePulse 7s ease-in-out infinite alternate !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+/* Smooth, subtle pulse with ONLY BLUE */
+@keyframes bluePulse {
+    from {
+        box-shadow:
+            0 0 10px rgba(59,130,246,0.18),
+            0 0 20px rgba(59,130,246,0.10),
+            inset 0 0 8px rgba(59,130,246,0.12);
+    }
+    to {
+        box-shadow:
+            0 0 18px rgba(59,130,246,0.28),
+            0 0 32px rgba(59,130,246,0.18),
+            inset 0 0 12px rgba(59,130,246,0.18);
+    }
+}
+
+/* Blue corner glow accents (subtle) */
+.card::after,
+.founder-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(59,130,246,0.14),
+            transparent 65%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(59,130,246,0.14),
+            transparent 65%
+        );
+
+    opacity: 0.18;
+}
         .card::before {
             content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
             border-radius: 20px; z-index: -1; pointer-events: none; transition: box-shadow 0.5s ease;
@@ -964,17 +1034,10 @@ body {
             </div>
 
 
-            <div id="mobileInstructionBlock" style="
-                background-color: rgba(26, 42, 71, 0.9); 
-                border-radius: 12px;
-                padding: 30px; 
-                margin: 40px auto; 
-                max-width: 500px; 
-                text-align: left;
-                color: var(--text); 
-                box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); 
-            ">
-                <h3 style="font-size: 1.4rem; margin-top: 0; color: var(--accent);">For the Best Experience possible :</h3>
+           <div id="mobileInstructionBlock" class="card" style="margin: 40px auto; max-width: 500px;">
+            
+            
+                <h3 style="font-size: 1.4rem; margin-top: 0; color: #fff;">For the Best Experience possible :</h3>
                 <p style="margin-top: 15px; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.5; color: var(--muted);">
                     We recommend viewing our course on a phone or tablet using the free Google Docs mobile App due to formatting issues on the browser so we want you to be aware of that.
                 </p>
