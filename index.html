@@ -54,16 +54,14 @@
         /* --- END FADE IN ANIMATION STYLES --- */
 
         /* --- NEW: FIXED GLOW HEADER --- */
-       .fixed-header {
+  .fixed-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
 
-    /* ADD THIS → makes header fill ALL the top space */
-    padding-top: calc(env(safe-area-inset-top) + 10px);
-
     height: calc(var(--header-height) + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
 
     background: rgba(11, 14, 18, 0.95);
     backdrop-filter: blur(12px);
@@ -80,7 +78,6 @@
     transform: translateY(-100%);
     transition: transform 0.4s ease-out, border-bottom 0.4s ease;
 }
-
         .fixed-header.scrolled {
             transform: translateY(0); 
             border-bottom: 1px solid rgba(59, 130, 246, 0.4); 
