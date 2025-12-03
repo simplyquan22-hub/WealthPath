@@ -331,11 +331,11 @@
     border: 1px solid rgba(59,130,246,0.28) !important;
 
     /* Clean blue halo + soft inner glow */
-    box-shadow:
-        0 0 12px rgba(59,130,246,0.20),   /* outer blue halo */
-        0 0 26px rgba(59,130,246,0.10),   /* big halo (very soft) */
-        inset 0 0 10px rgba(59,130,246,0.14); /* inner blue core */
-
+   /* Clean blue halo + stronger but balanced glow */
+box-shadow:
+    0 0 18px rgba(59,130,246,0.32),   /* outer halo (stronger) */
+    0 0 38px rgba(59,130,246,0.20),   /* big halo more visible */
+    inset 0 0 14px rgba(59,130,246,0.20); /* inner glow slightly stronger */
     animation: bluePulse 7s ease-in-out infinite alternate !important;
     backdrop-filter: blur(12px) !important;
 }
