@@ -11,6 +11,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
 
 <link rel="shortcut icon" href="/favicon-32x32.png?v=3">
+    <!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         /* VARIABLES */
@@ -1710,6 +1712,43 @@ document.addEventListener("touchmove", (e) => {
     const t = e.touches[0];
     createGlowDot(t.clientX, t.clientY, false);
 }, { passive: true });
+/* ==============================
+   END-OF-PAGE CONFETTI BURST
+============================== */
+
+let confettiTriggered = false;
+
+function launchConfetti() {
+    // Main cinematic blast
+    confetti({
+        particleCount: 180,
+        spread: 90,
+        startVelocity: 40,
+        origin: { y: 1 },
+        colors: ["#3b82f6", "#facc15", "#38bdf8", "#4ade80"] // WealthPath colors
+    });
+
+    // Soft secondary burst for luxury feel
+    setTimeout(() => {
+        confetti({
+            particleCount: 100,
+            spread: 75,
+            startVelocity: 25,
+            origin: { y: 1 },
+            colors: ["#3b82f6", "#facc15", "#38bdf8"]
+        });
+    }, 350);
+}
+
+window.addEventListener("scroll", () => {
+    const scrollPos = window.innerHeight + window.scrollY;
+    const pageHeight = document.body.offsetHeight;
+
+    if (scrollPos >= pageHeight - 50 && !confettiTriggered) {
+        confettiTriggered = true;
+        launchConfetti();
+    }
+});
 </script>
 
 </body>
