@@ -648,6 +648,10 @@ footer {
     z-index: 2000;
     padding: 80px 25px;
     transition: right 0.35s ease;
+
+    overflow-y: auto;                 
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
 }
 .mobile-menu.open {
     right: 0;
