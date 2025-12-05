@@ -1030,6 +1030,55 @@ body {
         box-shadow: 0 0 3px rgba(250, 204, 21, 0.5), 0 0 5px rgba(59, 130, 246, 0.2);
     }
 }
+/* ====================
+   MOBILE MENU ENHANCEMENT
+==================== */
+.menu-item {
+    display: flex; /* Makes icon and content align horizontally */
+    align-items: center;
+    gap: 15px; /* Space between icon and text */
+    /* ... existing styles remain ... */
+    padding: 14px 18px; /* Maintain padding */
+}
+
+/* Icon (left side) */
+.item-icon {
+    font-size: 1.6rem;
+    line-height: 1; /* Keep icon vertically centered */
+    width: 30px; /* Gives a fixed width for alignment */
+    text-align: center;
+    flex-shrink: 0; /* Prevents icon from shrinking */
+}
+
+/* Text container */
+.item-content {
+    display: flex;
+    flex-direction: column; /* Stacks title and subtext vertically */
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Main title (bold) */
+.item-title {
+    font-size: 1.05rem; /* Same as old menu item size */
+    font-weight: 600;
+    color: var(--text); /* Ensure good contrast */
+    line-height: 1.2;
+}
+
+/* Subtext (muted) */
+.item-subtext {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.35;
+    margin-top: 3px;
+}
+
+/* Tweak hover effect to handle the two lines */
+.menu-item:hover,
+.menu-item:focus {
+    text-decoration: none;
+}
     </style>
 </head>
 <body>
@@ -1053,16 +1102,59 @@ body {
     </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <div class="menu-close" onclick="toggleMenu()">✕</div>
+    <div class="menu-close" onclick="toggleMenu()">✕</div>
     <div class="menu-title">WealthPath Menu</div>
     <div class="menu-title-underline"></div>
 
-    <a href="#about" class="menu-item">🌟 About Us</a>
-    <a href="#parallaxCardsContainer" class="menu-item">🏛️ Our Pillars</a>
-    <a href="#tools" class="menu-item">🧰 Learning Toolkit</a>
-    <a href="privacy.html" class="menu-item">🔒 Privacy Policy</a>
-    <a href="terms.html" class="menu-item">📄 Terms of Service</a>
-    <a href="mailto:info@mywealthpath.org" class="menu-item">✉️ Contact Us</a>
+    <a href="#about" class="menu-item">
+        <span class="item-icon">🌟</span>
+        <span class="item-content">
+            <span class="item-title">About Us</span>
+            <span class="item-subtext">Our mission, vision, and core values.</span>
+        </span>
+    </a>
+    
+    <a href="#parallaxCardsContainer" class="menu-item">
+        <span class="item-icon">🏛️</span>
+        <span class="item-content">
+            <span class="item-title">Our Pillars</span>
+            <span class="item-subtext">The three core beliefs that guide us.</span>
+        </span>
+    </a>
+    
+    <a href="#tools" class="menu-item">
+        <span class="item-icon">🧰</span>
+        <span class="item-content">
+            <span class="item-title">Learning Toolkit</span>
+            <span class="item-subtext">Helpful resources.</span>
+        </span>
+    </a>
+    
+    <div style="height: 25px;"></div>
+    
+    <a href="privacy.html" class="menu-item">
+        <span class="item-icon">🔒</span>
+        <span class="item-content">
+            <span class="item-title">Privacy Policy</span>
+            <span class="item-subtext">What data we collect and how we use it.</span>
+        </span>
+    </a>
+    
+    <a href="terms.html" class="menu-item">
+        <span class="item-icon">📄</span>
+        <span class="item-content">
+            <span class="item-title">Terms of Service</span>
+            <span class="item-subtext">Legal agreement between you and WealthPath.</span>
+        </span>
+    </a>
+    
+    <a href="mailto:info@mywealthpath.org" class="menu-item">
+        <span class="item-icon">✉️</span>
+        <span class="item-content">
+            <span class="item-title">Contact Us</span>
+            <span class="item-subtext">Email us with questions or feedback.</span>
+        </span>
+    </a>
 </div>
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
