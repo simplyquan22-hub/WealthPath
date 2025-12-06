@@ -193,10 +193,281 @@
         box-shadow: 0 0 3px rgba(250, 204, 21, 0.5), 0 0 5px rgba(59, 130, 246, 0.2);
     }
 }
+/* ========================
+   1. FIXED HEADER STYLES
+   ======================== */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(11,14,18,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 26px;
+    z-index: 1000;
+    /* We'll assume the header is always visible on these legal pages */
+}
+
+/* LOGO (STATIC FIX INCLUDED) */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer;
+}
+.logo-orb {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 6px #3b82f6);
+    animation: none !important; /* The fix to stop spinning */
+}
+.logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text, #e9eef6);
+}
+
+/* DESKTOP NAVIGATION */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.header-nav a {
+    color: var(--muted, #9aa4b2);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 2px 0;
+    transition: color 0.2s ease;
+}
+.header-nav a:hover {
+    color: var(--accent, #3b82f6);
+}
+
+/* HAMBURGER */
+.menu-btn {
+    width: 26px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001; /* Ensure button is clickable over menu */
+}
+.menu-btn span {
+    width: 100%;
+    height: 2.5px;
+    background: #ffffff;
+    border-radius: 4px;
+    transition: .3s;
+}
+.menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.menu-btn.active span:nth-child(2) { opacity: 0; }
+.menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+
+/* ========================
+   2. MOBILE MENU STYLES
+   ======================== */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background: rgba(11,14,18,0.92);
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255,255,255,0.08);
+    padding: 80px 25px;
+    overflow-y: auto; 
+    overscroll-behavior: contain;
+    z-index: 2000;
+    transition: right .35s ease;
+}
+.mobile-menu.open {
+    right: 0;
+}
+.menu-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 1.9rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+.menu-title {
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 22px;
+}
+.menu-title-underline {
+    position: relative;
+    width: 60%;
+    height: 2px;
+    margin: 8px auto 25px;
+    background: linear-gradient(90deg, rgba(59,130,246,0), rgba(59,130,246,0.8), rgba(59,130,246,0));
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(59,130,246,0.6);
+}
+
+/* ============================
+   3. ENHANCED MOBILE MENU ITEM STYLES
+   ============================ */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 14px;
+    transition: .25s ease;
+}
+
+.menu-item:hover {
+    background: rgba(59,130,246,0.12);
+    border-color: var(--accent, #3b82f6);
+    transform: translateX(4px);
+}
+
+.item-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 30px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.item-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text, #e9eef6);
+    line-height: 1.2;
+}
+
+.item-subtext {
+    font-size: 0.85rem;
+    color: var(--muted, #9aa4b2);
+    line-height: 1.35;
+    margin-top: 3px;
+}
+
+/* MEDIA QUERY: Hide Hamburger on Desktop */
+@media (min-width: 900px) {
+    .menu-btn {
+        display: none;
+    }
+}
+/* MEDIA QUERY: Hide Desktop Nav on Mobile */
+@media (max-width: 899px) {
+    .header-nav {
+        display: none;
+    }
+}
     </style>
 </head>
 
 <body>
+    <header id="fixedHeader" class="fixed-header">
+    <a href="index.html" class="header-logo logo-mixed">
+        <img src="images/logo-orb.png" class="logo-orb" alt="WealthPath Logo Orb">
+        <span class="logo-text">WealthPath</span>
+    </a>
+
+    <nav class="header-nav" id="desktopNav">
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#pillars">Our Pillars</a>
+        <a href="index.html#tools">Resources</a>
+        <a href="index.html#founder">Founder</a>
+    </nav>
+    
+    <div id="menuBtn" class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="menu-close" onclick="toggleMenu()">✕</div>
+    
+    <div class="menu-title">WealthPath Menu</div>
+    <div class="menu-title-underline"></div>
+
+    <a href="index.html#about" class="menu-item">
+        <span class="item-icon">🌟</span>
+        <span class="item-content">
+            <span class="item-title">About Us</span>
+            <span class="item-subtext">Our mission, vision, and core values.</span>
+        </span>
+    </a>
+    
+    <a href="index.html#parallaxCardsContainer" class="menu-item">
+        <span class="item-icon">🏛️</span>
+        <span class="item-content">
+            <span class="item-title">Our Pillars</span>
+            <span class="item-subtext">The three core beliefs that guide us.</span>
+        </span>
+    </a>
+    
+    <a href="index.html#tools" class="menu-item">
+        <span class="item-icon">🧰</span>
+        <span class="item-content">
+            <span class="item-title">Learning Toolkit</span>
+            <span class="item-subtext">Helpful resources.</span>
+        </span>
+    </a>
+
+    <div style="height: 25px;"></div>
+    
+    <a href="privacy.html" class="menu-item">
+        <span class="item-icon">🔒</span>
+        <span class="item-content">
+            <span class="item-title">Privacy Policy</span>
+            <span class="item-subtext">What data we collect and how we use it.</span>
+        </span>
+    </a>
+    
+    <a href="terms.html" class="menu-item">
+        <span class="item-icon">📄</span>
+        <span class="item-content">
+            <span class="item-title">Terms of Service</span>
+            <span class="item-subtext">Legal agreement between you and WealthPath.</span>
+        </span>
+    </a>
+    
+    <a href="mailto:info@mywealthpath.org" class="menu-item">
+        <span class="item-icon">✉️</span>
+        <span class="item-content">
+            <span class="item-title">Contact Us</span>
+            <span class="item-subtext">Email us with questions or feedback.</span>
+        </span>
+    </a>
+</div>
 
     <div class="animated-bg"></div>
     <div class="orb blue"></div>
@@ -323,6 +594,27 @@
         </div>
 
     </div>
+    
+    <script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    const menuBtn = document.getElementById("menuBtn");
+    const body = document.body;
+
+    menu.classList.toggle("open");
+    menuBtn.classList.toggle("active"); // Optional: Animates the hamburger icon
+
+    if (menu.classList.contains("open")) {
+        // Disable body scroll when menu is open
+        body.style.overflow = "hidden";
+    } else {
+        // Re-enable body scroll when menu is closed
+        body.style.overflow = "";
+    }
+}
+
+document.getElementById("menuBtn").addEventListener("click", toggleMenu);
+</script>
 
 </body>
 </html>
