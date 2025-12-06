@@ -328,6 +328,35 @@
     overflow: hidden;
     box-shadow: 0 0 8px rgba(59,130,246,0.6);
 }
+/* Animated glow inside the divider */
+.menu-title-underline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(59,130,246,0),
+        rgba(59,130,246,1),
+        rgba(250,204,21,0.9),
+        rgba(59,130,246,0)
+    );
+    opacity: 0.95;
+    filter: blur(1px);
+    animation: menuUnderlineSweep 2.4s linear infinite;
+}
+
+/* Animation for glow sweep */
+@keyframes menuUnderlineSweep {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(220%);
+    }
+}
 
 /* ============================
    3. ENHANCED MOBILE MENU ITEM STYLES
